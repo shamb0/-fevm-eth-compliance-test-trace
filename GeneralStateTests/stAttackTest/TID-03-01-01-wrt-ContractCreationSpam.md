@@ -24,7 +24,7 @@ clear && \
 
 > For Review
 
-* `transaction::data` is empty | Execution Success
+* `transaction::data` is empty | Execution Freeze
 
 ```
 "transaction" : {
