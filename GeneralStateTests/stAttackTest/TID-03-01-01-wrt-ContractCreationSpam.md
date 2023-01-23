@@ -667,3 +667,35 @@ warning: bundle=/home/popoyi/dscbox/sun/ws-020-blocks/ws-030-filecoin-project/de
 [DEBUG] getting cid: bafy2bzacec3rwabjb2c66wqavdesx62oho67ckwbjo3mtamnd3wyknmjgnpae
 [DEBUG] fetching parameters block: 1
 ```
+
+> Execution Trace with [Patch](https://github.com/shamb0/fevm-eth-compliance-test/pull/1)
+
+```
+  Compiling evm_eth_compliance v10.0.0-alpha.1 (/home/popoyi/dscbox/sun/ws-020-blocks/ws-030-filecoin-project/dev-030-01-fvm/fevm-eth-compliance-test)
+    Finished release [optimized] target(s) in 2m 05s
+     Running `target/release/evm_eth_compliance statetest`
+2023-01-23T09:52:34.355683Z  INFO evm_eth_compliance::statetest::cmd: Start running tests on: Path :: "test-vectors/tests/GeneralStateTests/stAttackTest/ContractCreationSpam.json", Total Files :: 1
+2023-01-23T09:52:34.355946Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stAttackTest/ContractCreationSpam.json"
+2023-01-23T09:52:34.384983Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-23T09:52:34.385225Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-23T09:52:34.385231Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-23T09:52:34.385290Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-23T09:52:34.385366Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-23T09:52:34.385371Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ContractCreationSpam"::Istanbul::0
+2023-01-23T09:52:34.385377Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stAttackTest/ContractCreationSpam.json"
+2023-01-23T09:52:34.385383Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-23T09:52:34.385386Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [204, 140, 122, 132, 212, 242, 135, 36, 65, 73, 159, 167, 43, 72, 189, 69, 176, 57, 35, 171, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
+[TRACE] robust address: Address { payload: Actor([215, 166, 242, 208, 200, 186, 79, 10, 126, 8, 221, 102, 9, 12, 200, 158, 203, 19, 78, 227]) }
+flame^C^C
+```
+
+One more observation is Use-case, trying to drain out the system resource. 78% cpu is consumed & only 1.4GB of Ram is left
+
+**After Launching the Use-Case**
+
+![](https://i.imgur.com/aqDtIOA.png)
+
+**Average system load**
+
+![](https://i.imgur.com/b5lpFq7.png)
