@@ -17,7 +17,7 @@ https://github.com/ethereum/tests/blob/develop/GeneralStateTests/stCallCodes/cal
 clear && \
 	RUST_LOG=evm_eth_compliance=trace \
 	VECTOR=test-vectors/tests/GeneralStateTests/stCallCodes/callcallcallcode_001_SuicideEnd.json \
-	cargo run \
+	cargo run --release \
 	-- \
 	statetest
 ```
