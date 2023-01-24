@@ -1,0 +1,1651 @@
+> Status
+
+| Status | Context |
+| --- | --- |
+| OK | under WASM RT context |
+| TODO | under native RT context |
+
+> Test Suite
+
+https://github.com/ethereum/tests/blob/develop/GeneralStateTests/stZeroCallsTest
+
+> Command to execute
+
+```
+clear && \
+	RUST_LOG=evm_eth_compliance=trace \
+	VECTOR=test-vectors/tests/GeneralStateTests/stZeroCallsTest \
+	cargo run --release \
+	-- \
+	statetest
+```
+
+> For Review
+
+* Belo use-cases, hit with `EVM_CONTRACT_UNDEFINED_INSTRUCTION` (ExitCode::35)
+
+| Test ID | Use-Case |
+| --- | --- |
+| TID-55-05 | stZeroCallsTest/ZeroValue_CALLCODE |
+| TID-55-06 | stZeroCallsTest/ZeroValue_CALLCODE_ToEmpty |
+| TID-55-07 | stZeroCallsTest/ZeroValue_CALLCODE_ToNonZeroBalance |
+| TID-55-08 | stZeroCallsTest/ZeroValue_CALLCODE_ToOneStorageKey |
+
+> Execution Trace
+
+```
+2023-01-24T08:49:51.638319Z  INFO evm_eth_compliance::statetest::cmd: Start running tests on: Path :: "test-vectors/tests/GeneralStateTests/stZeroCallsTest", Total Files :: 24
+2023-01-24T08:49:51.638566Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL.json"
+2023-01-24T08:49:51.668201Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:51.668407Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:51.668412Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:51.668467Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:51.668546Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:51.668550Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL"::Istanbul::0
+2023-01-24T08:49:51.668553Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL.json"
+2023-01-24T08:49:51.668557Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:51.668559Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.070278Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3749538,
+    events_root: None,
+}
+2023-01-24T08:49:52.070302Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:52.070308Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL"::Berlin::0
+2023-01-24T08:49:52.070311Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL.json"
+2023-01-24T08:49:52.070314Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.070316Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.070528Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 4252652,
+    events_root: None,
+}
+2023-01-24T08:49:52.070536Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:52.070541Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL"::London::0
+2023-01-24T08:49:52.070543Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL.json"
+2023-01-24T08:49:52.070545Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.070547Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.070687Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2368695,
+    events_root: None,
+}
+2023-01-24T08:49:52.070695Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:52.070698Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL"::Merge::0
+2023-01-24T08:49:52.070700Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL.json"
+2023-01-24T08:49:52.070702Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.070703Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.070839Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2368695,
+    events_root: None,
+}
+2023-01-24T08:49:52.072256Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL.json"
+2023-01-24T08:49:52.072284Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE.json"
+2023-01-24T08:49:52.098539Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:52.098659Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:52.098664Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:52.098720Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:52.098795Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:52.098801Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE"::Istanbul::0
+2023-01-24T08:49:52.098804Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE.json"
+2023-01-24T08:49:52.098807Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.098808Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.469718Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:52.469737Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:52.469752Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:52.469759Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE"::Berlin::0
+2023-01-24T08:49:52.469761Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE.json"
+2023-01-24T08:49:52.469764Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.469766Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.469896Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:52.469901Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:52.469910Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:52.469913Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE"::London::0
+2023-01-24T08:49:52.469915Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE.json"
+2023-01-24T08:49:52.469917Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.469918Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.470013Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:52.470018Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:52.470027Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:52.470030Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE"::Merge::0
+2023-01-24T08:49:52.470032Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE.json"
+2023-01-24T08:49:52.470036Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.470037Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.470128Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:52.470134Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:52.471649Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE.json"
+2023-01-24T08:49:52.471677Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToEmpty.json"
+2023-01-24T08:49:52.497934Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:52.498096Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:52.498100Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:52.498156Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:52.498158Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:52.498219Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:52.498295Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:52.498300Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToEmpty"::Istanbul::0
+2023-01-24T08:49:52.498303Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToEmpty.json"
+2023-01-24T08:49:52.498307Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.498309Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.838666Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:52.838683Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:52.838697Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:52.838704Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToEmpty"::Berlin::0
+2023-01-24T08:49:52.838705Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToEmpty.json"
+2023-01-24T08:49:52.838708Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.838710Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.838833Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:52.838838Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:52.838848Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:52.838850Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToEmpty"::London::0
+2023-01-24T08:49:52.838853Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToEmpty.json"
+2023-01-24T08:49:52.838855Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.838857Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.838949Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:52.838954Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:52.838963Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:52.838966Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToEmpty"::Merge::0
+2023-01-24T08:49:52.838968Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToEmpty.json"
+2023-01-24T08:49:52.838971Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.838972Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:52.839061Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:52.839065Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:52.840155Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToEmpty.json"
+2023-01-24T08:49:52.840184Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToNonZeroBalance.json"
+2023-01-24T08:49:52.866078Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:52.866190Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:52.866193Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:52.866248Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:52.866250Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:52.866310Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:52.866382Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:52.866389Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToNonZeroBalance"::Istanbul::0
+2023-01-24T08:49:52.866392Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToNonZeroBalance.json"
+2023-01-24T08:49:52.866396Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:52.866397Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.209521Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:53.209536Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:53.209551Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:53.209558Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToNonZeroBalance"::Berlin::0
+2023-01-24T08:49:53.209560Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToNonZeroBalance.json"
+2023-01-24T08:49:53.209562Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.209564Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.209695Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:53.209700Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:53.209709Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:53.209712Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToNonZeroBalance"::London::0
+2023-01-24T08:49:53.209714Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToNonZeroBalance.json"
+2023-01-24T08:49:53.209716Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.209718Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.209812Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:53.209817Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:53.209825Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:53.209828Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToNonZeroBalance"::Merge::0
+2023-01-24T08:49:53.209831Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToNonZeroBalance.json"
+2023-01-24T08:49:53.209833Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.209835Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.209928Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:53.209933Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:53.211047Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToNonZeroBalance.json"
+2023-01-24T08:49:53.211074Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToOneStorageKey.json"
+2023-01-24T08:49:53.236338Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:53.236442Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:53.236446Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:53.236499Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:53.236501Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:53.236560Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:53.236632Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:53.236637Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToOneStorageKey"::Istanbul::0
+2023-01-24T08:49:53.236640Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToOneStorageKey.json"
+2023-01-24T08:49:53.236643Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.236646Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.608990Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:53.609008Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:53.609023Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:53.609029Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToOneStorageKey"::Berlin::0
+2023-01-24T08:49:53.609031Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToOneStorageKey.json"
+2023-01-24T08:49:53.609034Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.609036Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.609177Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:53.609182Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:53.609191Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:53.609193Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToOneStorageKey"::London::0
+2023-01-24T08:49:53.609196Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToOneStorageKey.json"
+2023-01-24T08:49:53.609198Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.609200Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.609294Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:53.609299Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:53.609307Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:53.609310Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALLCODE_ToOneStorageKey"::Merge::0
+2023-01-24T08:49:53.609312Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToOneStorageKey.json"
+2023-01-24T08:49:53.609314Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.609316Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.609427Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 35,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1571431,
+    events_root: None,
+}
+2023-01-24T08:49:53.609433Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 35,
+                    },
+                    message: "ABORT(pc=38): undefined instruction",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-01-24T08:49:53.610732Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALLCODE_ToOneStorageKey.json"
+2023-01-24T08:49:53.610759Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToEmpty.json"
+2023-01-24T08:49:53.636535Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:53.636642Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:53.636646Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:53.636701Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:53.636704Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:53.636763Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:53.636836Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:53.636841Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToEmpty"::Istanbul::0
+2023-01-24T08:49:53.636844Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToEmpty.json"
+2023-01-24T08:49:53.636847Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.636848Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.984641Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 4289404,
+    events_root: None,
+}
+2023-01-24T08:49:53.984672Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:53.984683Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToEmpty"::Berlin::0
+2023-01-24T08:49:53.984686Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToEmpty.json"
+2023-01-24T08:49:53.984691Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.984693Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.984962Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3720350,
+    events_root: None,
+}
+2023-01-24T08:49:53.984973Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:53.984977Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToEmpty"::London::0
+2023-01-24T08:49:53.984980Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToEmpty.json"
+2023-01-24T08:49:53.984984Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.984986Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.985175Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2292571,
+    events_root: None,
+}
+2023-01-24T08:49:53.985185Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:53.985188Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToEmpty"::Merge::0
+2023-01-24T08:49:53.985191Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToEmpty.json"
+2023-01-24T08:49:53.985195Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:53.985197Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:53.985420Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2292571,
+    events_root: None,
+}
+2023-01-24T08:49:53.986904Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToEmpty.json"
+2023-01-24T08:49:53.986933Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToNonZeroBalance.json"
+2023-01-24T08:49:54.017027Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:54.017138Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:54.017141Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:54.017194Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:54.017196Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:54.017256Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:54.017328Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:54.017333Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToNonZeroBalance"::Istanbul::0
+2023-01-24T08:49:54.017336Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToNonZeroBalance.json"
+2023-01-24T08:49:54.017339Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.017341Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:54.363727Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 4289404,
+    events_root: None,
+}
+2023-01-24T08:49:54.363753Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:54.363760Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToNonZeroBalance"::Berlin::0
+2023-01-24T08:49:54.363763Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToNonZeroBalance.json"
+2023-01-24T08:49:54.363766Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.363768Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:54.363976Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3720350,
+    events_root: None,
+}
+2023-01-24T08:49:54.363986Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:54.363989Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToNonZeroBalance"::London::0
+2023-01-24T08:49:54.363991Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToNonZeroBalance.json"
+2023-01-24T08:49:54.363993Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.363995Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:54.364132Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2292571,
+    events_root: None,
+}
+2023-01-24T08:49:54.364140Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:54.364143Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToNonZeroBalance"::Merge::0
+2023-01-24T08:49:54.364145Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToNonZeroBalance.json"
+2023-01-24T08:49:54.364148Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.364150Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:54.364291Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2292571,
+    events_root: None,
+}
+2023-01-24T08:49:54.365709Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToNonZeroBalance.json"
+2023-01-24T08:49:54.365737Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToOneStorageKey.json"
+2023-01-24T08:49:54.390931Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:54.391036Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:54.391040Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:54.391091Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:54.391093Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:54.391153Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:54.391225Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:54.391229Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToOneStorageKey"::Istanbul::0
+2023-01-24T08:49:54.391233Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToOneStorageKey.json"
+2023-01-24T08:49:54.391236Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.391237Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:54.734122Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 4289404,
+    events_root: None,
+}
+2023-01-24T08:49:54.734147Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:54.734154Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToOneStorageKey"::Berlin::0
+2023-01-24T08:49:54.734157Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToOneStorageKey.json"
+2023-01-24T08:49:54.734160Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.734161Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:54.734346Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3720350,
+    events_root: None,
+}
+2023-01-24T08:49:54.734354Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:54.734357Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToOneStorageKey"::London::0
+2023-01-24T08:49:54.734361Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToOneStorageKey.json"
+2023-01-24T08:49:54.734364Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.734365Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:54.734505Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2292571,
+    events_root: None,
+}
+2023-01-24T08:49:54.734513Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:54.734516Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_CALL_ToOneStorageKey"::Merge::0
+2023-01-24T08:49:54.734518Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToOneStorageKey.json"
+2023-01-24T08:49:54.734520Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.734521Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:54.734658Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2292571,
+    events_root: None,
+}
+2023-01-24T08:49:54.736221Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_CALL_ToOneStorageKey.json"
+2023-01-24T08:49:54.736249Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL.json"
+2023-01-24T08:49:54.761836Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:54.761954Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:54.761958Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:54.762018Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:54.762097Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:54.762104Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL"::Istanbul::0
+2023-01-24T08:49:54.762107Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL.json"
+2023-01-24T08:49:54.762112Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:54.762114Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.106484Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3749196,
+    events_root: None,
+}
+2023-01-24T08:49:55.106506Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:55.106512Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL"::Berlin::0
+2023-01-24T08:49:55.106516Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL.json"
+2023-01-24T08:49:55.106519Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.106520Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.106732Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 4252311,
+    events_root: None,
+}
+2023-01-24T08:49:55.106741Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:55.106743Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL"::London::0
+2023-01-24T08:49:55.106746Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL.json"
+2023-01-24T08:49:55.106748Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.106750Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.106890Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2368354,
+    events_root: None,
+}
+2023-01-24T08:49:55.106898Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:55.106901Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL"::Merge::0
+2023-01-24T08:49:55.106903Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL.json"
+2023-01-24T08:49:55.106906Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.106907Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.107046Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2368354,
+    events_root: None,
+}
+2023-01-24T08:49:55.108396Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL.json"
+2023-01-24T08:49:55.108421Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToEmpty.json"
+2023-01-24T08:49:55.134662Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:55.134779Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.134782Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:55.134835Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.134837Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:55.134897Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.134971Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:55.134976Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToEmpty"::Istanbul::0
+2023-01-24T08:49:55.134979Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToEmpty.json"
+2023-01-24T08:49:55.134982Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.134983Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.481325Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 5175350,
+    events_root: None,
+}
+2023-01-24T08:49:55.481350Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:55.481355Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToEmpty"::Berlin::0
+2023-01-24T08:49:55.481357Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToEmpty.json"
+2023-01-24T08:49:55.481360Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.481362Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.481595Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 4606656,
+    events_root: None,
+}
+2023-01-24T08:49:55.481605Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:55.481607Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToEmpty"::London::0
+2023-01-24T08:49:55.481610Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToEmpty.json"
+2023-01-24T08:49:55.481612Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.481615Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.481811Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3178877,
+    events_root: None,
+}
+2023-01-24T08:49:55.481820Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:55.481823Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToEmpty"::Merge::0
+2023-01-24T08:49:55.481825Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToEmpty.json"
+2023-01-24T08:49:55.481827Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.481829Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.482022Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3178877,
+    events_root: None,
+}
+2023-01-24T08:49:55.483353Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToEmpty.json"
+2023-01-24T08:49:55.483378Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToNonZeroBalance.json"
+2023-01-24T08:49:55.508352Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:55.508458Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.508462Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:55.508516Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.508518Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:55.508576Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.508648Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:55.508654Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToNonZeroBalance"::Istanbul::0
+2023-01-24T08:49:55.508657Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToNonZeroBalance.json"
+2023-01-24T08:49:55.508660Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.508662Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.852651Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 5175350,
+    events_root: None,
+}
+2023-01-24T08:49:55.852679Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:55.852686Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToNonZeroBalance"::Berlin::0
+2023-01-24T08:49:55.852689Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToNonZeroBalance.json"
+2023-01-24T08:49:55.852692Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.852694Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.852944Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 4606656,
+    events_root: None,
+}
+2023-01-24T08:49:55.852953Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:55.852956Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToNonZeroBalance"::London::0
+2023-01-24T08:49:55.852958Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToNonZeroBalance.json"
+2023-01-24T08:49:55.852961Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.852963Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.853172Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3178877,
+    events_root: None,
+}
+2023-01-24T08:49:55.853181Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:55.853184Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToNonZeroBalance"::Merge::0
+2023-01-24T08:49:55.853186Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToNonZeroBalance.json"
+2023-01-24T08:49:55.853189Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.853190Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:55.853396Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3178877,
+    events_root: None,
+}
+2023-01-24T08:49:55.854968Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToNonZeroBalance.json"
+2023-01-24T08:49:55.854998Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToOneStorageKey.json"
+2023-01-24T08:49:55.880348Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:55.880457Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.880460Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:55.880518Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.880520Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:55.880593Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:55.880685Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:55.880692Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToOneStorageKey"::Istanbul::0
+2023-01-24T08:49:55.880696Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToOneStorageKey.json"
+2023-01-24T08:49:55.880700Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:55.880702Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:56.234623Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 5175350,
+    events_root: None,
+}
+2023-01-24T08:49:56.234648Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:56.234655Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToOneStorageKey"::Berlin::0
+2023-01-24T08:49:56.234659Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToOneStorageKey.json"
+2023-01-24T08:49:56.234663Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:56.234665Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:56.234908Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 4606656,
+    events_root: None,
+}
+2023-01-24T08:49:56.234920Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:56.234923Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToOneStorageKey"::London::0
+2023-01-24T08:49:56.234927Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToOneStorageKey.json"
+2023-01-24T08:49:56.234930Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:56.234932Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:56.235138Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3178877,
+    events_root: None,
+}
+2023-01-24T08:49:56.235148Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:56.235152Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_DELEGATECALL_ToOneStorageKey"::Merge::0
+2023-01-24T08:49:56.235156Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToOneStorageKey.json"
+2023-01-24T08:49:56.235160Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:56.235162Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:56.235364Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3178877,
+    events_root: None,
+}
+2023-01-24T08:49:56.236645Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_DELEGATECALL_ToOneStorageKey.json"
+2023-01-24T08:49:56.236678Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE.json"
+2023-01-24T08:49:56.261730Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:56.261840Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:56.261844Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:56.261898Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:56.261972Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:56.261979Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE"::Istanbul::0
+2023-01-24T08:49:56.261982Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE.json"
+2023-01-24T08:49:56.261987Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:56.261989Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:56.608126Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 3361026,
+    events_root: None,
+}
+2023-01-24T08:49:56.608148Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:56.608154Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE"::Berlin::0
+2023-01-24T08:49:56.608157Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE.json"
+2023-01-24T08:49:56.608160Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:56.608162Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:56.608251Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:56.608257Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:56.608259Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE"::London::0
+2023-01-24T08:49:56.608261Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE.json"
+2023-01-24T08:49:56.608264Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:56.608265Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:56.608334Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:56.608339Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:56.608342Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE"::Merge::0
+2023-01-24T08:49:56.608344Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE.json"
+2023-01-24T08:49:56.608346Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:56.608348Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:56.608414Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:56.609631Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE.json"
+2023-01-24T08:49:56.609656Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToEmpty.json"
+2023-01-24T08:49:56.636986Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:56.637099Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:56.637102Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:56.637156Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:56.637159Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:56.637217Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:56.637296Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:56.637301Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToEmpty"::Istanbul::0
+2023-01-24T08:49:56.637305Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToEmpty.json"
+2023-01-24T08:49:56.637308Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:56.637309Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.014139Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2153772,
+    events_root: None,
+}
+2023-01-24T08:49:57.014160Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:57.014167Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToEmpty"::Berlin::0
+2023-01-24T08:49:57.014169Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToEmpty.json"
+2023-01-24T08:49:57.014173Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.014174Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.014276Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.014283Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:57.014286Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToEmpty"::London::0
+2023-01-24T08:49:57.014288Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToEmpty.json"
+2023-01-24T08:49:57.014290Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.014292Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.014358Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.014364Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:57.014366Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToEmpty"::Merge::0
+2023-01-24T08:49:57.014368Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToEmpty.json"
+2023-01-24T08:49:57.014371Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.014372Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.014436Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.015810Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToEmpty.json"
+2023-01-24T08:49:57.015842Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToNonZeroBalance.json"
+2023-01-24T08:49:57.041252Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:57.041362Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.041366Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:57.041418Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.041420Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:57.041495Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.041573Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:57.041579Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToNonZeroBalance"::Istanbul::0
+2023-01-24T08:49:57.041582Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToNonZeroBalance.json"
+2023-01-24T08:49:57.041585Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.041587Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.405542Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2153772,
+    events_root: None,
+}
+2023-01-24T08:49:57.405562Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:57.405568Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToNonZeroBalance"::Berlin::0
+2023-01-24T08:49:57.405571Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToNonZeroBalance.json"
+2023-01-24T08:49:57.405575Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.405576Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.405674Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.405680Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:57.405683Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToNonZeroBalance"::London::0
+2023-01-24T08:49:57.405685Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToNonZeroBalance.json"
+2023-01-24T08:49:57.405688Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.405689Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.405755Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.405760Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:57.405763Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToNonZeroBalance"::Merge::0
+2023-01-24T08:49:57.405765Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToNonZeroBalance.json"
+2023-01-24T08:49:57.405767Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.405769Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.405832Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.407071Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToNonZeroBalance.json"
+2023-01-24T08:49:57.407101Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToOneStorageKey.json"
+2023-01-24T08:49:57.432062Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:57.432166Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.432169Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:57.432221Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.432223Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
+2023-01-24T08:49:57.432281Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.432352Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:57.432357Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToOneStorageKey"::Istanbul::0
+2023-01-24T08:49:57.432360Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToOneStorageKey.json"
+2023-01-24T08:49:57.432363Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.432365Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.773091Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 2153772,
+    events_root: None,
+}
+2023-01-24T08:49:57.773113Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:57.773120Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToOneStorageKey"::Berlin::0
+2023-01-24T08:49:57.773123Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToOneStorageKey.json"
+2023-01-24T08:49:57.773127Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.773128Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.773223Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.773229Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:57.773232Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToOneStorageKey"::London::0
+2023-01-24T08:49:57.773234Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToOneStorageKey.json"
+2023-01-24T08:49:57.773237Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.773238Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.773323Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.773331Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:57.773334Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_SUICIDE_ToOneStorageKey"::Merge::0
+2023-01-24T08:49:57.773337Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToOneStorageKey.json"
+2023-01-24T08:49:57.773341Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.773343Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:57.773431Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1034122,
+    events_root: None,
+}
+2023-01-24T08:49:57.775317Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_SUICIDE_ToOneStorageKey.json"
+2023-01-24T08:49:57.775345Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL.json"
+2023-01-24T08:49:57.800324Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:57.800431Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.800503Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:57.800509Z  WARN evm_eth_compliance::statetest::runner: Skipping TestCase no valid actor "ZeroValue_TransactionCALL"::Istanbul::0
+2023-01-24T08:49:57.800512Z  WARN evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL.json"
+2023-01-24T08:49:57.800516Z  WARN evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.800517Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:57.800519Z  WARN evm_eth_compliance::statetest::runner: Skipping TestCase no valid actor "ZeroValue_TransactionCALL"::Berlin::0
+2023-01-24T08:49:57.800521Z  WARN evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL.json"
+2023-01-24T08:49:57.800523Z  WARN evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.800525Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:57.800526Z  WARN evm_eth_compliance::statetest::runner: Skipping TestCase no valid actor "ZeroValue_TransactionCALL"::London::0
+2023-01-24T08:49:57.800528Z  WARN evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL.json"
+2023-01-24T08:49:57.800530Z  WARN evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.800532Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:57.800534Z  WARN evm_eth_compliance::statetest::runner: Skipping TestCase no valid actor "ZeroValue_TransactionCALL"::Merge::0
+2023-01-24T08:49:57.800535Z  WARN evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL.json"
+2023-01-24T08:49:57.800538Z  WARN evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.801270Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL.json"
+2023-01-24T08:49:57.801294Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToEmpty.json"
+2023-01-24T08:49:57.826841Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:57.826943Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.826947Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:57.826998Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:57.827068Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:57.827073Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToEmpty"::Istanbul::0
+2023-01-24T08:49:57.827076Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToEmpty.json"
+2023-01-24T08:49:57.827079Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:57.827080Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.175504Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.175526Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:58.175534Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToEmpty"::Berlin::0
+2023-01-24T08:49:58.175537Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToEmpty.json"
+2023-01-24T08:49:58.175540Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.175541Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.175637Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.175643Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:58.175647Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToEmpty"::London::0
+2023-01-24T08:49:58.175649Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToEmpty.json"
+2023-01-24T08:49:58.175651Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.175653Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.175742Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.175749Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:58.175753Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToEmpty"::Merge::0
+2023-01-24T08:49:58.175756Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToEmpty.json"
+2023-01-24T08:49:58.175759Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.175761Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.175844Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.177394Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToEmpty.json"
+2023-01-24T08:49:58.177427Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToNonZeroBalance.json"
+2023-01-24T08:49:58.203048Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:58.203156Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:58.203159Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:58.203212Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:58.203282Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:58.203287Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToNonZeroBalance"::Istanbul::0
+2023-01-24T08:49:58.203290Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToNonZeroBalance.json"
+2023-01-24T08:49:58.203293Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.203295Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.574098Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.574121Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:58.574128Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToNonZeroBalance"::Berlin::0
+2023-01-24T08:49:58.574131Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToNonZeroBalance.json"
+2023-01-24T08:49:58.574134Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.574136Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.574264Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.574271Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:58.574274Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToNonZeroBalance"::London::0
+2023-01-24T08:49:58.574277Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToNonZeroBalance.json"
+2023-01-24T08:49:58.574279Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.574281Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.574363Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.574369Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:58.574373Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToNonZeroBalance"::Merge::0
+2023-01-24T08:49:58.574376Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToNonZeroBalance.json"
+2023-01-24T08:49:58.574379Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.574381Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.574480Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.575928Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToNonZeroBalance.json"
+2023-01-24T08:49:58.575963Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToOneStorageKey.json"
+2023-01-24T08:49:58.601054Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:58.601193Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:58.601199Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:58.601273Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:58.601368Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:58.601375Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToOneStorageKey"::Istanbul::0
+2023-01-24T08:49:58.601379Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToOneStorageKey.json"
+2023-01-24T08:49:58.601383Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.601385Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.973618Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.973641Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:58.973647Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToOneStorageKey"::Berlin::0
+2023-01-24T08:49:58.973651Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToOneStorageKey.json"
+2023-01-24T08:49:58.973654Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.973655Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.973749Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.973756Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:58.973758Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToOneStorageKey"::London::0
+2023-01-24T08:49:58.973760Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToOneStorageKey.json"
+2023-01-24T08:49:58.973763Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.973764Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.973841Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.973847Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:58.973850Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALL_ToOneStorageKey"::Merge::0
+2023-01-24T08:49:58.973852Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToOneStorageKey.json"
+2023-01-24T08:49:58.973855Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
+2023-01-24T08:49:58.973857Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:58.973935Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1493151,
+    events_root: None,
+}
+2023-01-24T08:49:58.974924Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALL_ToOneStorageKey.json"
+2023-01-24T08:49:58.974957Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData.json"
+2023-01-24T08:49:58.999436Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:58.999540Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:58.999613Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:58.999617Z  WARN evm_eth_compliance::statetest::runner: Skipping TestCase no valid actor "ZeroValue_TransactionCALLwithData"::Istanbul::0
+2023-01-24T08:49:58.999621Z  WARN evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData.json"
+2023-01-24T08:49:58.999624Z  WARN evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:58.999625Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:58.999627Z  WARN evm_eth_compliance::statetest::runner: Skipping TestCase no valid actor "ZeroValue_TransactionCALLwithData"::Berlin::0
+2023-01-24T08:49:58.999629Z  WARN evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData.json"
+2023-01-24T08:49:58.999632Z  WARN evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:58.999633Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:58.999635Z  WARN evm_eth_compliance::statetest::runner: Skipping TestCase no valid actor "ZeroValue_TransactionCALLwithData"::London::0
+2023-01-24T08:49:58.999637Z  WARN evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData.json"
+2023-01-24T08:49:58.999639Z  WARN evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:58.999640Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:58.999642Z  WARN evm_eth_compliance::statetest::runner: Skipping TestCase no valid actor "ZeroValue_TransactionCALLwithData"::Merge::0
+2023-01-24T08:49:58.999644Z  WARN evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData.json"
+2023-01-24T08:49:58.999646Z  WARN evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:58.999750Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData.json"
+2023-01-24T08:49:58.999781Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToEmpty.json"
+2023-01-24T08:49:59.023139Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:59.023240Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:59.023243Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:59.023294Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:59.023363Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:59.023367Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToEmpty"::Istanbul::0
+2023-01-24T08:49:59.023370Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToEmpty.json"
+2023-01-24T08:49:59.023373Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.023375Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:59.363382Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:49:59.363405Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:59.363412Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToEmpty"::Berlin::0
+2023-01-24T08:49:59.363415Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToEmpty.json"
+2023-01-24T08:49:59.363418Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.363419Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:59.363518Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:49:59.363525Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:59.363528Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToEmpty"::London::0
+2023-01-24T08:49:59.363530Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToEmpty.json"
+2023-01-24T08:49:59.363533Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.363534Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:59.363612Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:49:59.363619Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:59.363623Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToEmpty"::Merge::0
+2023-01-24T08:49:59.363626Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToEmpty.json"
+2023-01-24T08:49:59.363629Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.363631Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:59.363720Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:49:59.365259Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToEmpty.json"
+2023-01-24T08:49:59.365285Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToNonZeroBalance.json"
+2023-01-24T08:49:59.390724Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:59.390835Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:59.390838Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:59.390890Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:59.390959Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:59.390963Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToNonZeroBalance"::Istanbul::0
+2023-01-24T08:49:59.390967Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToNonZeroBalance.json"
+2023-01-24T08:49:59.390970Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.390972Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:59.733395Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:49:59.733417Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:49:59.733424Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToNonZeroBalance"::Berlin::0
+2023-01-24T08:49:59.733427Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToNonZeroBalance.json"
+2023-01-24T08:49:59.733432Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.733433Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:59.733531Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:49:59.733538Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:49:59.733540Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToNonZeroBalance"::London::0
+2023-01-24T08:49:59.733542Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToNonZeroBalance.json"
+2023-01-24T08:49:59.733545Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.733547Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:59.733645Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:49:59.733653Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:49:59.733656Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToNonZeroBalance"::Merge::0
+2023-01-24T08:49:59.733660Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToNonZeroBalance.json"
+2023-01-24T08:49:59.733664Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.733666Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:49:59.733765Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:49:59.735385Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToNonZeroBalance.json"
+2023-01-24T08:49:59.735413Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToOneStorageKey.json"
+2023-01-24T08:49:59.760779Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
+2023-01-24T08:49:59.760892Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:59.760896Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
+2023-01-24T08:49:59.760949Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
+2023-01-24T08:49:59.761021Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
+2023-01-24T08:49:59.761026Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToOneStorageKey"::Istanbul::0
+2023-01-24T08:49:59.761029Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToOneStorageKey.json"
+2023-01-24T08:49:59.761032Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:49:59.761034Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:50:00.132490Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:50:00.132513Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
+2023-01-24T08:50:00.132519Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToOneStorageKey"::Berlin::0
+2023-01-24T08:50:00.132522Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToOneStorageKey.json"
+2023-01-24T08:50:00.132525Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:50:00.132527Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:50:00.132642Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:50:00.132649Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
+2023-01-24T08:50:00.132651Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToOneStorageKey"::London::0
+2023-01-24T08:50:00.132654Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToOneStorageKey.json"
+2023-01-24T08:50:00.132657Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:50:00.132658Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:50:00.132736Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:50:00.132743Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
+2023-01-24T08:50:00.132745Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ZeroValue_TransactionCALLwithData_ToOneStorageKey"::Merge::0
+2023-01-24T08:50:00.132748Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToOneStorageKey.json"
+2023-01-24T08:50:00.132751Z  INFO evm_eth_compliance::statetest::runner: TX len : 20
+2023-01-24T08:50:00.132752Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-01-24T08:50:00.132826Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1494231,
+    events_root: None,
+}
+2023-01-24T08:50:00.134024Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stZeroCallsTest/ZeroValue_TransactionCALLwithData_ToOneStorageKey.json"
+2023-01-24T08:50:00.134162Z  INFO evm_eth_compliance::statetest::runner: Finished Processing of 24 Files in Time:7.844577232s
+```
