@@ -24,7 +24,8 @@ clear && \
 
 * Following use-cases are failed
 
-- Skip
+- Following use-cases are skipped due to `transaction.to` is empty
+
 | Test ID | Use-Case |
 | --- | --- |
 | TID-07-27 | contractCreationMakeCallThatAskMoreGasThenTransactionProvided |
