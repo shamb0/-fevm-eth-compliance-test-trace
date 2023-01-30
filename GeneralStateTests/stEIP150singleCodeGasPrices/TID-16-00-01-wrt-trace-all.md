@@ -34,8 +34,8 @@ clear && \
 | TID-16-17 | RawCallCodeGasValueTransferAsk |
 | TID-16-18 | RawCallCodeGasValueTransferMemory |
 | TID-16-19 | RawCallCodeGasValueTransferMemoryAsk |
-| | eip2929-ff |
-| | eip2929 |
+| TID-16-01 | eip2929-ff |
+| TID-16-02 | eip2929 |
 
 
 > Execution Trace
