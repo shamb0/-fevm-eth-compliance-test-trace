@@ -28,8 +28,8 @@ clear && \
 
 | Test ID | Use-Case |
 | --- | --- |
-| | modexp |
-| | sec80 |
+| TID-30-06 | modexp |
+| TID-30-09 | sec80 |
 
 > Execution Trace
 
