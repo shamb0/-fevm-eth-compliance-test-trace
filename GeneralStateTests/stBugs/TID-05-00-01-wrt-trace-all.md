@@ -22,10 +22,6 @@ clear && \
 
 > For Review
 
-* Execution looks OK, all use-cases passed.
-
-> Execution Trace
-
 * Following use-cases are failed
 
 - Hit with error `EVM_CONTRACT_UNDEFINED_INSTRUCTION` (ExitCode::35)
