@@ -22,7 +22,7 @@ clear && \
 
 > For Review
 
-* Execution Looks OK, Following Test Ids are skipped, due to no valid `transaction::to`
+* Execution Looks OK, Following Test Ids are skipped, due to `transaction::to` empty
 
 ```
         "transaction" : {
