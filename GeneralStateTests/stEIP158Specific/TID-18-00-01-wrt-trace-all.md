@@ -26,7 +26,7 @@ clear && \
 
 | Test ID | Use-Case |
 | --- | --- |
-| | vitalikTransactionTest |
+| TID-18-07 | vitalikTransactionTest |
 
 > Execution Trace
 

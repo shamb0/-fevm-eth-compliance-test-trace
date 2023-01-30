@@ -22,6 +22,8 @@ clear && \
 
 > For Review
 
+* Following use-cases are failed
+
 - Skip
 | Test ID | Use-Case |
 | --- | --- |
