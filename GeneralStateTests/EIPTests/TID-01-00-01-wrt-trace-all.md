@@ -27,24 +27,24 @@ clear && \
 
 | Test ID | Use-Case |
 | --- | --- |
-| | stEIP3860::creationTxInitCodeSizeLimit |
-| | stEOF::ori::EOF1ValidInvalid |
-| | stEOF::stEIP3540::CreateTransactionEOF1 |
-| | stEOF::stEIP3540::CreateTransactionInvalidEOF1 |
-| | | | stEOF::stEIP3670::CreateTransactionEOF1InvalidOpcodes |
-| | stEOF::stEIP3670::CreateTransactionEOF1ValidOpcodes |
-| | stEOF::stEIP3670::CreateTransactionInvalidEOF1 |
+| TID-01-06 | stEIP3860::creationTxInitCodeSizeLimit |
+| TID-01-08 | stEOF::ori::EOF1ValidInvalid |
+| TID-01-17 | stEOF::stEIP3540::CreateTransactionEOF1 |
+| TID-01-18 | stEOF::stEIP3540::CreateTransactionInvalidEOF1 |
+| TID-01-29 | stEOF::stEIP3670::CreateTransactionEOF1InvalidOpcodes |
+| TID-01-30 | stEOF::stEIP3670::CreateTransactionEOF1ValidOpcodes |
+| TID-01-31 | stEOF::stEIP3670::CreateTransactionInvalidEOF1 |
 
 - Hit with error `EVM_CONTRACT_UNDEFINED_INSTRUCTION` (ExitCode::35)
 
 | Test ID | Use-Case |
 | --- | --- |
-| | stEOF::stEIP3540::CREATE2_EOF1Invalid_FromEOF |
-| | stEOF::stEIP3540::CREATE2_EOF1_FromEOF |
-| | stEOF::stEIP3540::CREATE_EOF1Invalid_FromEOF |
-| | stEOF::stEIP3540::CREATE_EOF1_FromEOF |
-| | stEOF::stEIP3670::CREATE2_EOF1Invalid_FromEOF |
-| | stEOF::stEIP3670::CREATE_EOF1Invalid_FromEOF |
+| TID-01-11 | stEOF::stEIP3540::CREATE2_EOF1Invalid_FromEOF |
+| TID-01-12 | stEOF::stEIP3540::CREATE2_EOF1_FromEOF |
+| TID-01-15 | stEOF::stEIP3540::CREATE_EOF1Invalid_FromEOF |
+| TID-01-16 | stEOF::stEIP3540::CREATE_EOF1_FromEOF |
+| TID-01-24 | stEOF::stEIP3670::CREATE2_EOF1Invalid_FromEOF |
+| TID-01-28 | stEOF::stEIP3670::CREATE_EOF1Invalid_FromEOF |
 
 > Execution Trace | stEIP3855
 
