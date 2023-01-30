@@ -22,7 +22,9 @@ clear && \
 
 > For Review
 
-* Belo use-cases, hit with `EVM_CONTRACT_UNDEFINED_INSTRUCTION` (ExitCode::35)
+Following use-cases failed.
+
+* Hit with error `EVM_CONTRACT_UNDEFINED_INSTRUCTION` (ExitCode::35)
 
 | Test ID | Use-Case |
 | --- | --- |
