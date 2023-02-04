@@ -3,7 +3,6 @@
 | Status | Context |
 | --- | --- |
 | OK | under WASM RT context |
-| TODO | under native RT context |
 
 > Test Suite
 
