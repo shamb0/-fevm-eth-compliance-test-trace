@@ -2,8 +2,7 @@
 
 | Status | Context |
 | --- | --- |
-| OK | under WASM RT context |
-| TODO | under native RT context |
+| DONE | under WASM RT context |
 
 > Test Suite
 
@@ -22,27 +21,29 @@ clear && \
 
 > For Review
 
-Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
+* Following use-cases are failed
+
+> Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
 
 | Test ID | Use-Case |
 | --- | --- |
 | TID-49-17 | stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth ( London::0, Merge::0 ) |
 | TID-49-26 | stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance |
 
-Hit with `SYS_ILLEGAL_INSTRUCTION`, ExitCode::4
+> Hit with `SYS_ILLEGAL_INSTRUCTION`, ExitCode::4
 
 | Test ID | Use-Case |
 | --- | --- |
 | TID-49-30 | stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0 |
 
-Hit with `EVM_CONTRACT_BAD_JUMPDEST`, ExitCode::39
+> Hit with `EVM_CONTRACT_BAD_JUMPDEST`, ExitCode::39
 
 | Test ID | Use-Case |
 | --- | --- |
 | TID-49-35 | stSystemOperationsTest/CallToReturn1ForDynamicJump0 |
 | TID-49-36 | stSystemOperationsTest/CallToReturn1ForDynamicJump1 |
 
-Hit with `EVM_CONTRACT_UNDEFINED_INSTRUCTION`, ExitCode::35
+> Hit with `EVM_CONTRACT_UNDEFINED_INSTRUCTION`, ExitCode::35
 
 | Test ID | Use-Case |
 | --- | --- |
@@ -53,7 +54,7 @@ Hit with `EVM_CONTRACT_UNDEFINED_INSTRUCTION`, ExitCode::35
 | TID-49-13 | stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion |
 | TID-49-14 | stSystemOperationsTest/callcodeToReturn1 |
 
-Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
+> Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
 
 | Test ID | Use-Case |
 | --- | --- |
