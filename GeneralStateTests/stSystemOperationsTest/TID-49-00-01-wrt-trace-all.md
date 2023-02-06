@@ -21,303 +21,596 @@ clear && \
 
 > For Review
 
-* Following use-cases are failed
-
-> Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
-
-| Test ID | Use-Case |
-| --- | --- |
-| TID-49-17 | stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth ( London::0, Merge::0 ) |
-| TID-49-26 | stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance |
-
-> Hit with `SYS_ILLEGAL_INSTRUCTION`, ExitCode::4
-
-| Test ID | Use-Case |
-| --- | --- |
-| TID-49-30 | stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0 |
-
-> Hit with `EVM_CONTRACT_BAD_JUMPDEST`, ExitCode::39
-
-| Test ID | Use-Case |
-| --- | --- |
-| TID-49-35 | stSystemOperationsTest/CallToReturn1ForDynamicJump0 |
-| TID-49-36 | stSystemOperationsTest/CallToReturn1ForDynamicJump1 |
+* Following use-cases are failed, when executed with test vector `transaction.gasLimit`.
 
 > Hit with `EVM_CONTRACT_UNDEFINED_INSTRUCTION`, ExitCode::35
 
 | Test ID | Use-Case |
 | --- | --- |
-| TID-49-09 | stSystemOperationsTest/callcodeTo0 |
-| TID-49-10 | stSystemOperationsTest/callcodeToNameRegistrator0 |
-| TID-49-11 | stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft |
-| TID-49-12 | stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight |
-| TID-49-13 | stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion |
-| TID-49-14 | stSystemOperationsTest/callcodeToReturn1 |
+| TID-49-14 | callcodeToReturn1 |
 
 > Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
 
 | Test ID | Use-Case |
 | --- | --- |
-| TID-49-42 | stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0 |
-| TID-49-43 | stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1 |
+| TID-49-17 | CallRecursiveBomb0_OOG_atMaxCallDepth |
+
+* Hit with error `SYS_OUT_OF_GAS`(ExitCode::7)
+
+| Test ID | Use-Case |
+| --- | --- |
+| TID-49-35 | CallToReturn1ForDynamicJump0 |
+| TID-49-42 | createNameRegistratorOutOfMemoryBonds0 |
+| TID-49-59 | suicideCaller |
+| TID-49-36 | CallToReturn1ForDynamicJump1 |
+| TID-49-65 | suicideSendEtherToMe |
+| TID-49-39 | CreateHashCollision |
+| TID-49-31 | CallToNameRegistratorTooMuchMemory1 |
+| TID-49-25 | CallToNameRegistratorAddressTooBigRight |
+| TID-49-33 | CallToNameRegistratorZeorSizeMemExpansion |
+| TID-49-30 | CallToNameRegistratorTooMuchMemory0 |
+| TID-49-32 | CallToNameRegistratorTooMuchMemory2 |
+| TID-49-34 | CallToReturn1 |
+| TID-49-54 | PostToReturn1 |
+| TID-49-09 | callcodeTo0 |
+| TID-49-48 | createWithInvalidOpcode |
+| TID-49-57 | return2 |
+| TID-49-46 | createNameRegistratorZeroMem2 |
+| TID-49-37 | CalltoReturn2 |
+| TID-49-01 | ABAcalls0 |
+| TID-49-26 | CallToNameRegistratorMemOOGAndInsufficientBalance |
+| TID-49-04 | ABAcalls3 |
+| TID-49-13 | callcodeToNameRegistratorZeroMemExpanion |
+| TID-49-45 | createNameRegistratorZeroMem |
+| TID-49-58 | suicideAddress |
+| TID-49-60 | suicideCallerAddresTooBigLeft |
+| TID-49-61 | suicideCallerAddresTooBigRight |
+| TID-49-63 | suicideOrigin |
+| TID-49-62 | suicideNotExistingAccount |
+| TID-49-44 | createNameRegistratorValueTooHigh |
+| TID-49-18 | CallRecursiveBomb1 |
+| | CallToNameRegistratorNotMuchMemory0 |
+| | createNameRegistrator |
+| | CallToNameRegistrator0 |
+| | createNameRegistratorOutOfMemoryBonds1 |
+| | createNameRegistratorZeroMemExpansion |
+| | suicideSendEtherPostDeath |
+| | balanceInputAddressTooBig |
+| | testRandomTest |
+| | CallToNameRegistratorAddressTooBigLeft |
+| | CallToNameRegistratorOutOfGas |
+| | return0 |
+| | createNameRegistratorOOG_MemExpansionOOV |
+| | CallToNameRegistratorNotMuchMemory1 |
+| | callcodeToNameRegistrator0 |
+| | return1 |
+| | CallRecursiveBomb3 |
+| | TestNameRegistrator |
+| | callcodeToNameRegistratorAddresTooBigLeft |
+| | CallRecursiveBomb2 |
+| | callcodeToNameRegistratorAddresTooBigRight |
 
 > Execution Trace
 
 ```
-2023-01-24T10:15:32.057624Z  INFO evm_eth_compliance::statetest::cmd: Start running tests on: Path :: "test-vectors/tests/GeneralStateTests/stSystemOperationsTest", Total Files :: 67
-2023-01-24T10:15:32.057877Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls0.json"
-2023-01-24T10:15:32.087759Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:32.087956Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:32.087960Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:32.088015Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:32.088018Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:32.088081Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:32.088152Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:32.088155Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls0"::Istanbul::0
-2023-01-24T10:15:32.088158Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls0.json"
-2023-01-24T10:15:32.088161Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:32.088163Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:32.443519Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:57.545131Z  INFO evm_eth_compliance::statetest::cmd: Start running tests on: Path :: "test-vectors/tests/GeneralStateTests/stSystemOperationsTest", Total Files :: 67
+2023-02-06T01:26:57.545409Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls0.json"
+2023-02-06T01:26:57.660095Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:26:57.660247Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:57.660251Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:26:57.660310Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:57.660313Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:26:57.660377Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:57.660453Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:26:57.660456Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls0"::Istanbul::0
+2023-02-06T01:26:57.660460Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls0.json"
+2023-02-06T01:26:57.660463Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:57.998025Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls0"
+2023-02-06T01:26:57.998046Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:26:57.998053Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:26:57.998068Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:26:57.998078Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls0"::Berlin::0
+2023-02-06T01:26:57.998080Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls0.json"
+2023-02-06T01:26:57.998083Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:57.998201Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls0"
+2023-02-06T01:26:57.998207Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:26:57.998211Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:26:57.998222Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:26:57.998225Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls0"::London::0
+2023-02-06T01:26:57.998227Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls0.json"
+2023-02-06T01:26:57.998229Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:57.998302Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls0"
+2023-02-06T01:26:57.998308Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:26:57.998311Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:26:57.998321Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:26:57.998324Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls0"::Merge::0
+2023-02-06T01:26:57.998326Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls0.json"
+2023-02-06T01:26:57.998329Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:57.998403Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls0"
+2023-02-06T01:26:57.998409Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:26:57.998412Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:26:57.999651Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls0.json"
+2023-02-06T01:26:57.999687Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls1.json"
+2023-02-06T01:26:58.067210Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:26:58.067318Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.067322Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:26:58.067374Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.067377Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:26:58.067435Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.067508Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:26:58.067511Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls1"::Istanbul::0
+2023-02-06T01:26:58.067515Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls1.json"
+2023-02-06T01:26:58.067517Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:58.420876Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls1"
+2023-02-06T01:26:58.420901Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 1810085,
+    gas_used: 315982640,
     events_root: None,
 }
-2023-01-24T10:15:32.443538Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:32.443545Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls0"::Berlin::0
-2023-01-24T10:15:32.443548Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls0.json"
-2023-01-24T10:15:32.443551Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:32.443552Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:32.443677Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:58.421557Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:26:58.421562Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls1"::Berlin::0
+2023-02-06T01:26:58.421565Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls1.json"
+2023-02-06T01:26:58.421567Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:58.437365Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls1"
+2023-02-06T01:26:58.437400Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 1810085,
+    gas_used: 262203286,
     events_root: None,
 }
-2023-01-24T10:15:32.443693Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:32.443696Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls0"::London::0
-2023-01-24T10:15:32.443698Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls0.json"
-2023-01-24T10:15:32.443700Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:32.443702Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:32.443815Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:58.437911Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:26:58.437916Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls1"::London::0
+2023-02-06T01:26:58.437918Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls1.json"
+2023-02-06T01:26:58.437921Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:58.454179Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls1"
+2023-02-06T01:26:58.454212Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 1810085,
+    gas_used: 262203286,
     events_root: None,
 }
-2023-01-24T10:15:32.443822Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:32.443825Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls0"::Merge::0
-2023-01-24T10:15:32.443827Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls0.json"
-2023-01-24T10:15:32.443829Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:32.443831Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:32.443942Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:58.454721Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:26:58.454726Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls1"::Merge::0
+2023-02-06T01:26:58.454728Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls1.json"
+2023-02-06T01:26:58.454731Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:58.470739Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls1"
+2023-02-06T01:26:58.470771Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 1810085,
+    gas_used: 262203286,
     events_root: None,
 }
-2023-01-24T10:15:32.445523Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls0.json"
-2023-01-24T10:15:32.445557Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls1.json"
-2023-01-24T10:15:32.472391Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:32.472493Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:32.472496Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:32.472551Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:32.472553Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:32.472621Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:32.472700Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:32.472706Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls1"::Istanbul::0
-2023-01-24T10:15:32.472709Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls1.json"
-2023-01-24T10:15:32.472713Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:32.472716Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:33.004276Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:58.474064Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls1.json"
+2023-02-06T01:26:58.474104Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls2.json"
+2023-02-06T01:26:58.506600Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:26:58.506706Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.506710Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:26:58.506765Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.506768Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:26:58.506827Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.506901Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:26:58.506905Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls2"::Istanbul::0
+2023-02-06T01:26:58.506908Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls2.json"
+2023-02-06T01:26:58.506911Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:58.878905Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls2"
+2023-02-06T01:26:58.878922Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 2088517500,
+    gas_used: 427682923,
     events_root: None,
 }
-2023-01-24T10:15:33.008815Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:33.008829Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls1"::Berlin::0
-2023-01-24T10:15:33.008831Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls1.json"
-2023-01-24T10:15:33.008835Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:33.008836Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:33.117782Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:58.879514Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:26:58.879519Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls2"::Berlin::0
+2023-02-06T01:26:58.879523Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls2.json"
+2023-02-06T01:26:58.879525Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:58.899157Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls2"
+2023-02-06T01:26:58.899176Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 1611885767,
+    gas_used: 427728012,
     events_root: None,
 }
-2023-01-24T10:15:33.122222Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:33.122237Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls1"::London::0
-2023-01-24T10:15:33.122240Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls1.json"
-2023-01-24T10:15:33.122244Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:33.122246Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:33.231460Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:58.899791Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:26:58.899796Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls2"::London::0
+2023-02-06T01:26:58.899800Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls2.json"
+2023-02-06T01:26:58.899802Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:58.919798Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls2"
+2023-02-06T01:26:58.919819Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 1611885767,
+    gas_used: 427728012,
     events_root: None,
 }
-2023-01-24T10:15:33.236414Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:33.236431Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls1"::Merge::0
-2023-01-24T10:15:33.236434Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls1.json"
-2023-01-24T10:15:33.236437Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:33.236438Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:33.348090Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:58.920444Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:26:58.920450Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls2"::Merge::0
+2023-02-06T01:26:58.920453Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls2.json"
+2023-02-06T01:26:58.920456Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:58.939903Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls2"
+2023-02-06T01:26:58.939921Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 1611885767,
+    gas_used: 427728012,
     events_root: None,
 }
-2023-01-24T10:15:33.364218Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls1.json"
-2023-01-24T10:15:33.364262Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls2.json"
-2023-01-24T10:15:33.388195Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:33.388307Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:33.388312Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:33.388369Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:33.388372Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:33.388435Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:33.388509Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:33.388515Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls2"::Istanbul::0
-2023-01-24T10:15:33.388518Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls2.json"
-2023-01-24T10:15:33.388522Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:33.388524Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:33.887383Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:58.943418Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls2.json"
+2023-02-06T01:26:58.943450Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls3.json"
+2023-02-06T01:26:58.971420Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:26:58.971524Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.971527Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:26:58.971587Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.971590Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:26:58.971649Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:58.971731Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:26:58.971734Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls3"::Istanbul::0
+2023-02-06T01:26:58.971738Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls3.json"
+2023-02-06T01:26:58.971740Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:59.326359Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls3"
+2023-02-06T01:26:59.326378Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3034834661,
+    return_data: RawBytes {  },
+    gas_used: 10000000,
     events_root: None,
 }
-2023-01-24T10:15:33.892777Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:33.892797Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls2"::Berlin::0
-2023-01-24T10:15:33.892801Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls2.json"
-2023-01-24T10:15:33.892805Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:33.892806Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:34.045170Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:59.326383Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:26:59.326422Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:26:59.326426Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls3"::Berlin::0
+2023-02-06T01:26:59.326429Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls3.json"
+2023-02-06T01:26:59.326431Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:59.326832Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls3"
+2023-02-06T01:26:59.326840Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3031711723,
+    return_data: RawBytes {  },
+    gas_used: 10000000,
     events_root: None,
 }
-2023-01-24T10:15:34.054867Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:34.054889Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls2"::London::0
-2023-01-24T10:15:34.054892Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls2.json"
-2023-01-24T10:15:34.054895Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:34.054897Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:34.197154Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:59.326844Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:26:59.326876Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:26:59.326879Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls3"::London::0
+2023-02-06T01:26:59.326881Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls3.json"
+2023-02-06T01:26:59.326883Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:59.327282Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls3"
+2023-02-06T01:26:59.327289Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3031712183,
+    return_data: RawBytes {  },
+    gas_used: 10000000,
     events_root: None,
 }
-2023-01-24T10:15:34.204708Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:34.204731Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls2"::Merge::0
-2023-01-24T10:15:34.204734Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls2.json"
-2023-01-24T10:15:34.204737Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:34.204739Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:34.346970Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:59.327293Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:26:59.327324Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:26:59.327327Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcalls3"::Merge::0
+2023-02-06T01:26:59.327330Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcalls3.json"
+2023-02-06T01:26:59.327332Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:59.327726Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcalls3"
+2023-02-06T01:26:59.327733Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3031712183,
+    return_data: RawBytes {  },
+    gas_used: 10000000,
     events_root: None,
 }
-2023-01-24T10:15:34.368297Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls2.json"
-2023-01-24T10:15:34.368338Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls3.json"
-2023-01-24T10:15:34.392769Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:34.392872Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:34.392876Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:34.392928Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:34.392930Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:34.392989Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:34.393060Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:34.393065Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls3"::Istanbul::0
-2023-01-24T10:15:34.393068Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls3.json"
-2023-01-24T10:15:34.393071Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:34.393073Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:34.897907Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 3034834661,
-    events_root: None,
-}
-2023-01-24T10:15:34.905229Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:34.905245Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls3"::Berlin::0
-2023-01-24T10:15:34.905248Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls3.json"
-2023-01-24T10:15:34.905252Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:34.905253Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:35.042241Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 3031711723,
-    events_root: None,
-}
-2023-01-24T10:15:35.051066Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:35.051088Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls3"::London::0
-2023-01-24T10:15:35.051091Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls3.json"
-2023-01-24T10:15:35.051095Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:35.051096Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:35.189605Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 3031712183,
-    events_root: None,
-}
-2023-01-24T10:15:35.197214Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:35.197244Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcalls3"::Merge::0
-2023-01-24T10:15:35.197248Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls3.json"
-2023-01-24T10:15:35.197252Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:35.197254Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:35.337614Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 3031712183,
-    events_root: None,
-}
-2023-01-24T10:15:35.358966Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls3.json"
-2023-01-24T10:15:35.359013Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide0.json"
-2023-01-24T10:15:35.383319Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:35.383426Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:35.383430Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:35.383484Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:35.383487Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:35.383547Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:35.383619Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:35.383624Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide0"::Istanbul::0
-2023-01-24T10:15:35.383626Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide0.json"
-2023-01-24T10:15:35.383630Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:35.383631Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:35.732336Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:59.327736Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 401,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:26:59.328842Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcalls3.json"
+2023-02-06T01:26:59.328866Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide0.json"
+2023-02-06T01:26:59.353717Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:26:59.353822Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:59.353826Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:26:59.353879Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:59.353882Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:26:59.353941Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:59.354019Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:26:59.354023Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide0"::Istanbul::0
+2023-02-06T01:26:59.354027Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide0.json"
+2023-02-06T01:26:59.354030Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:59.711439Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide0"
+2023-02-06T01:26:59.711457Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -325,12 +618,12 @@ clear && \
     gas_used: 2631129,
     events_root: None,
 }
-2023-01-24T10:15:35.732361Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:35.732367Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide0"::Berlin::0
-2023-01-24T10:15:35.732370Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide0.json"
-2023-01-24T10:15:35.732373Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:35.732374Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:35.732460Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:59.711466Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:26:59.711469Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide0"::Berlin::0
+2023-02-06T01:26:59.711471Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide0.json"
+2023-02-06T01:26:59.711473Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:59.711553Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide0"
+2023-02-06T01:26:59.711558Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -338,12 +631,12 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:35.732466Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:35.732468Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide0"::London::0
-2023-01-24T10:15:35.732470Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide0.json"
-2023-01-24T10:15:35.732472Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:35.732474Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:35.732542Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:59.711562Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:26:59.711564Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide0"::London::0
+2023-02-06T01:26:59.711566Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide0.json"
+2023-02-06T01:26:59.711568Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:59.711630Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide0"
+2023-02-06T01:26:59.711635Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -351,12 +644,12 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:35.732548Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:35.732550Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide0"::Merge::0
-2023-01-24T10:15:35.732552Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide0.json"
-2023-01-24T10:15:35.732554Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:35.732555Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:35.732622Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:59.711639Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:26:59.711641Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide0"::Merge::0
+2023-02-06T01:26:59.711643Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide0.json"
+2023-02-06T01:26:59.711644Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:26:59.711706Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide0"
+2023-02-06T01:26:59.711710Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -364,20 +657,20 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:35.733313Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide0.json"
-2023-01-24T10:15:35.733342Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:35.757691Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:35.757793Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:35.757797Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:35.757859Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:35.757862Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:35.757920Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:35.757990Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:35.757995Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide1"::Istanbul::0
-2023-01-24T10:15:35.757997Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:35.758001Z  INFO evm_eth_compliance::statetest::runner: TX len : 32
-2023-01-24T10:15:35.758002Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.104091Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:26:59.712812Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide0.json"
+2023-02-06T01:26:59.712832Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
+2023-02-06T01:26:59.766249Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:26:59.766372Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:59.766377Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:26:59.766446Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:59.766450Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:26:59.766510Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:26:59.766586Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:26:59.766589Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide1"::Istanbul::0
+2023-02-06T01:26:59.766592Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide1.json"
+2023-02-06T01:26:59.766594Z  INFO evm_eth_compliance::statetest::executor: TX len : 32
+2023-02-06T01:27:00.119427Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide1"
+2023-02-06T01:27:00.119446Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -385,12 +678,12 @@ clear && \
     gas_used: 1831187,
     events_root: None,
 }
-2023-01-24T10:15:36.104114Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 1
-2023-01-24T10:15:36.104121Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide1"::Istanbul::1
-2023-01-24T10:15:36.104123Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:36.104126Z  INFO evm_eth_compliance::statetest::runner: TX len : 32
-2023-01-24T10:15:36.104128Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.104266Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.119455Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 1
+2023-02-06T01:27:00.119459Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide1"::Istanbul::1
+2023-02-06T01:27:00.119460Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide1.json"
+2023-02-06T01:27:00.119462Z  INFO evm_eth_compliance::statetest::executor: TX len : 32
+2023-02-06T01:27:00.119586Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide1"
+2023-02-06T01:27:00.119593Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -398,12 +691,12 @@ clear && \
     gas_used: 2027795,
     events_root: None,
 }
-2023-01-24T10:15:36.104275Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:36.104277Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide1"::Berlin::0
-2023-01-24T10:15:36.104279Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:36.104282Z  INFO evm_eth_compliance::statetest::runner: TX len : 32
-2023-01-24T10:15:36.104283Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.104398Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.119599Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:00.119601Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide1"::Berlin::0
+2023-02-06T01:27:00.119603Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide1.json"
+2023-02-06T01:27:00.119604Z  INFO evm_eth_compliance::statetest::executor: TX len : 32
+2023-02-06T01:27:00.119729Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide1"
+2023-02-06T01:27:00.119735Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -411,12 +704,12 @@ clear && \
     gas_used: 1831187,
     events_root: None,
 }
-2023-01-24T10:15:36.104406Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 1
-2023-01-24T10:15:36.104409Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide1"::Berlin::1
-2023-01-24T10:15:36.104410Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:36.104413Z  INFO evm_eth_compliance::statetest::runner: TX len : 32
-2023-01-24T10:15:36.104415Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.104529Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.119741Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 1
+2023-02-06T01:27:00.119743Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide1"::Berlin::1
+2023-02-06T01:27:00.119745Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide1.json"
+2023-02-06T01:27:00.119747Z  INFO evm_eth_compliance::statetest::executor: TX len : 32
+2023-02-06T01:27:00.119876Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide1"
+2023-02-06T01:27:00.119882Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -424,12 +717,12 @@ clear && \
     gas_used: 2027795,
     events_root: None,
 }
-2023-01-24T10:15:36.104536Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:36.104539Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide1"::London::0
-2023-01-24T10:15:36.104541Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:36.104544Z  INFO evm_eth_compliance::statetest::runner: TX len : 32
-2023-01-24T10:15:36.104545Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.104660Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.119887Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:00.119889Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide1"::London::0
+2023-02-06T01:27:00.119891Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide1.json"
+2023-02-06T01:27:00.119893Z  INFO evm_eth_compliance::statetest::executor: TX len : 32
+2023-02-06T01:27:00.120006Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide1"
+2023-02-06T01:27:00.120012Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -437,12 +730,12 @@ clear && \
     gas_used: 1831187,
     events_root: None,
 }
-2023-01-24T10:15:36.104668Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 1
-2023-01-24T10:15:36.104670Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide1"::London::1
-2023-01-24T10:15:36.104673Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:36.104675Z  INFO evm_eth_compliance::statetest::runner: TX len : 32
-2023-01-24T10:15:36.104676Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.104790Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.120017Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 1
+2023-02-06T01:27:00.120020Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide1"::London::1
+2023-02-06T01:27:00.120021Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide1.json"
+2023-02-06T01:27:00.120023Z  INFO evm_eth_compliance::statetest::executor: TX len : 32
+2023-02-06T01:27:00.120134Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide1"
+2023-02-06T01:27:00.120140Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -450,12 +743,12 @@ clear && \
     gas_used: 2027795,
     events_root: None,
 }
-2023-01-24T10:15:36.104797Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:36.104800Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide1"::Merge::0
-2023-01-24T10:15:36.104802Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:36.104804Z  INFO evm_eth_compliance::statetest::runner: TX len : 32
-2023-01-24T10:15:36.104806Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.104919Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.120145Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:00.120148Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide1"::Merge::0
+2023-02-06T01:27:00.120149Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide1.json"
+2023-02-06T01:27:00.120151Z  INFO evm_eth_compliance::statetest::executor: TX len : 32
+2023-02-06T01:27:00.120263Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide1"
+2023-02-06T01:27:00.120269Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -463,12 +756,12 @@ clear && \
     gas_used: 1831187,
     events_root: None,
 }
-2023-01-24T10:15:36.104926Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 1
-2023-01-24T10:15:36.104929Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "ABAcallsSuicide1"::Merge::1
-2023-01-24T10:15:36.104931Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:36.104933Z  INFO evm_eth_compliance::statetest::runner: TX len : 32
-2023-01-24T10:15:36.104935Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.105051Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.120274Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 1
+2023-02-06T01:27:00.120276Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "ABAcallsSuicide1"::Merge::1
+2023-02-06T01:27:00.120278Z  INFO evm_eth_compliance::statetest::executor: Path : "ABAcallsSuicide1.json"
+2023-02-06T01:27:00.120280Z  INFO evm_eth_compliance::statetest::executor: TX len : 32
+2023-02-06T01:27:00.120423Z  INFO evm_eth_compliance::statetest::executor: UC : "ABAcallsSuicide1"
+2023-02-06T01:27:00.120430Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -476,20 +769,20 @@ clear && \
     gas_used: 2027795,
     events_root: None,
 }
-2023-01-24T10:15:36.105703Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
-2023-01-24T10:15:36.105736Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/Call10.json"
-2023-01-24T10:15:36.129528Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:36.129635Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:36.129638Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:36.129686Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:36.129688Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:36.129743Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:36.129814Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:36.129819Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "Call10"::Istanbul::0
-2023-01-24T10:15:36.129821Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/Call10.json"
-2023-01-24T10:15:36.129825Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.129826Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.467566Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.121798Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/ABAcallsSuicide1.json"
+2023-02-06T01:27:00.121821Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/Call10.json"
+2023-02-06T01:27:00.153251Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:00.153359Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:00.153363Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:00.153411Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:00.153414Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:00.153466Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:00.153539Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:00.153542Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "Call10"::Istanbul::0
+2023-02-06T01:27:00.153545Z  INFO evm_eth_compliance::statetest::executor: Path : "Call10.json"
+2023-02-06T01:27:00.153547Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:00.491381Z  INFO evm_eth_compliance::statetest::executor: UC : "Call10"
+2023-02-06T01:27:00.491399Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -497,12 +790,12 @@ clear && \
     gas_used: 25719303,
     events_root: None,
 }
-2023-01-24T10:15:36.467616Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:36.467623Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "Call10"::Berlin::0
-2023-01-24T10:15:36.467626Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/Call10.json"
-2023-01-24T10:15:36.467629Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.467631Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.468912Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.491435Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:00.491439Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "Call10"::Berlin::0
+2023-02-06T01:27:00.491441Z  INFO evm_eth_compliance::statetest::executor: Path : "Call10.json"
+2023-02-06T01:27:00.491443Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:00.492700Z  INFO evm_eth_compliance::statetest::executor: UC : "Call10"
+2023-02-06T01:27:00.492707Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -510,12 +803,12 @@ clear && \
     gas_used: 24281190,
     events_root: None,
 }
-2023-01-24T10:15:36.468946Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:36.468949Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "Call10"::London::0
-2023-01-24T10:15:36.468951Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/Call10.json"
-2023-01-24T10:15:36.468954Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.468955Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.470212Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.492738Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:00.492741Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "Call10"::London::0
+2023-02-06T01:27:00.492742Z  INFO evm_eth_compliance::statetest::executor: Path : "Call10.json"
+2023-02-06T01:27:00.492744Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:00.494002Z  INFO evm_eth_compliance::statetest::executor: UC : "Call10"
+2023-02-06T01:27:00.494009Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -523,12 +816,12 @@ clear && \
     gas_used: 24281190,
     events_root: None,
 }
-2023-01-24T10:15:36.470246Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:36.470249Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "Call10"::Merge::0
-2023-01-24T10:15:36.470251Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/Call10.json"
-2023-01-24T10:15:36.470253Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.470255Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.471509Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.494040Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:00.494042Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "Call10"::Merge::0
+2023-02-06T01:27:00.494044Z  INFO evm_eth_compliance::statetest::executor: Path : "Call10.json"
+2023-02-06T01:27:00.494046Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:00.495287Z  INFO evm_eth_compliance::statetest::executor: UC : "Call10"
+2023-02-06T01:27:00.495294Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -536,20 +829,20 @@ clear && \
     gas_used: 24281190,
     events_root: None,
 }
-2023-01-24T10:15:36.472184Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/Call10.json"
-2023-01-24T10:15:36.472209Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0.json"
-2023-01-24T10:15:36.495441Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:36.495539Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:36.495543Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:36.495594Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:36.495596Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:36.495652Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:36.495729Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:36.495734Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb0"::Istanbul::0
-2023-01-24T10:15:36.495737Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0.json"
-2023-01-24T10:15:36.495739Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.495741Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.859969Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.496609Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/Call10.json"
+2023-02-06T01:27:00.496637Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0.json"
+2023-02-06T01:27:00.522345Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:00.522443Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:00.522447Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:00.522497Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:00.522499Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:00.522555Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:00.522625Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:00.522629Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb0"::Istanbul::0
+2023-02-06T01:27:00.522632Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb0.json"
+2023-02-06T01:27:00.522634Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:00.911868Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb0"
+2023-02-06T01:27:00.911886Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -557,12 +850,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:36.860094Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:36.860101Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb0"::Berlin::0
-2023-01-24T10:15:36.860103Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0.json"
-2023-01-24T10:15:36.860108Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.860109Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.863989Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.912008Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:00.912011Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb0"::Berlin::0
+2023-02-06T01:27:00.912014Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb0.json"
+2023-02-06T01:27:00.912016Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:00.916397Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb0"
+2023-02-06T01:27:00.916410Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -570,12 +863,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:36.864106Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:36.864110Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb0"::London::0
-2023-01-24T10:15:36.864112Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0.json"
-2023-01-24T10:15:36.864114Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.864116Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.867976Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.916534Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:00.916538Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb0"::London::0
+2023-02-06T01:27:00.916539Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb0.json"
+2023-02-06T01:27:00.916541Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:00.920721Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb0"
+2023-02-06T01:27:00.920730Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -583,12 +876,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:36.868093Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:36.868096Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb0"::Merge::0
-2023-01-24T10:15:36.868098Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0.json"
-2023-01-24T10:15:36.868101Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.868102Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:36.871960Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.920850Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:00.920852Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb0"::Merge::0
+2023-02-06T01:27:00.920854Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb0.json"
+2023-02-06T01:27:00.920856Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:00.924919Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb0"
+2023-02-06T01:27:00.924927Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -596,52 +889,65 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:36.873250Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0.json"
-2023-01-24T10:15:36.873277Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth.json"
-2023-01-24T10:15:36.896697Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:36.896798Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:36.896801Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:36.896855Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:36.896925Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:36.896930Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb0_OOG_atMaxCallDepth"::Istanbul::0
-2023-01-24T10:15:36.896933Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth.json"
-2023-01-24T10:15:36.896937Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:36.896938Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:37.400165Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:00.926619Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0.json"
+2023-02-06T01:27:00.926645Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth.json"
+2023-02-06T01:27:00.976272Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:00.976378Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:00.976381Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:00.976436Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:00.976508Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:00.976511Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb0_OOG_atMaxCallDepth"::Istanbul::0
+2023-02-06T01:27:00.976514Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb0_OOG_atMaxCallDepth.json"
+2023-02-06T01:27:00.976516Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:01.417030Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb0_OOG_atMaxCallDepth"
+2023-02-06T01:27:01.417050Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 3403480531,
+    gas_used: 1420215981,
     events_root: None,
 }
-2023-01-24T10:15:37.407477Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:37.407492Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb0_OOG_atMaxCallDepth"::Berlin::0
-2023-01-24T10:15:37.407495Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth.json"
-2023-01-24T10:15:37.407499Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:37.407501Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:37.408090Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:01.418939Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:01.418948Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb0_OOG_atMaxCallDepth"::Berlin::0
+2023-02-06T01:27:01.418951Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb0_OOG_atMaxCallDepth.json"
+2023-02-06T01:27:01.418953Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:01.494553Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb0_OOG_atMaxCallDepth"
+2023-02-06T01:27:01.494576Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
     return_data: RawBytes { 40 },
-    gas_used: 6916483,
+    gas_used: 1809992219,
     events_root: None,
 }
-2023-01-24T10:15:37.408104Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:37.408107Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb0_OOG_atMaxCallDepth"::London::0
-2023-01-24T10:15:37.408109Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth.json"
-2023-01-24T10:15:37.408112Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:37.408114Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:37.408240Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:01.496629Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:01.496640Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb0_OOG_atMaxCallDepth"::London::0
+2023-02-06T01:27:01.496643Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb0_OOG_atMaxCallDepth.json"
+2023-02-06T01:27:01.496645Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:01.547607Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb0_OOG_atMaxCallDepth"
+2023-02-06T01:27:01.547627Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
+    exit_code: ExitCode {
+        value: 0,
+    },
+    return_data: RawBytes { 40 },
+    gas_used: 1218382046,
+    events_root: None,
+}
+2023-02-06T01:27:01.549379Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:01.549386Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb0_OOG_atMaxCallDepth"::Merge::0
+2023-02-06T01:27:01.549388Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb0_OOG_atMaxCallDepth.json"
+2023-02-06T01:27:01.549391Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:01.549679Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb0_OOG_atMaxCallDepth"
+2023-02-06T01:27:01.549686Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 38,
     },
     return_data: RawBytes {  },
-    gas_used: 1839871,
+    gas_used: 2293561,
     events_root: None,
 }
-2023-01-24T10:15:37.408246Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:01.549690Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -658,20 +964,26 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:37.408258Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:37.408261Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb0_OOG_atMaxCallDepth"::Merge::0
-2023-01-24T10:15:37.408263Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth.json"
-2023-01-24T10:15:37.408266Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:37.408268Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:37.408378Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:01.555133Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth.json"
+2023-02-06T01:27:01.555169Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb1.json"
+2023-02-06T01:27:01.587218Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:01.587318Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:01.587321Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:01.587375Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:01.587447Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:01.587450Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb1"::Istanbul::0
+2023-02-06T01:27:01.587452Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb1.json"
+2023-02-06T01:27:01.587454Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:01.958485Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb1"
+2023-02-06T01:27:01.958505Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1839871,
+    gas_used: 20622100,
     events_root: None,
 }
-2023-01-24T10:15:37.408383Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:01.958510Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -679,203 +991,883 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=64): size must be less than max u32",
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:37.420175Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb0_OOG_atMaxCallDepth.json"
-2023-01-24T10:15:37.420219Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb1.json"
-2023-01-24T10:15:37.443860Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:37.443964Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:37.443967Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:37.444020Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:37.444091Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:37.444095Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb1"::Istanbul::0
-2023-01-24T10:15:37.444098Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb1.json"
-2023-01-24T10:15:37.444101Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:37.444102Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:37.930593Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:01.958568Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:01.958571Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb1"::Berlin::0
+2023-02-06T01:27:01.958573Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb1.json"
+2023-02-06T01:27:01.958575Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:01.959450Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb1"
+2023-02-06T01:27:01.959457Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3368215765,
+    return_data: RawBytes {  },
+    gas_used: 20622100,
     events_root: None,
 }
-2023-01-24T10:15:37.938023Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:37.938041Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb1"::Berlin::0
-2023-01-24T10:15:37.938045Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb1.json"
-2023-01-24T10:15:37.938048Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:37.938050Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:38.120221Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:01.959461Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:01.959515Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:01.959518Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb1"::London::0
+2023-02-06T01:27:01.959519Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb1.json"
+2023-02-06T01:27:01.959521Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:01.960373Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb1"
+2023-02-06T01:27:01.960379Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 4306107212,
+    return_data: RawBytes {  },
+    gas_used: 20622100,
     events_root: None,
 }
-2023-01-24T10:15:38.126327Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:38.126345Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb1"::London::0
-2023-01-24T10:15:38.126348Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb1.json"
-2023-01-24T10:15:38.126352Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:38.126353Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:38.300802Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:01.960382Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:01.960436Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:01.960439Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb1"::Merge::0
+2023-02-06T01:27:01.960440Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb1.json"
+2023-02-06T01:27:01.960442Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:01.961296Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb1"
+2023-02-06T01:27:01.961302Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 4306106936,
+    return_data: RawBytes {  },
+    gas_used: 20622100,
     events_root: None,
 }
-2023-01-24T10:15:38.305810Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:38.305825Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb1"::Merge::0
-2023-01-24T10:15:38.305828Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb1.json"
-2023-01-24T10:15:38.305832Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:38.305833Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:38.471806Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:01.961306Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:01.962294Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb1.json"
+2023-02-06T01:27:01.962315Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb2.json"
+2023-02-06T01:27:01.996907Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:01.997013Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:01.997017Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:01.997070Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:01.997142Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:01.997145Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb2"::Istanbul::0
+2023-02-06T01:27:01.997148Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb2.json"
+2023-02-06T01:27:01.997150Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:02.351697Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb2"
+2023-02-06T01:27:02.351718Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 4306107120,
+    return_data: RawBytes {  },
+    gas_used: 20622099,
     events_root: None,
 }
-2023-01-24T10:15:38.493534Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb1.json"
-2023-01-24T10:15:38.493581Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb2.json"
-2023-01-24T10:15:38.516835Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:38.516935Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:38.516939Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:38.516992Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:38.517062Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:38.517067Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb2"::Istanbul::0
-2023-01-24T10:15:38.517069Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb2.json"
-2023-01-24T10:15:38.517073Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:38.517074Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:39.028343Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:02.351723Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:02.351780Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:02.351784Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb2"::Berlin::0
+2023-02-06T01:27:02.351787Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb2.json"
+2023-02-06T01:27:02.351788Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:02.352647Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb2"
+2023-02-06T01:27:02.352654Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3368215765,
+    return_data: RawBytes {  },
+    gas_used: 20622099,
     events_root: None,
 }
-2023-01-24T10:15:39.036122Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:39.036141Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb2"::Berlin::0
-2023-01-24T10:15:39.036145Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb2.json"
-2023-01-24T10:15:39.036148Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:39.036150Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:39.215751Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:02.352658Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:02.352714Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:02.352717Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb2"::London::0
+2023-02-06T01:27:02.352720Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb2.json"
+2023-02-06T01:27:02.352723Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:02.353613Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb2"
+2023-02-06T01:27:02.353621Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 4306107212,
+    return_data: RawBytes {  },
+    gas_used: 20622099,
     events_root: None,
 }
-2023-01-24T10:15:39.221066Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:39.221086Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb2"::London::0
-2023-01-24T10:15:39.221089Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb2.json"
-2023-01-24T10:15:39.221093Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:39.221095Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:39.395915Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:02.353626Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:02.353684Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:02.353687Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb2"::Merge::0
+2023-02-06T01:27:02.353690Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb2.json"
+2023-02-06T01:27:02.353692Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:02.354559Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb2"
+2023-02-06T01:27:02.354565Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 4306106936,
+    return_data: RawBytes {  },
+    gas_used: 20622099,
     events_root: None,
 }
-2023-01-24T10:15:39.400984Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:39.400998Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb2"::Merge::0
-2023-01-24T10:15:39.401001Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb2.json"
-2023-01-24T10:15:39.401005Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:39.401006Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:39.578943Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:02.354569Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:02.355352Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb2.json"
+2023-02-06T01:27:02.355373Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb3.json"
+2023-02-06T01:27:02.379757Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:02.379863Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:02.379867Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:02.379920Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:02.379992Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:02.379995Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb3"::Istanbul::0
+2023-02-06T01:27:02.379997Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb3.json"
+2023-02-06T01:27:02.379999Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:02.722643Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb3"
+2023-02-06T01:27:02.722664Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 4306107120,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:39.601397Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb2.json"
-2023-01-24T10:15:39.601440Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb3.json"
-2023-01-24T10:15:39.626248Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:39.626354Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:39.626357Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:39.626418Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:39.626490Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:39.626494Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb3"::Istanbul::0
-2023-01-24T10:15:39.626497Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb3.json"
-2023-01-24T10:15:39.626500Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:39.626502Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:40.122712Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:02.722669Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:02.722681Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:02.722684Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb3"::Berlin::0
+2023-02-06T01:27:02.722686Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb3.json"
+2023-02-06T01:27:02.722687Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:02.722776Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb3"
+2023-02-06T01:27:02.722781Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3368114727,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:40.130867Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:40.130884Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb3"::Berlin::0
-2023-01-24T10:15:40.130888Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb3.json"
-2023-01-24T10:15:40.130892Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:40.130894Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:40.313086Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:02.722784Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:02.722792Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:02.722794Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb3"::London::0
+2023-02-06T01:27:02.722795Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb3.json"
+2023-02-06T01:27:02.722797Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:02.722860Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb3"
+2023-02-06T01:27:02.722865Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 4306006359,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:40.318358Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:40.318381Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb3"::London::0
-2023-01-24T10:15:40.318384Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb3.json"
-2023-01-24T10:15:40.318388Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:40.318390Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:40.500679Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:02.722868Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:02.722875Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:02.722877Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBomb3"::Merge::0
+2023-02-06T01:27:02.722878Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBomb3.json"
+2023-02-06T01:27:02.722880Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:02.722940Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBomb3"
+2023-02-06T01:27:02.722945Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 4306006451,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:40.505889Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:40.505906Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBomb3"::Merge::0
-2023-01-24T10:15:40.505909Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb3.json"
-2023-01-24T10:15:40.505913Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:40.505915Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:40.688611Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 4306006267,
-    events_root: None,
-}
-2023-01-24T10:15:40.716213Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb3.json"
-2023-01-24T10:15:40.716257Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog.json"
-2023-01-24T10:15:40.740714Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:40.740821Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:40.740824Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:40.740881Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:40.740884Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:40.740944Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:40.741016Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:40.741021Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBombLog"::Istanbul::0
-2023-01-24T10:15:40.741024Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog.json"
-2023-01-24T10:15:40.741027Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:40.741029Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.131110Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:02.722947Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:02.723555Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBomb3.json"
+2023-02-06T01:27:02.723574Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog.json"
+2023-02-06T01:27:02.756228Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:02.756327Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:02.756330Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:02.756381Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:02.756383Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:02.756438Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:02.756507Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:02.756511Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBombLog"::Istanbul::0
+2023-02-06T01:27:02.756514Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBombLog.json"
+2023-02-06T01:27:02.756516Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.101166Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBombLog"
+2023-02-06T01:27:03.101187Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -883,12 +1875,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:41.131269Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:41.131280Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBombLog"::Berlin::0
-2023-01-24T10:15:41.131284Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog.json"
-2023-01-24T10:15:41.131289Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.131290Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.136309Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.101325Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:03.101329Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBombLog"::Berlin::0
+2023-02-06T01:27:03.101331Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBombLog.json"
+2023-02-06T01:27:03.101333Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.105794Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBombLog"
+2023-02-06T01:27:03.105802Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -896,12 +1888,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:41.136452Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:41.136459Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBombLog"::London::0
-2023-01-24T10:15:41.136461Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog.json"
-2023-01-24T10:15:41.136465Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.136466Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.141113Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.105922Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:03.105925Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBombLog"::London::0
+2023-02-06T01:27:03.105927Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBombLog.json"
+2023-02-06T01:27:03.105929Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.110228Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBombLog"
+2023-02-06T01:27:03.110235Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -909,12 +1901,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:41.141244Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:41.141249Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBombLog"::Merge::0
-2023-01-24T10:15:41.141251Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog.json"
-2023-01-24T10:15:41.141254Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.141256Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.145778Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.110354Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:03.110357Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBombLog"::Merge::0
+2023-02-06T01:27:03.110359Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBombLog.json"
+2023-02-06T01:27:03.110361Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.114633Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBombLog"
+2023-02-06T01:27:03.114640Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -922,20 +1914,20 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:41.147225Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog.json"
-2023-01-24T10:15:41.147257Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog2.json"
-2023-01-24T10:15:41.171878Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:41.171993Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.171998Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:41.172067Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.172071Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:41.172146Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.172235Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:41.172244Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBombLog2"::Istanbul::0
-2023-01-24T10:15:41.172247Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog2.json"
-2023-01-24T10:15:41.172251Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.172253Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.544594Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.115953Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog.json"
+2023-02-06T01:27:03.115975Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog2.json"
+2023-02-06T01:27:03.141681Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:03.141789Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.141793Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:03.141846Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.141849Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:03.141925Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.142026Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:03.142032Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBombLog2"::Istanbul::0
+2023-02-06T01:27:03.142036Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBombLog2.json"
+2023-02-06T01:27:03.142039Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.480615Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBombLog2"
+2023-02-06T01:27:03.480634Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -943,12 +1935,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:41.544731Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:41.544738Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBombLog2"::Berlin::0
-2023-01-24T10:15:41.544741Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog2.json"
-2023-01-24T10:15:41.544744Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.544745Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.549063Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.480753Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:03.480758Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBombLog2"::Berlin::0
+2023-02-06T01:27:03.480759Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBombLog2.json"
+2023-02-06T01:27:03.480762Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.484834Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBombLog2"
+2023-02-06T01:27:03.484841Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -956,12 +1948,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:41.549192Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:41.549196Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBombLog2"::London::0
-2023-01-24T10:15:41.549198Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog2.json"
-2023-01-24T10:15:41.549201Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.549202Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.553462Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.484958Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:03.484961Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBombLog2"::London::0
+2023-02-06T01:27:03.484963Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBombLog2.json"
+2023-02-06T01:27:03.484965Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.488989Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBombLog2"
+2023-02-06T01:27:03.488997Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -969,12 +1961,12 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:41.553592Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:41.553596Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallRecursiveBombLog2"::Merge::0
-2023-01-24T10:15:41.553598Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog2.json"
-2023-01-24T10:15:41.553601Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.553602Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.557891Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.489114Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:03.489116Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallRecursiveBombLog2"::Merge::0
+2023-02-06T01:27:03.489118Z  INFO evm_eth_compliance::statetest::executor: Path : "CallRecursiveBombLog2.json"
+2023-02-06T01:27:03.489120Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.493163Z  INFO evm_eth_compliance::statetest::executor: UC : "CallRecursiveBombLog2"
+2023-02-06T01:27:03.493171Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -982,208 +1974,28 @@ clear && \
     gas_used: 101706651,
     events_root: None,
 }
-2023-01-24T10:15:41.559296Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog2.json"
-2023-01-24T10:15:41.559326Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistrator0.json"
-2023-01-24T10:15:41.583781Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:41.583887Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.583890Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:41.583944Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.583946Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:41.584007Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.584079Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:41.584084Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistrator0"::Istanbul::0
-2023-01-24T10:15:41.584086Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistrator0.json"
-2023-01-24T10:15:41.584090Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.584091Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.928100Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.494517Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallRecursiveBombLog2.json"
+2023-02-06T01:27:03.494556Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistrator0.json"
+2023-02-06T01:27:03.518442Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:03.518545Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.518548Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:03.518598Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.518600Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:03.518656Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.518726Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:03.518729Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistrator0"::Istanbul::0
+2023-02-06T01:27:03.518732Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistrator0.json"
+2023-02-06T01:27:03.518734Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.856913Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistrator0"
+2023-02-06T01:27:03.856934Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1837523,
-    events_root: None,
-}
-2023-01-24T10:15:41.928125Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:41.928132Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistrator0"::Berlin::0
-2023-01-24T10:15:41.928134Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistrator0.json"
-2023-01-24T10:15:41.928138Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.928140Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.928273Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1837523,
-    events_root: None,
-}
-2023-01-24T10:15:41.928280Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:41.928283Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistrator0"::London::0
-2023-01-24T10:15:41.928285Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistrator0.json"
-2023-01-24T10:15:41.928288Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.928289Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.928405Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1837523,
-    events_root: None,
-}
-2023-01-24T10:15:41.928413Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:41.928415Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistrator0"::Merge::0
-2023-01-24T10:15:41.928418Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistrator0.json"
-2023-01-24T10:15:41.928420Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.928422Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:41.928556Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1837523,
-    events_root: None,
-}
-2023-01-24T10:15:41.929210Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistrator0.json"
-2023-01-24T10:15:41.929239Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigLeft.json"
-2023-01-24T10:15:41.953739Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:41.953842Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.953846Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:41.953900Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.953902Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:41.953960Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:41.954031Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:41.954036Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorAddressTooBigLeft"::Istanbul::0
-2023-01-24T10:15:41.954039Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigLeft.json"
-2023-01-24T10:15:41.954042Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:41.954044Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:42.304049Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1738543,
-    events_root: None,
-}
-2023-01-24T10:15:42.304075Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:42.304084Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorAddressTooBigLeft"::Berlin::0
-2023-01-24T10:15:42.304087Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigLeft.json"
-2023-01-24T10:15:42.304091Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:42.304093Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:42.304272Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1738543,
-    events_root: None,
-}
-2023-01-24T10:15:42.304282Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:42.304285Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorAddressTooBigLeft"::London::0
-2023-01-24T10:15:42.304288Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigLeft.json"
-2023-01-24T10:15:42.304291Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:42.304293Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:42.304462Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1738543,
-    events_root: None,
-}
-2023-01-24T10:15:42.304472Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:42.304475Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorAddressTooBigLeft"::Merge::0
-2023-01-24T10:15:42.304478Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigLeft.json"
-2023-01-24T10:15:42.304482Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:42.304483Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:42.304622Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1738543,
-    events_root: None,
-}
-2023-01-24T10:15:42.305414Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigLeft.json"
-2023-01-24T10:15:42.305448Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigRight.json"
-2023-01-24T10:15:42.330654Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:42.330758Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:42.330761Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:42.330814Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:42.330817Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:42.330878Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:42.330951Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:42.330956Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorAddressTooBigRight"::Istanbul::0
-2023-01-24T10:15:42.330960Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigRight.json"
-2023-01-24T10:15:42.330964Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:42.330965Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:42.709999Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 4006546,
-    events_root: None,
-}
-2023-01-24T10:15:42.710023Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:42.710030Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorAddressTooBigRight"::Berlin::0
-2023-01-24T10:15:42.710034Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigRight.json"
-2023-01-24T10:15:42.710037Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:42.710038Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:42.710193Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1940504,
-    events_root: None,
-}
-2023-01-24T10:15:42.710201Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:42.710204Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorAddressTooBigRight"::London::0
-2023-01-24T10:15:42.710207Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigRight.json"
-2023-01-24T10:15:42.710210Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:42.710211Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:42.710323Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1940504,
-    events_root: None,
-}
-2023-01-24T10:15:42.710331Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:42.710334Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorAddressTooBigRight"::Merge::0
-2023-01-24T10:15:42.710336Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigRight.json"
-2023-01-24T10:15:42.710339Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:42.710341Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:42.710451Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1940504,
-    events_root: None,
-}
-2023-01-24T10:15:42.711198Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigRight.json"
-2023-01-24T10:15:42.711226Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance.json"
-2023-01-24T10:15:42.735622Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:42.735732Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:42.735735Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:42.735789Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:42.735791Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:42.735849Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:42.735921Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:42.735925Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorMemOOGAndInsufficientBalance"::Istanbul::0
-2023-01-24T10:15:42.735929Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance.json"
-2023-01-24T10:15:42.735932Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:42.735933Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.078716Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1555423,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:43.078736Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:03.856939Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1191,29 +2003,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=114): size must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:43.078751Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:43.078759Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorMemOOGAndInsufficientBalance"::Berlin::0
-2023-01-24T10:15:43.078762Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance.json"
-2023-01-24T10:15:43.078766Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.078767Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.078899Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:03.856951Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:03.856955Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistrator0"::Berlin::0
+2023-02-06T01:27:03.856957Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistrator0.json"
+2023-02-06T01:27:03.856960Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.856987Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistrator0"
+2023-02-06T01:27:03.856991Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1555423,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:43.078905Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:03.856995Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1221,29 +2033,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=114): size must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:43.078913Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:43.078916Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorMemOOGAndInsufficientBalance"::London::0
-2023-01-24T10:15:43.078918Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance.json"
-2023-01-24T10:15:43.078921Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.078922Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.079008Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:03.857004Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:03.857006Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistrator0"::London::0
+2023-02-06T01:27:03.857009Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistrator0.json"
+2023-02-06T01:27:03.857012Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.857020Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistrator0"
+2023-02-06T01:27:03.857024Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1555423,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:43.079013Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:03.857027Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1251,29 +2063,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=114): size must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:43.079022Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:43.079024Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorMemOOGAndInsufficientBalance"::Merge::0
-2023-01-24T10:15:43.079026Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance.json"
-2023-01-24T10:15:43.079029Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.079030Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.079116Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:03.857035Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:03.857038Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistrator0"::Merge::0
+2023-02-06T01:27:03.857040Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistrator0.json"
+2023-02-06T01:27:03.857043Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:03.857051Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistrator0"
+2023-02-06T01:27:03.857054Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1555423,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:43.079121Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:03.857058Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1281,217 +2093,37 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=114): size must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:43.079990Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance.json"
-2023-01-24T10:15:43.080027Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory0.json"
-2023-01-24T10:15:43.104262Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:43.104397Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.104403Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:43.104478Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.104482Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:43.104563Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.104655Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:43.104661Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorNotMuchMemory0"::Istanbul::0
-2023-01-24T10:15:43.104664Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory0.json"
-2023-01-24T10:15:43.104668Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.104669Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.490247Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:03.857794Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistrator0.json"
+2023-02-06T01:27:03.857815Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigLeft.json"
+2023-02-06T01:27:03.908585Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:03.908689Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.908693Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:03.908743Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.908745Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:03.908801Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:03.908872Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:03.908874Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorAddressTooBigLeft"::Istanbul::0
+2023-02-06T01:27:03.908878Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorAddressTooBigLeft.json"
+2023-02-06T01:27:03.908880Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:04.253633Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorAddressTooBigLeft"
+2023-02-06T01:27:04.253653Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1738138,
-    events_root: None,
-}
-2023-01-24T10:15:43.490271Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:43.490277Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorNotMuchMemory0"::Berlin::0
-2023-01-24T10:15:43.490280Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory0.json"
-2023-01-24T10:15:43.490284Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.490286Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.490433Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1738138,
-    events_root: None,
-}
-2023-01-24T10:15:43.490441Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:43.490444Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorNotMuchMemory0"::London::0
-2023-01-24T10:15:43.490447Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory0.json"
-2023-01-24T10:15:43.490449Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.490450Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.490567Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1738138,
-    events_root: None,
-}
-2023-01-24T10:15:43.490574Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:43.490577Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorNotMuchMemory0"::Merge::0
-2023-01-24T10:15:43.490579Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory0.json"
-2023-01-24T10:15:43.490582Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.490583Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.490698Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1738138,
-    events_root: None,
-}
-2023-01-24T10:15:43.491361Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory0.json"
-2023-01-24T10:15:43.491392Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory1.json"
-2023-01-24T10:15:43.515834Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:43.515937Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.515940Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:43.516005Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.516008Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:43.516069Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.516141Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:43.516146Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorNotMuchMemory1"::Istanbul::0
-2023-01-24T10:15:43.516149Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory1.json"
-2023-01-24T10:15:43.516152Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.516153Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.891810Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1721044,
-    events_root: None,
-}
-2023-01-24T10:15:43.891833Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:43.891839Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorNotMuchMemory1"::Berlin::0
-2023-01-24T10:15:43.891842Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory1.json"
-2023-01-24T10:15:43.891845Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.891847Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.891970Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1721044,
-    events_root: None,
-}
-2023-01-24T10:15:43.891978Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:43.891981Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorNotMuchMemory1"::London::0
-2023-01-24T10:15:43.891983Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory1.json"
-2023-01-24T10:15:43.891986Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.891988Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.892100Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1721044,
-    events_root: None,
-}
-2023-01-24T10:15:43.892108Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:43.892111Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorNotMuchMemory1"::Merge::0
-2023-01-24T10:15:43.892113Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory1.json"
-2023-01-24T10:15:43.892117Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.892118Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:43.892226Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1721044,
-    events_root: None,
-}
-2023-01-24T10:15:43.892985Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory1.json"
-2023-01-24T10:15:43.893013Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorOutOfGas.json"
-2023-01-24T10:15:43.917605Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:43.917733Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.917738Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:43.917794Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.917796Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:43.917855Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:43.917927Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:43.917933Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorOutOfGas"::Istanbul::0
-2023-01-24T10:15:43.917936Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorOutOfGas.json"
-2023-01-24T10:15:43.917940Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:43.917941Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:44.273421Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1737591,
-    events_root: None,
-}
-2023-01-24T10:15:44.273446Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:44.273452Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorOutOfGas"::Berlin::0
-2023-01-24T10:15:44.273455Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorOutOfGas.json"
-2023-01-24T10:15:44.273458Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:44.273459Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:44.273670Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1737591,
-    events_root: None,
-}
-2023-01-24T10:15:44.273681Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:44.273685Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorOutOfGas"::London::0
-2023-01-24T10:15:44.273688Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorOutOfGas.json"
-2023-01-24T10:15:44.273692Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:44.273694Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:44.273821Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1737591,
-    events_root: None,
-}
-2023-01-24T10:15:44.273830Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:44.273832Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorOutOfGas"::Merge::0
-2023-01-24T10:15:44.273834Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorOutOfGas.json"
-2023-01-24T10:15:44.273837Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:44.273839Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:44.273950Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1737591,
-    events_root: None,
-}
-2023-01-24T10:15:44.274706Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorOutOfGas.json"
-2023-01-24T10:15:44.274732Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0.json"
-2023-01-24T10:15:44.298890Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:44.298992Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:44.298995Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:44.299046Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:44.299048Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:44.299106Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:44.299176Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:44.299180Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory0"::Istanbul::0
-2023-01-24T10:15:44.299183Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0.json"
-2023-01-24T10:15:44.299186Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:44.299187Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:44.686974Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 4,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 396594357,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:44.686991Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:04.253659Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1499,29 +2131,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 4,
+                        value: 7,
                     },
-                    message: "wasm `unreachable` instruction executed",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:44.687004Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:44.687011Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory0"::Berlin::0
-2023-01-24T10:15:44.687013Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0.json"
-2023-01-24T10:15:44.687016Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:44.687018Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:44.687122Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:04.253675Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:04.253678Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorAddressTooBigLeft"::Berlin::0
+2023-02-06T01:27:04.253681Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorAddressTooBigLeft.json"
+2023-02-06T01:27:04.253683Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:04.253709Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorAddressTooBigLeft"
+2023-02-06T01:27:04.253712Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 4,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 396594357,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:44.687127Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:04.253715Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1529,29 +2161,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 4,
+                        value: 7,
                     },
-                    message: "wasm `unreachable` instruction executed",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:44.687136Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:44.687138Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory0"::London::0
-2023-01-24T10:15:44.687140Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0.json"
-2023-01-24T10:15:44.687143Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:44.687145Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:44.687229Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:04.253721Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:04.253723Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorAddressTooBigLeft"::London::0
+2023-02-06T01:27:04.253725Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorAddressTooBigLeft.json"
+2023-02-06T01:27:04.253727Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:04.253733Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorAddressTooBigLeft"
+2023-02-06T01:27:04.253736Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 4,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 396594357,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:44.687234Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:04.253738Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1559,29 +2191,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 4,
+                        value: 7,
                     },
-                    message: "wasm `unreachable` instruction executed",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:44.687242Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:44.687244Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory0"::Merge::0
-2023-01-24T10:15:44.687246Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0.json"
-2023-01-24T10:15:44.687249Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:44.687251Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:44.687360Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:04.253744Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:04.253746Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorAddressTooBigLeft"::Merge::0
+2023-02-06T01:27:04.253747Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorAddressTooBigLeft.json"
+2023-02-06T01:27:04.253749Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:04.253755Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorAddressTooBigLeft"
+2023-02-06T01:27:04.253758Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 4,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 396594357,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:44.687366Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:04.253760Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1589,329 +2221,37 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 4,
+                        value: 7,
                     },
-                    message: "wasm `unreachable` instruction executed",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:44.688144Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0.json"
-2023-01-24T10:15:44.688171Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory1.json"
-2023-01-24T10:15:44.712269Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:44.712375Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:44.712378Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:44.712431Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:44.712432Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:44.712490Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:44.712561Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:44.712566Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory1"::Istanbul::0
-2023-01-24T10:15:44.712569Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory1.json"
-2023-01-24T10:15:44.712572Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:44.712574Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.095792Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:04.254359Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigLeft.json"
+2023-02-06T01:27:04.254382Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigRight.json"
+2023-02-06T01:27:04.278719Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:04.278817Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:04.278821Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:04.278871Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:04.278873Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:04.278930Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:04.279000Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:04.279003Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorAddressTooBigRight"::Istanbul::0
+2023-02-06T01:27:04.279006Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorAddressTooBigRight.json"
+2023-02-06T01:27:04.279009Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:04.623572Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorAddressTooBigRight"
+2023-02-06T01:27:04.623594Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 17561259,
-    events_root: None,
-}
-2023-01-24T10:15:45.095824Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:45.095832Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory1"::Berlin::0
-2023-01-24T10:15:45.095836Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory1.json"
-2023-01-24T10:15:45.095840Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.095841Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.101810Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 17561259,
-    events_root: None,
-}
-2023-01-24T10:15:45.101840Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:45.101847Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory1"::London::0
-2023-01-24T10:15:45.101850Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory1.json"
-2023-01-24T10:15:45.101853Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.101854Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.107459Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 17561259,
-    events_root: None,
-}
-2023-01-24T10:15:45.107483Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:45.107490Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory1"::Merge::0
-2023-01-24T10:15:45.107493Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory1.json"
-2023-01-24T10:15:45.107497Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.107498Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.112896Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 17561259,
-    events_root: None,
-}
-2023-01-24T10:15:45.113727Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory1.json"
-2023-01-24T10:15:45.113757Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory2.json"
-2023-01-24T10:15:45.139281Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:45.139392Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.139396Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:45.139454Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.139457Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:45.139523Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.139599Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:45.139606Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory2"::Istanbul::0
-2023-01-24T10:15:45.139610Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory2.json"
-2023-01-24T10:15:45.139614Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.139616Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.474810Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 2622591,
-    events_root: None,
-}
-2023-01-24T10:15:45.474832Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:45.474839Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory2"::Berlin::0
-2023-01-24T10:15:45.474842Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory2.json"
-2023-01-24T10:15:45.474845Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.474846Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.475157Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 2622591,
-    events_root: None,
-}
-2023-01-24T10:15:45.475165Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:45.475168Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory2"::London::0
-2023-01-24T10:15:45.475170Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory2.json"
-2023-01-24T10:15:45.475173Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.475174Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.475465Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 2622591,
-    events_root: None,
-}
-2023-01-24T10:15:45.475473Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:45.475476Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorTooMuchMemory2"::Merge::0
-2023-01-24T10:15:45.475478Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory2.json"
-2023-01-24T10:15:45.475481Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.475482Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.475782Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 2622591,
-    events_root: None,
-}
-2023-01-24T10:15:45.476543Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory2.json"
-2023-01-24T10:15:45.476574Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.501665Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:45.501770Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.501773Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:45.501826Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.501828Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:45.501888Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.501958Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:45.501963Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Istanbul::0
-2023-01-24T10:15:45.501966Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.501969Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.501971Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.851933Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1725495,
-    events_root: None,
-}
-2023-01-24T10:15:45.851956Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:45.851962Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Istanbul::0
-2023-01-24T10:15:45.851965Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.851968Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.851970Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.852094Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1725495,
-    events_root: None,
-}
-2023-01-24T10:15:45.852102Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:45.852105Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Berlin::0
-2023-01-24T10:15:45.852107Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.852110Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.852111Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.852222Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1725495,
-    events_root: None,
-}
-2023-01-24T10:15:45.852230Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:45.852232Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Berlin::0
-2023-01-24T10:15:45.852234Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.852237Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.852239Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.852347Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1725495,
-    events_root: None,
-}
-2023-01-24T10:15:45.852355Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:45.852357Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::London::0
-2023-01-24T10:15:45.852359Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.852362Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.852364Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.852472Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1725495,
-    events_root: None,
-}
-2023-01-24T10:15:45.852479Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:45.852481Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::London::0
-2023-01-24T10:15:45.852483Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.852486Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.852488Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.852596Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1725495,
-    events_root: None,
-}
-2023-01-24T10:15:45.852603Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:45.852606Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Merge::0
-2023-01-24T10:15:45.852608Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.852611Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.852613Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.852720Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1725495,
-    events_root: None,
-}
-2023-01-24T10:15:45.852728Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:45.852731Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Merge::0
-2023-01-24T10:15:45.852733Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.852736Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.852737Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:45.852843Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1725495,
-    events_root: None,
-}
-2023-01-24T10:15:45.853465Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
-2023-01-24T10:15:45.853497Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1.json"
-2023-01-24T10:15:45.877881Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:45.877982Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.877986Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:45.878040Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.878042Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:45.878101Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:45.878172Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:45.878177Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1"::Istanbul::0
-2023-01-24T10:15:45.878180Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1.json"
-2023-01-24T10:15:45.878183Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:45.878184Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.245096Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1718445,
-    events_root: None,
-}
-2023-01-24T10:15:46.245120Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:46.245127Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1"::Berlin::0
-2023-01-24T10:15:46.245130Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1.json"
-2023-01-24T10:15:46.245134Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.245135Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.245284Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1718445,
-    events_root: None,
-}
-2023-01-24T10:15:46.245293Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:46.245296Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1"::London::0
-2023-01-24T10:15:46.245299Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1.json"
-2023-01-24T10:15:46.245302Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.245304Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.245422Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1718445,
-    events_root: None,
-}
-2023-01-24T10:15:46.245430Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:46.245433Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1"::Merge::0
-2023-01-24T10:15:46.245436Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1.json"
-2023-01-24T10:15:46.245439Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.245441Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.245553Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1718445,
-    events_root: None,
-}
-2023-01-24T10:15:46.246184Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1.json"
-2023-01-24T10:15:46.246212Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump0.json"
-2023-01-24T10:15:46.270459Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:46.270572Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:46.270576Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:46.270634Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:46.270636Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:46.270698Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:46.270772Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:46.270779Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1ForDynamicJump0"::Istanbul::0
-2023-01-24T10:15:46.270782Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump0.json"
-2023-01-24T10:15:46.270787Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.270789Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.612086Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 39,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1734026,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:46.612103Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:04.623600Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1919,29 +2259,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 39,
+                        value: 7,
                     },
-                    message: "ABORT(pc=41): jumpdest 0 is invalid",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:46.612120Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:46.612129Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1ForDynamicJump0"::Berlin::0
-2023-01-24T10:15:46.612131Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump0.json"
-2023-01-24T10:15:46.612135Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.612137Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.612288Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:04.623613Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:04.623617Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorAddressTooBigRight"::Berlin::0
+2023-02-06T01:27:04.623620Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorAddressTooBigRight.json"
+2023-02-06T01:27:04.623622Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:04.623649Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorAddressTooBigRight"
+2023-02-06T01:27:04.623653Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 39,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1734026,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:46.612293Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:04.623658Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1949,29 +2289,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 39,
+                        value: 7,
                     },
-                    message: "ABORT(pc=41): jumpdest 0 is invalid",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:46.612306Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:46.612310Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1ForDynamicJump0"::London::0
-2023-01-24T10:15:46.612312Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump0.json"
-2023-01-24T10:15:46.612316Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.612318Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.612433Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:04.623667Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:04.623669Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorAddressTooBigRight"::London::0
+2023-02-06T01:27:04.623672Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorAddressTooBigRight.json"
+2023-02-06T01:27:04.623675Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:04.623684Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorAddressTooBigRight"
+2023-02-06T01:27:04.623689Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 39,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1734026,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:46.612438Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:04.623692Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -1979,29 +2319,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 39,
+                        value: 7,
                     },
-                    message: "ABORT(pc=41): jumpdest 0 is invalid",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:46.612451Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:46.612454Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1ForDynamicJump0"::Merge::0
-2023-01-24T10:15:46.612456Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump0.json"
-2023-01-24T10:15:46.612459Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.612461Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.612574Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:04.623701Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:04.623703Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorAddressTooBigRight"::Merge::0
+2023-02-06T01:27:04.623706Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorAddressTooBigRight.json"
+2023-02-06T01:27:04.623709Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:04.623719Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorAddressTooBigRight"
+2023-02-06T01:27:04.623723Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 39,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1734026,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:46.612579Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:04.623726Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2009,37 +2349,37 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 39,
+                        value: 7,
                     },
-                    message: "ABORT(pc=41): jumpdest 0 is invalid",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:46.613367Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump0.json"
-2023-01-24T10:15:46.613395Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump1.json"
-2023-01-24T10:15:46.640989Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:46.641095Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:46.641099Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:46.641154Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:46.641156Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:46.641217Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:46.641296Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:46.641302Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1ForDynamicJump1"::Istanbul::0
-2023-01-24T10:15:46.641305Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump1.json"
-2023-01-24T10:15:46.641310Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.641312Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.987517Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:04.624293Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorAddressTooBigRight.json"
+2023-02-06T01:27:04.624316Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance.json"
+2023-02-06T01:27:04.681168Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:04.681280Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:04.681283Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:04.681337Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:04.681339Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:04.681414Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:04.681513Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:04.681517Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorMemOOGAndInsufficientBalance"::Istanbul::0
+2023-02-06T01:27:04.681522Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorMemOOGAndInsufficientBalance.json"
+2023-02-06T01:27:04.681525Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.024563Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorMemOOGAndInsufficientBalance"
+2023-02-06T01:27:05.024585Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 39,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1734137,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:46.987536Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:05.024590Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2047,29 +2387,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 39,
+                        value: 7,
                     },
-                    message: "ABORT(pc=41): jumpdest 0 is invalid",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:46.987551Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:46.987557Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1ForDynamicJump1"::Berlin::0
-2023-01-24T10:15:46.987559Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump1.json"
-2023-01-24T10:15:46.987563Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.987564Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.987700Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:05.024602Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:05.024606Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorMemOOGAndInsufficientBalance"::Berlin::0
+2023-02-06T01:27:05.024608Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorMemOOGAndInsufficientBalance.json"
+2023-02-06T01:27:05.024610Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.024635Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorMemOOGAndInsufficientBalance"
+2023-02-06T01:27:05.024639Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 39,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1734137,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:46.987706Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:05.024641Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2077,29 +2417,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 39,
+                        value: 7,
                     },
-                    message: "ABORT(pc=41): jumpdest 0 is invalid",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:46.987715Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:46.987718Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1ForDynamicJump1"::London::0
-2023-01-24T10:15:46.987719Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump1.json"
-2023-01-24T10:15:46.987722Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.987724Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.987837Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:05.024648Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:05.024649Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorMemOOGAndInsufficientBalance"::London::0
+2023-02-06T01:27:05.024651Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorMemOOGAndInsufficientBalance.json"
+2023-02-06T01:27:05.024653Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.024660Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorMemOOGAndInsufficientBalance"
+2023-02-06T01:27:05.024663Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 39,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1734137,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:46.987842Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:05.024665Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2107,29 +2447,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 39,
+                        value: 7,
                     },
-                    message: "ABORT(pc=41): jumpdest 0 is invalid",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:46.987853Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:46.987855Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CallToReturn1ForDynamicJump1"::Merge::0
-2023-01-24T10:15:46.987857Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump1.json"
-2023-01-24T10:15:46.987860Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:46.987861Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:46.987972Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:05.024671Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:05.024673Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorMemOOGAndInsufficientBalance"::Merge::0
+2023-02-06T01:27:05.024675Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorMemOOGAndInsufficientBalance.json"
+2023-02-06T01:27:05.024677Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.024682Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorMemOOGAndInsufficientBalance"
+2023-02-06T01:27:05.024685Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 39,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1734137,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:46.987977Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:05.024688Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2137,89 +2477,1509 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 39,
+                        value: 7,
                     },
-                    message: "ABORT(pc=41): jumpdest 0 is invalid",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:46.988755Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump1.json"
-2023-01-24T10:15:46.988780Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CalltoReturn2.json"
-2023-01-24T10:15:47.013873Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:47.013982Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:47.013986Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:47.014039Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:47.014041Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:47.014102Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:47.014176Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:47.014181Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CalltoReturn2"::Istanbul::0
-2023-01-24T10:15:47.014184Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CalltoReturn2.json"
-2023-01-24T10:15:47.014187Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:47.014188Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:47.381607Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:05.025321Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorMemOOGAndInsufficientBalance.json"
+2023-02-06T01:27:05.025344Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory0.json"
+2023-02-06T01:27:05.077548Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:05.077656Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.077660Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:05.077715Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.077717Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:05.077773Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.077844Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:05.077846Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorNotMuchMemory0"::Istanbul::0
+2023-02-06T01:27:05.077850Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorNotMuchMemory0.json"
+2023-02-06T01:27:05.077852Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.410029Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorNotMuchMemory0"
+2023-02-06T01:27:05.410053Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1742973,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:47.381629Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:47.381635Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CalltoReturn2"::Berlin::0
-2023-01-24T10:15:47.381638Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CalltoReturn2.json"
-2023-01-24T10:15:47.381641Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:47.381642Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:47.381779Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:05.410058Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:05.410071Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:05.410075Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorNotMuchMemory0"::Berlin::0
+2023-02-06T01:27:05.410078Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorNotMuchMemory0.json"
+2023-02-06T01:27:05.410081Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.410105Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorNotMuchMemory0"
+2023-02-06T01:27:05.410110Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1742973,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:47.381786Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:47.381790Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CalltoReturn2"::London::0
-2023-01-24T10:15:47.381792Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CalltoReturn2.json"
-2023-01-24T10:15:47.381794Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:47.381796Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:47.381913Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:05.410113Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:05.410122Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:05.410125Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorNotMuchMemory0"::London::0
+2023-02-06T01:27:05.410127Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorNotMuchMemory0.json"
+2023-02-06T01:27:05.410130Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.410139Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorNotMuchMemory0"
+2023-02-06T01:27:05.410143Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1742973,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:47.381921Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:47.381925Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CalltoReturn2"::Merge::0
-2023-01-24T10:15:47.381927Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CalltoReturn2.json"
-2023-01-24T10:15:47.381929Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:47.381931Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:47.382039Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:05.410146Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:05.410155Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:05.410157Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorNotMuchMemory0"::Merge::0
+2023-02-06T01:27:05.410159Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorNotMuchMemory0.json"
+2023-02-06T01:27:05.410162Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.410171Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorNotMuchMemory0"
+2023-02-06T01:27:05.410175Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1742973,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:47.382752Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CalltoReturn2.json"
-2023-01-24T10:15:47.382781Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CreateHashCollision.json"
-2023-01-24T10:15:47.407518Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:47.407623Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:47.407627Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:47.407692Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:47.407695Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:47.407758Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:47.407833Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:47.407839Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CreateHashCollision"::Istanbul::0
-2023-01-24T10:15:47.407843Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CreateHashCollision.json"
-2023-01-24T10:15:47.407847Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:47.407849Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:47.861548Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:05.410178Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:05.410798Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory0.json"
+2023-02-06T01:27:05.410826Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory1.json"
+2023-02-06T01:27:05.435153Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:05.435263Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.435267Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:05.435321Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.435325Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:05.435384Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.435456Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:05.435461Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorNotMuchMemory1"::Istanbul::0
+2023-02-06T01:27:05.435465Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorNotMuchMemory1.json"
+2023-02-06T01:27:05.435469Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.782592Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorNotMuchMemory1"
+2023-02-06T01:27:05.782616Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 290000,
+    events_root: None,
+}
+2023-02-06T01:27:05.782622Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:05.782637Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:05.782642Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorNotMuchMemory1"::Berlin::0
+2023-02-06T01:27:05.782644Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorNotMuchMemory1.json"
+2023-02-06T01:27:05.782649Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.782679Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorNotMuchMemory1"
+2023-02-06T01:27:05.782684Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 290000,
+    events_root: None,
+}
+2023-02-06T01:27:05.782687Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:05.782695Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:05.782698Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorNotMuchMemory1"::London::0
+2023-02-06T01:27:05.782700Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorNotMuchMemory1.json"
+2023-02-06T01:27:05.782703Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.782712Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorNotMuchMemory1"
+2023-02-06T01:27:05.782715Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 290000,
+    events_root: None,
+}
+2023-02-06T01:27:05.782718Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:05.782724Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:05.782726Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorNotMuchMemory1"::Merge::0
+2023-02-06T01:27:05.782727Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorNotMuchMemory1.json"
+2023-02-06T01:27:05.782729Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:05.782734Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorNotMuchMemory1"
+2023-02-06T01:27:05.782737Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 290000,
+    events_root: None,
+}
+2023-02-06T01:27:05.782739Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:05.783560Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorNotMuchMemory1.json"
+2023-02-06T01:27:05.783581Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorOutOfGas.json"
+2023-02-06T01:27:05.808297Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:05.808399Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.808402Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:05.808452Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.808454Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:05.808510Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:05.808580Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:05.808583Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorOutOfGas"::Istanbul::0
+2023-02-06T01:27:05.808586Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorOutOfGas.json"
+2023-02-06T01:27:05.808588Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.149352Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorOutOfGas"
+2023-02-06T01:27:06.149374Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.149380Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.149392Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:06.149396Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorOutOfGas"::Berlin::0
+2023-02-06T01:27:06.149397Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorOutOfGas.json"
+2023-02-06T01:27:06.149401Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.149423Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorOutOfGas"
+2023-02-06T01:27:06.149426Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.149429Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.149435Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:06.149437Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorOutOfGas"::London::0
+2023-02-06T01:27:06.149440Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorOutOfGas.json"
+2023-02-06T01:27:06.149442Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.149448Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorOutOfGas"
+2023-02-06T01:27:06.149451Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.149453Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.149459Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:06.149460Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorOutOfGas"::Merge::0
+2023-02-06T01:27:06.149462Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorOutOfGas.json"
+2023-02-06T01:27:06.149464Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.149470Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorOutOfGas"
+2023-02-06T01:27:06.149473Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.149476Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.150057Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorOutOfGas.json"
+2023-02-06T01:27:06.150087Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0.json"
+2023-02-06T01:27:06.174285Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:06.174386Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.174390Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:06.174441Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.174443Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:06.174500Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.174572Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:06.174575Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory0"::Istanbul::0
+2023-02-06T01:27:06.174578Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory0.json"
+2023-02-06T01:27:06.174580Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.507724Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory0"
+2023-02-06T01:27:06.507747Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.507753Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.507764Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:06.507767Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory0"::Berlin::0
+2023-02-06T01:27:06.507769Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory0.json"
+2023-02-06T01:27:06.507771Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.507795Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory0"
+2023-02-06T01:27:06.507798Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.507801Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.507807Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:06.507809Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory0"::London::0
+2023-02-06T01:27:06.507811Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory0.json"
+2023-02-06T01:27:06.507813Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.507819Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory0"
+2023-02-06T01:27:06.507822Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.507824Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.507830Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:06.507832Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory0"::Merge::0
+2023-02-06T01:27:06.507833Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory0.json"
+2023-02-06T01:27:06.507835Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.507840Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory0"
+2023-02-06T01:27:06.507843Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.507845Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.508394Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory0.json"
+2023-02-06T01:27:06.508421Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory1.json"
+2023-02-06T01:27:06.576360Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:06.576460Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.576463Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:06.576513Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.576515Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:06.576591Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.576700Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:06.576706Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory1"::Istanbul::0
+2023-02-06T01:27:06.576710Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory1.json"
+2023-02-06T01:27:06.576714Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.911737Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory1"
+2023-02-06T01:27:06.911760Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.911766Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.911778Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:06.911781Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory1"::Berlin::0
+2023-02-06T01:27:06.911784Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory1.json"
+2023-02-06T01:27:06.911786Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.911810Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory1"
+2023-02-06T01:27:06.911813Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.911816Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.911822Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:06.911824Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory1"::London::0
+2023-02-06T01:27:06.911825Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory1.json"
+2023-02-06T01:27:06.911827Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.911833Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory1"
+2023-02-06T01:27:06.911836Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.911838Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.911844Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:06.911846Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory1"::Merge::0
+2023-02-06T01:27:06.911847Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory1.json"
+2023-02-06T01:27:06.911849Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:06.911854Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory1"
+2023-02-06T01:27:06.911857Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:06.911859Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:06.912429Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory1.json"
+2023-02-06T01:27:06.912456Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory2.json"
+2023-02-06T01:27:06.939158Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:06.939267Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.939270Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:06.939327Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.939330Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:06.939405Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:06.939498Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:06.939503Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory2"::Istanbul::0
+2023-02-06T01:27:06.939507Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory2.json"
+2023-02-06T01:27:06.939509Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.292201Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory2"
+2023-02-06T01:27:07.292222Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:07.292228Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:07.292239Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:07.292243Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory2"::Berlin::0
+2023-02-06T01:27:07.292246Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory2.json"
+2023-02-06T01:27:07.292247Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.292272Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory2"
+2023-02-06T01:27:07.292276Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:07.292278Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:07.292285Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:07.292287Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory2"::London::0
+2023-02-06T01:27:07.292289Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory2.json"
+2023-02-06T01:27:07.292291Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.292297Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory2"
+2023-02-06T01:27:07.292300Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:07.292303Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:07.292308Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:07.292310Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorTooMuchMemory2"::Merge::0
+2023-02-06T01:27:07.292312Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorTooMuchMemory2.json"
+2023-02-06T01:27:07.292313Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.292318Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorTooMuchMemory2"
+2023-02-06T01:27:07.292321Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:07.292324Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:07.292901Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorTooMuchMemory2.json"
+2023-02-06T01:27:07.292923Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.319364Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:07.319468Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:07.319472Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:07.319525Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:07.319527Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:07.319587Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:07.319658Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:07.319661Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Istanbul::0
+2023-02-06T01:27:07.319665Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.319667Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.659614Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorZeorSizeMemExpansion"
+2023-02-06T01:27:07.659636Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 500000,
+    events_root: None,
+}
+2023-02-06T01:27:07.659641Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:07.659652Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:07.659657Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Istanbul::0
+2023-02-06T01:27:07.659659Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.659661Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.659667Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorZeorSizeMemExpansion"
+2023-02-06T01:27:07.659671Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 0,
+    events_root: None,
+}
+2023-02-06T01:27:07.659674Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    PreValidation(
+        "Out of gas (168899 > 50000)",
+    ),
+)
+2023-02-06T01:27:07.659676Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:07.659678Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Berlin::0
+2023-02-06T01:27:07.659680Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.659682Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.659703Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorZeorSizeMemExpansion"
+2023-02-06T01:27:07.659706Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 500000,
+    events_root: None,
+}
+2023-02-06T01:27:07.659708Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:07.659714Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:07.659716Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Berlin::0
+2023-02-06T01:27:07.659719Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.659721Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.659722Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorZeorSizeMemExpansion"
+2023-02-06T01:27:07.659725Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 0,
+    events_root: None,
+}
+2023-02-06T01:27:07.659727Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    PreValidation(
+        "Out of gas (168899 > 50000)",
+    ),
+)
+2023-02-06T01:27:07.659729Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:07.659731Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::London::0
+2023-02-06T01:27:07.659733Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.659735Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.659741Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorZeorSizeMemExpansion"
+2023-02-06T01:27:07.659743Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 500000,
+    events_root: None,
+}
+2023-02-06T01:27:07.659745Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:07.659751Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:07.659752Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::London::0
+2023-02-06T01:27:07.659754Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.659756Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.659758Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorZeorSizeMemExpansion"
+2023-02-06T01:27:07.659761Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 0,
+    events_root: None,
+}
+2023-02-06T01:27:07.659763Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    PreValidation(
+        "Out of gas (168899 > 50000)",
+    ),
+)
+2023-02-06T01:27:07.659765Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:07.659766Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Merge::0
+2023-02-06T01:27:07.659769Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.659770Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.659777Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorZeorSizeMemExpansion"
+2023-02-06T01:27:07.659780Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 500000,
+    events_root: None,
+}
+2023-02-06T01:27:07.659783Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:07.659788Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:07.659790Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToNameRegistratorZeorSizeMemExpansion"::Merge::0
+2023-02-06T01:27:07.659792Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.659793Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:07.659795Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToNameRegistratorZeorSizeMemExpansion"
+2023-02-06T01:27:07.659798Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 0,
+    events_root: None,
+}
+2023-02-06T01:27:07.659800Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    PreValidation(
+        "Out of gas (168899 > 50000)",
+    ),
+)
+2023-02-06T01:27:07.660380Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToNameRegistratorZeorSizeMemExpansion.json"
+2023-02-06T01:27:07.660402Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1.json"
+2023-02-06T01:27:07.684508Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:07.684613Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:07.684617Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:07.684667Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:07.684669Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:07.684726Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:07.684796Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:07.684798Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1"::Istanbul::0
+2023-02-06T01:27:07.684802Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1.json"
+2023-02-06T01:27:07.684804Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.015553Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1"
+2023-02-06T01:27:08.015574Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.015579Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.015591Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:08.015594Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1"::Berlin::0
+2023-02-06T01:27:08.015596Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1.json"
+2023-02-06T01:27:08.015598Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.015624Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1"
+2023-02-06T01:27:08.015627Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.015630Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.015636Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:08.015638Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1"::London::0
+2023-02-06T01:27:08.015640Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1.json"
+2023-02-06T01:27:08.015642Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.015647Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1"
+2023-02-06T01:27:08.015650Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.015652Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.015658Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:08.015660Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1"::Merge::0
+2023-02-06T01:27:08.015661Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1.json"
+2023-02-06T01:27:08.015663Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.015668Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1"
+2023-02-06T01:27:08.015671Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.015673Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.016274Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1.json"
+2023-02-06T01:27:08.016294Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump0.json"
+2023-02-06T01:27:08.040516Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:08.040617Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.040620Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:08.040671Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.040673Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:08.040728Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.040798Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:08.040800Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1ForDynamicJump0"::Istanbul::0
+2023-02-06T01:27:08.040804Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1ForDynamicJump0.json"
+2023-02-06T01:27:08.040806Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.382909Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1ForDynamicJump0"
+2023-02-06T01:27:08.382929Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.382934Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.382945Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:08.382949Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1ForDynamicJump0"::Berlin::0
+2023-02-06T01:27:08.382951Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1ForDynamicJump0.json"
+2023-02-06T01:27:08.382953Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.382975Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1ForDynamicJump0"
+2023-02-06T01:27:08.382978Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.382981Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.382987Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:08.382988Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1ForDynamicJump0"::London::0
+2023-02-06T01:27:08.382990Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1ForDynamicJump0.json"
+2023-02-06T01:27:08.382992Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.382997Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1ForDynamicJump0"
+2023-02-06T01:27:08.383000Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.383002Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.383008Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:08.383009Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1ForDynamicJump0"::Merge::0
+2023-02-06T01:27:08.383011Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1ForDynamicJump0.json"
+2023-02-06T01:27:08.383013Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.383019Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1ForDynamicJump0"
+2023-02-06T01:27:08.383022Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.383024Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.383557Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump0.json"
+2023-02-06T01:27:08.383583Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump1.json"
+2023-02-06T01:27:08.407745Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:08.407844Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.407848Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:08.407899Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.407901Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:08.407957Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.408027Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:08.408030Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1ForDynamicJump1"::Istanbul::0
+2023-02-06T01:27:08.408033Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1ForDynamicJump1.json"
+2023-02-06T01:27:08.408036Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.744096Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1ForDynamicJump1"
+2023-02-06T01:27:08.744119Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.744126Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.744140Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:08.744144Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1ForDynamicJump1"::Berlin::0
+2023-02-06T01:27:08.744149Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1ForDynamicJump1.json"
+2023-02-06T01:27:08.744151Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.744180Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1ForDynamicJump1"
+2023-02-06T01:27:08.744184Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.744188Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.744195Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:08.744198Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1ForDynamicJump1"::London::0
+2023-02-06T01:27:08.744200Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1ForDynamicJump1.json"
+2023-02-06T01:27:08.744202Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.744211Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1ForDynamicJump1"
+2023-02-06T01:27:08.744214Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.744217Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.744225Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:08.744227Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CallToReturn1ForDynamicJump1"::Merge::0
+2023-02-06T01:27:08.744229Z  INFO evm_eth_compliance::statetest::executor: Path : "CallToReturn1ForDynamicJump1.json"
+2023-02-06T01:27:08.744233Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:08.744241Z  INFO evm_eth_compliance::statetest::executor: UC : "CallToReturn1ForDynamicJump1"
+2023-02-06T01:27:08.744246Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:08.744249Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:08.744914Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CallToReturn1ForDynamicJump1.json"
+2023-02-06T01:27:08.744945Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CalltoReturn2.json"
+2023-02-06T01:27:08.769852Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:08.769948Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.769952Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:08.770004Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.770006Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:08.770062Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:08.770132Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:08.770135Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CalltoReturn2"::Istanbul::0
+2023-02-06T01:27:08.770138Z  INFO evm_eth_compliance::statetest::executor: Path : "CalltoReturn2.json"
+2023-02-06T01:27:08.770140Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:09.135353Z  INFO evm_eth_compliance::statetest::executor: UC : "CalltoReturn2"
+2023-02-06T01:27:09.135374Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:09.135382Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:09.135394Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:09.135398Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CalltoReturn2"::Berlin::0
+2023-02-06T01:27:09.135400Z  INFO evm_eth_compliance::statetest::executor: Path : "CalltoReturn2.json"
+2023-02-06T01:27:09.135401Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:09.135429Z  INFO evm_eth_compliance::statetest::executor: UC : "CalltoReturn2"
+2023-02-06T01:27:09.135432Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:09.135435Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:09.135442Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:09.135443Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CalltoReturn2"::London::0
+2023-02-06T01:27:09.135445Z  INFO evm_eth_compliance::statetest::executor: Path : "CalltoReturn2.json"
+2023-02-06T01:27:09.135446Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:09.135452Z  INFO evm_eth_compliance::statetest::executor: UC : "CalltoReturn2"
+2023-02-06T01:27:09.135455Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:09.135457Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:09.135464Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:09.135466Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CalltoReturn2"::Merge::0
+2023-02-06T01:27:09.135467Z  INFO evm_eth_compliance::statetest::executor: Path : "CalltoReturn2.json"
+2023-02-06T01:27:09.135469Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:09.135474Z  INFO evm_eth_compliance::statetest::executor: UC : "CalltoReturn2"
+2023-02-06T01:27:09.135477Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:09.135479Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:09.136078Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CalltoReturn2.json"
+2023-02-06T01:27:09.136098Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CreateHashCollision.json"
+2023-02-06T01:27:09.160394Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:09.160497Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:09.160500Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:09.160554Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:09.160556Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:09.160615Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:09.160685Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:09.160688Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CreateHashCollision"::Istanbul::0
+2023-02-06T01:27:09.160691Z  INFO evm_eth_compliance::statetest::executor: Path : "CreateHashCollision.json"
+2023-02-06T01:27:09.160694Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:09.609944Z  INFO evm_eth_compliance::statetest::executor: UC : "CreateHashCollision"
+2023-02-06T01:27:09.609964Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -2227,239 +3987,542 @@ clear && \
     gas_used: 3909237,
     events_root: None,
 }
-2023-01-24T10:15:47.861578Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:47.861584Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CreateHashCollision"::Berlin::0
-2023-01-24T10:15:47.861587Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CreateHashCollision.json"
-2023-01-24T10:15:47.861589Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:47.861591Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
+2023-02-06T01:27:09.609979Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:09.609982Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CreateHashCollision"::Berlin::0
+2023-02-06T01:27:09.609984Z  INFO evm_eth_compliance::statetest::executor: Path : "CreateHashCollision.json"
+2023-02-06T01:27:09.609986Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
 [TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [184, 141, 232, 139, 53, 236, 191, 60, 20, 30, 60, 170, 226, 186, 243, 88, 52, 209, 143, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
 [TRACE] robust address: Address { payload: Actor([67, 35, 255, 1, 46, 226, 200, 90, 20, 150, 237, 153, 222, 171, 201, 9, 99, 31, 101, 211]) }
-2023-01-24T10:15:48.027204Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:09.772954Z  INFO evm_eth_compliance::statetest::executor: UC : "CreateHashCollision"
+2023-02-06T01:27:09.772968Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 13534900,
+    return_data: RawBytes {  },
+    gas_used: 10000000,
     events_root: None,
 }
-2023-01-24T10:15:48.027240Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:48.027249Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CreateHashCollision"::London::0
-2023-01-24T10:15:48.027252Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CreateHashCollision.json"
-2023-01-24T10:15:48.027256Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:48.027258Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [93, 53, 72, 12, 110, 127, 137, 82, 54, 63, 162, 128, 160, 169, 105, 6, 218, 152, 31, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
+2023-02-06T01:27:09.772975Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 1,
+                    method: 3,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 10,
+                    method: 2,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:09.773001Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:09.773004Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CreateHashCollision"::London::0
+2023-02-06T01:27:09.773006Z  INFO evm_eth_compliance::statetest::executor: Path : "CreateHashCollision.json"
+2023-02-06T01:27:09.773008Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [184, 141, 232, 139, 53, 236, 191, 60, 20, 30, 60, 170, 226, 186, 243, 88, 52, 209, 143, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
 [TRACE] robust address: Address { payload: Actor([28, 35, 125, 168, 212, 11, 234, 180, 81, 129, 48, 219, 76, 10, 52, 89, 217, 159, 194, 2]) }
-2023-01-24T10:15:48.027916Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:09.773577Z  INFO evm_eth_compliance::statetest::executor: UC : "CreateHashCollision"
+2023-02-06T01:27:09.773585Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14470477,
+    return_data: RawBytes {  },
+    gas_used: 10000000,
     events_root: None,
 }
-2023-01-24T10:15:48.027939Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:48.027943Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "CreateHashCollision"::Merge::0
-2023-01-24T10:15:48.027946Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CreateHashCollision.json"
-2023-01-24T10:15:48.027950Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:48.027952Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [91, 91, 211, 67, 161, 47, 180, 44, 98, 57, 10, 255, 99, 64, 181, 153, 71, 182, 2, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
+2023-02-06T01:27:09.773588Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 1,
+                    method: 3,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 10,
+                    method: 2,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:09.773606Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:09.773610Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "CreateHashCollision"::Merge::0
+2023-02-06T01:27:09.773612Z  INFO evm_eth_compliance::statetest::executor: Path : "CreateHashCollision.json"
+2023-02-06T01:27:09.773613Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [184, 141, 232, 139, 53, 236, 191, 60, 20, 30, 60, 170, 226, 186, 243, 88, 52, 209, 143, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
 [TRACE] robust address: Address { payload: Actor([132, 105, 76, 107, 184, 77, 78, 105, 101, 219, 134, 121, 221, 254, 217, 203, 72, 121, 220, 83]) }
-2023-01-24T10:15:48.028591Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:09.774045Z  INFO evm_eth_compliance::statetest::executor: UC : "CreateHashCollision"
+2023-02-06T01:27:09.774051Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14988249,
+    return_data: RawBytes {  },
+    gas_used: 10000000,
     events_root: None,
 }
-2023-01-24T10:15:48.029571Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CreateHashCollision.json"
-2023-01-24T10:15:48.029600Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/PostToReturn1.json"
-2023-01-24T10:15:48.053981Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:48.054092Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:48.054096Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:48.054153Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:48.054156Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:48.054219Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:48.054294Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:48.054300Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "PostToReturn1"::Istanbul::0
-2023-01-24T10:15:48.054303Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/PostToReturn1.json"
-2023-01-24T10:15:48.054307Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:48.054309Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:48.407261Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:09.774055Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 1,
+                    method: 3,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 10,
+                    method: 2,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:09.775022Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/CreateHashCollision.json"
+2023-02-06T01:27:09.775045Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/PostToReturn1.json"
+2023-02-06T01:27:09.800246Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:09.800353Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:09.800356Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:09.800409Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:09.800411Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:09.800470Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:09.800541Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:09.800544Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "PostToReturn1"::Istanbul::0
+2023-02-06T01:27:09.800547Z  INFO evm_eth_compliance::statetest::executor: Path : "PostToReturn1.json"
+2023-02-06T01:27:09.800549Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:10.139512Z  INFO evm_eth_compliance::statetest::executor: UC : "PostToReturn1"
+2023-02-06T01:27:10.139535Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 2702051,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:48.407286Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:48.407293Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "PostToReturn1"::Berlin::0
-2023-01-24T10:15:48.407295Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/PostToReturn1.json"
-2023-01-24T10:15:48.407299Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:48.407300Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:48.407435Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.139540Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.139552Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:10.139556Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "PostToReturn1"::Berlin::0
+2023-02-06T01:27:10.139557Z  INFO evm_eth_compliance::statetest::executor: Path : "PostToReturn1.json"
+2023-02-06T01:27:10.139559Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:10.139584Z  INFO evm_eth_compliance::statetest::executor: UC : "PostToReturn1"
+2023-02-06T01:27:10.139588Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1803016,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:48.407442Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:48.407445Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "PostToReturn1"::London::0
-2023-01-24T10:15:48.407447Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/PostToReturn1.json"
-2023-01-24T10:15:48.407449Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:48.407451Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:48.407601Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.139591Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.139597Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:10.139599Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "PostToReturn1"::London::0
+2023-02-06T01:27:10.139600Z  INFO evm_eth_compliance::statetest::executor: Path : "PostToReturn1.json"
+2023-02-06T01:27:10.139602Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:10.139608Z  INFO evm_eth_compliance::statetest::executor: UC : "PostToReturn1"
+2023-02-06T01:27:10.139610Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1803016,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:48.407610Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:48.407614Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "PostToReturn1"::Merge::0
-2023-01-24T10:15:48.407617Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/PostToReturn1.json"
-2023-01-24T10:15:48.407620Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:48.407622Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:48.407771Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.139613Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.139619Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:10.139622Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "PostToReturn1"::Merge::0
+2023-02-06T01:27:10.139624Z  INFO evm_eth_compliance::statetest::executor: Path : "PostToReturn1.json"
+2023-02-06T01:27:10.139626Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:10.139633Z  INFO evm_eth_compliance::statetest::executor: UC : "PostToReturn1"
+2023-02-06T01:27:10.139636Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1803016,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:48.408544Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/PostToReturn1.json"
-2023-01-24T10:15:48.408573Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/TestNameRegistrator.json"
-2023-01-24T10:15:48.432769Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:48.432888Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:48.432891Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:48.432947Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:48.433020Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:48.433026Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "TestNameRegistrator"::Istanbul::0
-2023-01-24T10:15:48.433029Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/TestNameRegistrator.json"
-2023-01-24T10:15:48.433032Z  INFO evm_eth_compliance::statetest::runner: TX len : 64
-2023-01-24T10:15:48.433033Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:48.805860Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.139640Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.140392Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/PostToReturn1.json"
+2023-02-06T01:27:10.140413Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/TestNameRegistrator.json"
+2023-02-06T01:27:10.164989Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:10.165089Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:10.165092Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:10.165147Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:10.165219Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:10.165223Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "TestNameRegistrator"::Istanbul::0
+2023-02-06T01:27:10.165226Z  INFO evm_eth_compliance::statetest::executor: Path : "TestNameRegistrator.json"
+2023-02-06T01:27:10.165228Z  INFO evm_eth_compliance::statetest::executor: TX len : 64
+2023-02-06T01:27:10.533940Z  INFO evm_eth_compliance::statetest::executor: UC : "TestNameRegistrator"
+2023-02-06T01:27:10.533961Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 2563734,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:48.805885Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:48.805892Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "TestNameRegistrator"::Berlin::0
-2023-01-24T10:15:48.805895Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/TestNameRegistrator.json"
-2023-01-24T10:15:48.805898Z  INFO evm_eth_compliance::statetest::runner: TX len : 64
-2023-01-24T10:15:48.805899Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:48.806012Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.533966Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.533979Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:10.533983Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "TestNameRegistrator"::Berlin::0
+2023-02-06T01:27:10.533984Z  INFO evm_eth_compliance::statetest::executor: Path : "TestNameRegistrator.json"
+2023-02-06T01:27:10.533986Z  INFO evm_eth_compliance::statetest::executor: TX len : 64
+2023-02-06T01:27:10.534072Z  INFO evm_eth_compliance::statetest::executor: UC : "TestNameRegistrator"
+2023-02-06T01:27:10.534078Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1559399,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:48.806020Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:48.806022Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "TestNameRegistrator"::London::0
-2023-01-24T10:15:48.806024Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/TestNameRegistrator.json"
-2023-01-24T10:15:48.806026Z  INFO evm_eth_compliance::statetest::runner: TX len : 64
-2023-01-24T10:15:48.806028Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:48.806119Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.534081Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.534088Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:10.534090Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "TestNameRegistrator"::London::0
+2023-02-06T01:27:10.534092Z  INFO evm_eth_compliance::statetest::executor: Path : "TestNameRegistrator.json"
+2023-02-06T01:27:10.534094Z  INFO evm_eth_compliance::statetest::executor: TX len : 64
+2023-02-06T01:27:10.534164Z  INFO evm_eth_compliance::statetest::executor: UC : "TestNameRegistrator"
+2023-02-06T01:27:10.534169Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1559399,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:48.806143Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:48.806152Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "TestNameRegistrator"::Merge::0
-2023-01-24T10:15:48.806160Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/TestNameRegistrator.json"
-2023-01-24T10:15:48.806168Z  INFO evm_eth_compliance::statetest::runner: TX len : 64
-2023-01-24T10:15:48.806176Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:48.806303Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.534172Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.534179Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:10.534181Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "TestNameRegistrator"::Merge::0
+2023-02-06T01:27:10.534182Z  INFO evm_eth_compliance::statetest::executor: Path : "TestNameRegistrator.json"
+2023-02-06T01:27:10.534184Z  INFO evm_eth_compliance::statetest::executor: TX len : 64
+2023-02-06T01:27:10.534250Z  INFO evm_eth_compliance::statetest::executor: UC : "TestNameRegistrator"
+2023-02-06T01:27:10.534255Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1559399,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:48.807356Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/TestNameRegistrator.json"
-2023-01-24T10:15:48.807389Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/balanceInputAddressTooBig.json"
-2023-01-24T10:15:48.833659Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:48.833766Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:48.833769Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:48.833824Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:48.833899Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:48.833904Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "balanceInputAddressTooBig"::Istanbul::0
-2023-01-24T10:15:48.833906Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/balanceInputAddressTooBig.json"
-2023-01-24T10:15:48.833910Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:48.833911Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.192419Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.534259Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.534952Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/TestNameRegistrator.json"
+2023-02-06T01:27:10.534974Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/balanceInputAddressTooBig.json"
+2023-02-06T01:27:10.561969Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:10.562084Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:10.562088Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:10.562143Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:10.562218Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:10.562221Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "balanceInputAddressTooBig"::Istanbul::0
+2023-02-06T01:27:10.562224Z  INFO evm_eth_compliance::statetest::executor: Path : "balanceInputAddressTooBig.json"
+2023-02-06T01:27:10.562226Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:10.921110Z  INFO evm_eth_compliance::statetest::executor: UC : "balanceInputAddressTooBig"
+2023-02-06T01:27:10.921135Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1554776,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:49.192439Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:49.192446Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "balanceInputAddressTooBig"::Berlin::0
-2023-01-24T10:15:49.192449Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/balanceInputAddressTooBig.json"
-2023-01-24T10:15:49.192453Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.192454Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.192573Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.921141Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.921152Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:10.921156Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "balanceInputAddressTooBig"::Berlin::0
+2023-02-06T01:27:10.921158Z  INFO evm_eth_compliance::statetest::executor: Path : "balanceInputAddressTooBig.json"
+2023-02-06T01:27:10.921160Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:10.921184Z  INFO evm_eth_compliance::statetest::executor: UC : "balanceInputAddressTooBig"
+2023-02-06T01:27:10.921187Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1554776,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:49.192581Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:49.192583Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "balanceInputAddressTooBig"::London::0
-2023-01-24T10:15:49.192585Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/balanceInputAddressTooBig.json"
-2023-01-24T10:15:49.192588Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.192589Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.192691Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.921190Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.921196Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:10.921198Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "balanceInputAddressTooBig"::London::0
+2023-02-06T01:27:10.921199Z  INFO evm_eth_compliance::statetest::executor: Path : "balanceInputAddressTooBig.json"
+2023-02-06T01:27:10.921201Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:10.921206Z  INFO evm_eth_compliance::statetest::executor: UC : "balanceInputAddressTooBig"
+2023-02-06T01:27:10.921209Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1554776,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:49.192699Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:49.192702Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "balanceInputAddressTooBig"::Merge::0
-2023-01-24T10:15:49.192704Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/balanceInputAddressTooBig.json"
-2023-01-24T10:15:49.192707Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.192708Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.192808Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.921211Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.921217Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:10.921218Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "balanceInputAddressTooBig"::Merge::0
+2023-02-06T01:27:10.921220Z  INFO evm_eth_compliance::statetest::executor: Path : "balanceInputAddressTooBig.json"
+2023-02-06T01:27:10.921221Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:10.921227Z  INFO evm_eth_compliance::statetest::executor: UC : "balanceInputAddressTooBig"
+2023-02-06T01:27:10.921229Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1554776,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:49.193437Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/balanceInputAddressTooBig.json"
-2023-01-24T10:15:49.193463Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callValue.json"
-2023-01-24T10:15:49.217446Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:49.217553Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:49.217557Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:49.217613Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:49.217686Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:49.217691Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callValue"::Istanbul::0
-2023-01-24T10:15:49.217694Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callValue.json"
-2023-01-24T10:15:49.217697Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.217699Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.562048Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:10.921231Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:10.921833Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/balanceInputAddressTooBig.json"
+2023-02-06T01:27:10.921857Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callValue.json"
+2023-02-06T01:27:10.945624Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:10.945727Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:10.945732Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:10.945787Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:10.945859Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:10.945863Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callValue"::Istanbul::0
+2023-02-06T01:27:10.945866Z  INFO evm_eth_compliance::statetest::executor: Path : "callValue.json"
+2023-02-06T01:27:10.945869Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:11.276563Z  INFO evm_eth_compliance::statetest::executor: UC : "callValue"
+2023-02-06T01:27:11.276583Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -2467,12 +4530,12 @@ clear && \
     gas_used: 1529858,
     events_root: None,
 }
-2023-01-24T10:15:49.562070Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:49.562076Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callValue"::Berlin::0
-2023-01-24T10:15:49.562079Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callValue.json"
-2023-01-24T10:15:49.562082Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.562083Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.562202Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:11.276592Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:11.276595Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callValue"::Berlin::0
+2023-02-06T01:27:11.276597Z  INFO evm_eth_compliance::statetest::executor: Path : "callValue.json"
+2023-02-06T01:27:11.276598Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:11.276699Z  INFO evm_eth_compliance::statetest::executor: UC : "callValue"
+2023-02-06T01:27:11.276705Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -2480,12 +4543,12 @@ clear && \
     gas_used: 1529858,
     events_root: None,
 }
-2023-01-24T10:15:49.562209Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:49.562212Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callValue"::London::0
-2023-01-24T10:15:49.562214Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callValue.json"
-2023-01-24T10:15:49.562216Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.562218Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.562303Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:11.276709Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:11.276711Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callValue"::London::0
+2023-02-06T01:27:11.276713Z  INFO evm_eth_compliance::statetest::executor: Path : "callValue.json"
+2023-02-06T01:27:11.276715Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:11.276795Z  INFO evm_eth_compliance::statetest::executor: UC : "callValue"
+2023-02-06T01:27:11.276800Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -2493,12 +4556,12 @@ clear && \
     gas_used: 1529858,
     events_root: None,
 }
-2023-01-24T10:15:49.562309Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:49.562312Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callValue"::Merge::0
-2023-01-24T10:15:49.562314Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callValue.json"
-2023-01-24T10:15:49.562317Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.562318Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.562400Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:11.276804Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:11.276806Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callValue"::Merge::0
+2023-02-06T01:27:11.276808Z  INFO evm_eth_compliance::statetest::executor: Path : "callValue.json"
+2023-02-06T01:27:11.276809Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:11.276888Z  INFO evm_eth_compliance::statetest::executor: UC : "callValue"
+2023-02-06T01:27:11.276893Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -2506,18 +4569,18 @@ clear && \
     gas_used: 1529858,
     events_root: None,
 }
-2023-01-24T10:15:49.563015Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callValue.json"
-2023-01-24T10:15:49.563046Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeTo0.json"
-2023-01-24T10:15:49.587768Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:49.587872Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:49.587876Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:49.587931Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:49.588004Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:49.588009Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeTo0"::Istanbul::0
-2023-01-24T10:15:49.588013Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeTo0.json"
-2023-01-24T10:15:49.588016Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.588017Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.957310Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:11.277536Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callValue.json"
+2023-02-06T01:27:11.277561Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeTo0.json"
+2023-02-06T01:27:11.301205Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:11.301307Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:11.301311Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:11.301362Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:11.301430Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:11.301433Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeTo0"::Istanbul::0
+2023-02-06T01:27:11.301436Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeTo0.json"
+2023-02-06T01:27:11.301438Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:11.672721Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeTo0"
+2023-02-06T01:27:11.672744Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 35,
     },
@@ -2525,7 +4588,7 @@ clear && \
     gas_used: 1542571,
     events_root: None,
 }
-2023-01-24T10:15:49.957328Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:11.672750Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2542,12 +4605,12 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:49.957343Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:49.957349Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeTo0"::Berlin::0
-2023-01-24T10:15:49.957351Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeTo0.json"
-2023-01-24T10:15:49.957354Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.957355Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.957459Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:11.672767Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:11.672772Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeTo0"::Berlin::0
+2023-02-06T01:27:11.672775Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeTo0.json"
+2023-02-06T01:27:11.672778Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:11.672921Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeTo0"
+2023-02-06T01:27:11.672929Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 35,
     },
@@ -2555,7 +4618,7 @@ clear && \
     gas_used: 1542571,
     events_root: None,
 }
-2023-01-24T10:15:49.957464Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:11.672933Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2572,12 +4635,12 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:49.957472Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:49.957475Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeTo0"::London::0
-2023-01-24T10:15:49.957477Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeTo0.json"
-2023-01-24T10:15:49.957480Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.957481Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.957568Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:11.672945Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:11.672948Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeTo0"::London::0
+2023-02-06T01:27:11.672951Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeTo0.json"
+2023-02-06T01:27:11.672954Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:11.673078Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeTo0"
+2023-02-06T01:27:11.673086Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 35,
     },
@@ -2585,7 +4648,7 @@ clear && \
     gas_used: 1542571,
     events_root: None,
 }
-2023-01-24T10:15:49.957573Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:11.673090Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2602,12 +4665,12 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:49.957582Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:49.957585Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeTo0"::Merge::0
-2023-01-24T10:15:49.957586Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeTo0.json"
-2023-01-24T10:15:49.957589Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.957590Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:49.957681Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:11.673104Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:11.673106Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeTo0"::Merge::0
+2023-02-06T01:27:11.673110Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeTo0.json"
+2023-02-06T01:27:11.673112Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:11.673236Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeTo0"
+2023-02-06T01:27:11.673243Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 35,
     },
@@ -2615,7 +4678,7 @@ clear && \
     gas_used: 1542571,
     events_root: None,
 }
-2023-01-24T10:15:49.957686Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:11.673247Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2632,20 +4695,604 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:49.958348Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeTo0.json"
-2023-01-24T10:15:49.958377Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistrator0.json"
-2023-01-24T10:15:49.983045Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:49.983158Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:49.983161Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:49.983231Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:49.983234Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:49.983317Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:49.983428Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:49.983434Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistrator0"::Istanbul::0
-2023-01-24T10:15:49.983437Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistrator0.json"
-2023-01-24T10:15:49.983441Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:49.983442Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:50.326595Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:11.674210Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeTo0.json"
+2023-02-06T01:27:11.674242Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistrator0.json"
+2023-02-06T01:27:11.706983Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:11.707087Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:11.707090Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:11.707140Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:11.707142Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:11.707200Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:11.707270Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:11.707272Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistrator0"::Istanbul::0
+2023-02-06T01:27:11.707275Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistrator0.json"
+2023-02-06T01:27:11.707277Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.070475Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistrator0"
+2023-02-06T01:27:12.070496Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.070501Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.070512Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:12.070515Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistrator0"::Berlin::0
+2023-02-06T01:27:12.070517Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistrator0.json"
+2023-02-06T01:27:12.070519Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.070635Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistrator0"
+2023-02-06T01:27:12.070640Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.070644Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.070651Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:12.070653Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistrator0"::London::0
+2023-02-06T01:27:12.070655Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistrator0.json"
+2023-02-06T01:27:12.070657Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.070724Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistrator0"
+2023-02-06T01:27:12.070728Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.070731Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.070739Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:12.070741Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistrator0"::Merge::0
+2023-02-06T01:27:12.070743Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistrator0.json"
+2023-02-06T01:27:12.070745Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.070812Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistrator0"
+2023-02-06T01:27:12.070818Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.070821Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.071403Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistrator0.json"
+2023-02-06T01:27:12.071429Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft.json"
+2023-02-06T01:27:12.095911Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:12.096033Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.096039Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:12.096107Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.096110Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:12.096184Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.096285Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:12.096290Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorAddresTooBigLeft"::Istanbul::0
+2023-02-06T01:27:12.096294Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorAddresTooBigLeft.json"
+2023-02-06T01:27:12.096297Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.431055Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorAddresTooBigLeft"
+2023-02-06T01:27:12.431080Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.431086Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.431097Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:12.431101Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorAddresTooBigLeft"::Berlin::0
+2023-02-06T01:27:12.431103Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorAddresTooBigLeft.json"
+2023-02-06T01:27:12.431105Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.431193Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorAddresTooBigLeft"
+2023-02-06T01:27:12.431199Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.431202Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.431209Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:12.431211Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorAddresTooBigLeft"::London::0
+2023-02-06T01:27:12.431213Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorAddresTooBigLeft.json"
+2023-02-06T01:27:12.431215Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.431282Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorAddresTooBigLeft"
+2023-02-06T01:27:12.431287Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.431289Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.431296Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:12.431300Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorAddresTooBigLeft"::Merge::0
+2023-02-06T01:27:12.431302Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorAddresTooBigLeft.json"
+2023-02-06T01:27:12.431304Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.431367Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorAddresTooBigLeft"
+2023-02-06T01:27:12.431372Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.431375Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.432078Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft.json"
+2023-02-06T01:27:12.432102Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight.json"
+2023-02-06T01:27:12.469051Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:12.469150Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.469153Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:12.469204Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.469207Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:12.469263Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.469352Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:12.469356Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorAddresTooBigRight"::Istanbul::0
+2023-02-06T01:27:12.469360Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorAddresTooBigRight.json"
+2023-02-06T01:27:12.469362Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.808256Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorAddresTooBigRight"
+2023-02-06T01:27:12.808280Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.808286Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.808298Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:12.808301Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorAddresTooBigRight"::Berlin::0
+2023-02-06T01:27:12.808305Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorAddresTooBigRight.json"
+2023-02-06T01:27:12.808307Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.808393Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorAddresTooBigRight"
+2023-02-06T01:27:12.808399Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.808403Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.808410Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:12.808412Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorAddresTooBigRight"::London::0
+2023-02-06T01:27:12.808414Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorAddresTooBigRight.json"
+2023-02-06T01:27:12.808416Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.808499Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorAddresTooBigRight"
+2023-02-06T01:27:12.808506Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.808509Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.808520Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:12.808522Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorAddresTooBigRight"::Merge::0
+2023-02-06T01:27:12.808527Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorAddresTooBigRight.json"
+2023-02-06T01:27:12.808530Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.808614Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorAddresTooBigRight"
+2023-02-06T01:27:12.808621Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:12.808625Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:12.809252Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight.json"
+2023-02-06T01:27:12.809283Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:12.834622Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:12.834726Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.834729Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:12.834781Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.834783Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:12.834842Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:12.834912Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:12.834915Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Istanbul::0
+2023-02-06T01:27:12.834919Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:12.834921Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:12.834924Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorZeroMemExpanion"
+2023-02-06T01:27:12.834928Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 0,
+    events_root: None,
+}
+2023-02-06T01:27:12.834933Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    PreValidation(
+        "Out of gas (168899 > 50000)",
+    ),
+)
+2023-02-06T01:27:12.834936Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:12.834938Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Istanbul::0
+2023-02-06T01:27:12.834940Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:12.834943Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.176998Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorZeroMemExpanion"
+2023-02-06T01:27:13.177022Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:13.177028Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:13.177042Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:13.177046Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Berlin::0
+2023-02-06T01:27:13.177049Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:13.177052Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.177060Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorZeroMemExpanion"
+2023-02-06T01:27:13.177064Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 0,
+    events_root: None,
+}
+2023-02-06T01:27:13.177068Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    PreValidation(
+        "Out of gas (168899 > 50000)",
+    ),
+)
+2023-02-06T01:27:13.177071Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:13.177074Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Berlin::0
+2023-02-06T01:27:13.177076Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:13.177079Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.177169Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorZeroMemExpanion"
+2023-02-06T01:27:13.177175Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:13.177179Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:13.177189Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:13.177192Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::London::0
+2023-02-06T01:27:13.177195Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:13.177199Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.177202Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorZeroMemExpanion"
+2023-02-06T01:27:13.177207Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 0,
+    events_root: None,
+}
+2023-02-06T01:27:13.177210Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    PreValidation(
+        "Out of gas (168899 > 50000)",
+    ),
+)
+2023-02-06T01:27:13.177213Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:13.177216Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::London::0
+2023-02-06T01:27:13.177219Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:13.177221Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.177305Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorZeroMemExpanion"
+2023-02-06T01:27:13.177311Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:13.177315Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:13.177325Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:13.177328Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Merge::0
+2023-02-06T01:27:13.177331Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:13.177334Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.177337Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorZeroMemExpanion"
+2023-02-06T01:27:13.177341Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 0,
+    events_root: None,
+}
+2023-02-06T01:27:13.177344Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    PreValidation(
+        "Out of gas (168899 > 50000)",
+    ),
+)
+2023-02-06T01:27:13.177348Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:13.177350Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Merge::0
+2023-02-06T01:27:13.177353Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:13.177355Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.177432Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToNameRegistratorZeroMemExpanion"
+2023-02-06T01:27:13.177438Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 1000000,
+    events_root: None,
+}
+2023-02-06T01:27:13.177442Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:13.178094Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
+2023-02-06T01:27:13.178121Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToReturn1.json"
+2023-02-06T01:27:13.202805Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:13.202913Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:13.202918Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:13.202977Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:13.202979Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:13.203043Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:13.203117Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:13.203120Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToReturn1"::Istanbul::0
+2023-02-06T01:27:13.203124Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToReturn1.json"
+2023-02-06T01:27:13.203127Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.543630Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToReturn1"
+2023-02-06T01:27:13.543651Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 35,
     },
@@ -2653,7 +5300,7 @@ clear && \
     gas_used: 1551631,
     events_root: None,
 }
-2023-01-24T10:15:50.326615Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:13.543657Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2670,12 +5317,12 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:50.326630Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:50.326637Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistrator0"::Berlin::0
-2023-01-24T10:15:50.326639Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistrator0.json"
-2023-01-24T10:15:50.326642Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:50.326643Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:50.326748Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:13.543669Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:13.543673Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToReturn1"::Berlin::0
+2023-02-06T01:27:13.543674Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToReturn1.json"
+2023-02-06T01:27:13.543676Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.543780Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToReturn1"
+2023-02-06T01:27:13.543786Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 35,
     },
@@ -2683,7 +5330,7 @@ clear && \
     gas_used: 1551631,
     events_root: None,
 }
-2023-01-24T10:15:50.326753Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:13.543789Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2700,12 +5347,12 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:50.326762Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:50.326765Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistrator0"::London::0
-2023-01-24T10:15:50.326767Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistrator0.json"
-2023-01-24T10:15:50.326770Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:50.326771Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:50.326860Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:13.543798Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:13.543800Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToReturn1"::London::0
+2023-02-06T01:27:13.543801Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToReturn1.json"
+2023-02-06T01:27:13.543804Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.543890Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToReturn1"
+2023-02-06T01:27:13.543896Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 35,
     },
@@ -2713,7 +5360,7 @@ clear && \
     gas_used: 1551631,
     events_root: None,
 }
-2023-01-24T10:15:50.326864Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:13.543898Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2730,12 +5377,12 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:50.326872Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:50.326875Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistrator0"::Merge::0
-2023-01-24T10:15:50.326877Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistrator0.json"
-2023-01-24T10:15:50.326880Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:50.326881Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:50.326968Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:13.543906Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:13.543908Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callcodeToReturn1"::Merge::0
+2023-02-06T01:27:13.543910Z  INFO evm_eth_compliance::statetest::executor: Path : "callcodeToReturn1.json"
+2023-02-06T01:27:13.543912Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.543996Z  INFO evm_eth_compliance::statetest::executor: UC : "callcodeToReturn1"
+2023-02-06T01:27:13.544001Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
         value: 35,
     },
@@ -2743,7 +5390,7 @@ clear && \
     gas_used: 1551631,
     events_root: None,
 }
-2023-01-24T10:15:50.326973Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:13.544004Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -2760,650 +5407,18 @@ clear && \
         },
     ),
 )
-2023-01-24T10:15:50.327543Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistrator0.json"
-2023-01-24T10:15:50.327570Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft.json"
-2023-01-24T10:15:50.351945Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:50.352057Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:50.352062Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:50.352127Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:50.352129Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:50.352190Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:50.352277Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:50.352283Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorAddresTooBigLeft"::Istanbul::0
-2023-01-24T10:15:50.352286Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft.json"
-2023-01-24T10:15:50.352289Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:50.352291Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:50.691477Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551586,
-    events_root: None,
-}
-2023-01-24T10:15:50.691493Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=107): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:50.691508Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:50.691516Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorAddresTooBigLeft"::Berlin::0
-2023-01-24T10:15:50.691518Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft.json"
-2023-01-24T10:15:50.691521Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:50.691523Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:50.691633Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551586,
-    events_root: None,
-}
-2023-01-24T10:15:50.691639Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=107): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:50.691647Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:50.691650Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorAddresTooBigLeft"::London::0
-2023-01-24T10:15:50.691652Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft.json"
-2023-01-24T10:15:50.691655Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:50.691657Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:50.691759Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551586,
-    events_root: None,
-}
-2023-01-24T10:15:50.691766Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=107): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:50.691777Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:50.691780Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorAddresTooBigLeft"::Merge::0
-2023-01-24T10:15:50.691783Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft.json"
-2023-01-24T10:15:50.691786Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:50.691788Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:50.691897Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551586,
-    events_root: None,
-}
-2023-01-24T10:15:50.691903Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=107): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:50.692651Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigLeft.json"
-2023-01-24T10:15:50.692681Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight.json"
-2023-01-24T10:15:50.717635Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:50.717752Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:50.717756Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:50.717815Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:50.717817Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:50.717880Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:50.717958Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:50.717966Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorAddresTooBigRight"::Istanbul::0
-2023-01-24T10:15:50.717970Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight.json"
-2023-01-24T10:15:50.717974Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:50.717976Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.067258Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551586,
-    events_root: None,
-}
-2023-01-24T10:15:51.067278Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=107): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.067292Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:51.067303Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorAddresTooBigRight"::Berlin::0
-2023-01-24T10:15:51.067305Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight.json"
-2023-01-24T10:15:51.067309Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.067310Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.067448Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551586,
-    events_root: None,
-}
-2023-01-24T10:15:51.067453Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=107): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.067466Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:51.067469Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorAddresTooBigRight"::London::0
-2023-01-24T10:15:51.067473Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight.json"
-2023-01-24T10:15:51.067477Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.067479Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.067573Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551586,
-    events_root: None,
-}
-2023-01-24T10:15:51.067579Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=107): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.067590Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:51.067594Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorAddresTooBigRight"::Merge::0
-2023-01-24T10:15:51.067596Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight.json"
-2023-01-24T10:15:51.067600Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.067602Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.067706Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551586,
-    events_root: None,
-}
-2023-01-24T10:15:51.067712Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=107): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.068510Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorAddresTooBigRight.json"
-2023-01-24T10:15:51.068540Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.093069Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:51.093179Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:51.093183Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:51.093240Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:51.093242Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:51.093306Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:51.093381Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:51.093387Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Istanbul::0
-2023-01-24T10:15:51.093391Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.093396Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.093398Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.427000Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.427020Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.427034Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:51.427040Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Istanbul::0
-2023-01-24T10:15:51.427043Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.427046Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.427047Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.427174Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.427179Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.427188Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:51.427191Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Berlin::0
-2023-01-24T10:15:51.427193Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.427196Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.427198Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.427286Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.427291Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.427300Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:51.427302Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Berlin::0
-2023-01-24T10:15:51.427304Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.427307Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.427308Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.427399Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.427405Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.427415Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:51.427418Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::London::0
-2023-01-24T10:15:51.427420Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.427424Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.427425Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.427512Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.427517Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.427527Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:51.427529Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::London::0
-2023-01-24T10:15:51.427532Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.427535Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.427536Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.427622Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.427626Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.427635Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:51.427638Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Merge::0
-2023-01-24T10:15:51.427640Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.427642Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.427644Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.427740Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.427745Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.427753Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:51.427756Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToNameRegistratorZeroMemExpanion"::Merge::0
-2023-01-24T10:15:51.427758Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.427761Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.427763Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.427849Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.427854Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.428466Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToNameRegistratorZeroMemExpanion.json"
-2023-01-24T10:15:51.428494Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToReturn1.json"
-2023-01-24T10:15:51.452704Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:51.452819Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:51.452823Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:51.452877Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:51.452879Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:51.452939Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:51.453012Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:51.453018Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToReturn1"::Istanbul::0
-2023-01-24T10:15:51.453021Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToReturn1.json"
-2023-01-24T10:15:51.453025Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.453027Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.794536Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.794553Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.794567Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:51.794574Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToReturn1"::Berlin::0
-2023-01-24T10:15:51.794576Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToReturn1.json"
-2023-01-24T10:15:51.794578Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.794580Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.794686Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.794691Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.794700Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:51.794702Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToReturn1"::London::0
-2023-01-24T10:15:51.794704Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToReturn1.json"
-2023-01-24T10:15:51.794707Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.794708Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.794796Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.794801Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.794809Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:51.794812Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callcodeToReturn1"::Merge::0
-2023-01-24T10:15:51.794813Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToReturn1.json"
-2023-01-24T10:15:51.794816Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.794817Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:51.794907Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 35,
-    },
-    return_data: RawBytes {  },
-    gas_used: 1551631,
-    events_root: None,
-}
-2023-01-24T10:15:51.794912Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
-    MessageBacktrace(
-        Backtrace {
-            frames: [
-                Frame {
-                    source: 400,
-                    method: 3844450837,
-                    code: ExitCode {
-                        value: 35,
-                    },
-                    message: "ABORT(pc=106): undefined instruction",
-                },
-            ],
-            cause: None,
-        },
-    ),
-)
-2023-01-24T10:15:51.795727Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToReturn1.json"
-2023-01-24T10:15:51.795751Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callerAccountBalance.json"
-2023-01-24T10:15:51.820010Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:51.820116Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:51.820120Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:51.820175Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:51.820247Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:51.820253Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callerAccountBalance"::Istanbul::0
-2023-01-24T10:15:51.820256Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callerAccountBalance.json"
-2023-01-24T10:15:51.820260Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:51.820262Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:52.189946Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:13.544605Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callcodeToReturn1.json"
+2023-02-06T01:27:13.544633Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callerAccountBalance.json"
+2023-02-06T01:27:13.569114Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:13.569213Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:13.569216Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:13.569267Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:13.569347Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:13.569350Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callerAccountBalance"::Istanbul::0
+2023-02-06T01:27:13.569353Z  INFO evm_eth_compliance::statetest::executor: Path : "callerAccountBalance.json"
+2023-02-06T01:27:13.569355Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.901173Z  INFO evm_eth_compliance::statetest::executor: UC : "callerAccountBalance"
+2023-02-06T01:27:13.901194Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -3411,12 +5426,12 @@ clear && \
     gas_used: 2479617,
     events_root: None,
 }
-2023-01-24T10:15:52.189971Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:52.189977Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callerAccountBalance"::Berlin::0
-2023-01-24T10:15:52.189980Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callerAccountBalance.json"
-2023-01-24T10:15:52.189983Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:52.189984Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:52.190115Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:13.901205Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:13.901209Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callerAccountBalance"::Berlin::0
+2023-02-06T01:27:13.901210Z  INFO evm_eth_compliance::statetest::executor: Path : "callerAccountBalance.json"
+2023-02-06T01:27:13.901212Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.901352Z  INFO evm_eth_compliance::statetest::executor: UC : "callerAccountBalance"
+2023-02-06T01:27:13.901358Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -3424,12 +5439,12 @@ clear && \
     gas_used: 1580630,
     events_root: None,
 }
-2023-01-24T10:15:52.190122Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:52.190125Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callerAccountBalance"::London::0
-2023-01-24T10:15:52.190126Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callerAccountBalance.json"
-2023-01-24T10:15:52.190129Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:52.190130Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:52.190220Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:13.901363Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:13.901365Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callerAccountBalance"::London::0
+2023-02-06T01:27:13.901366Z  INFO evm_eth_compliance::statetest::executor: Path : "callerAccountBalance.json"
+2023-02-06T01:27:13.901368Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.901478Z  INFO evm_eth_compliance::statetest::executor: UC : "callerAccountBalance"
+2023-02-06T01:27:13.901484Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -3437,12 +5452,12 @@ clear && \
     gas_used: 1580630,
     events_root: None,
 }
-2023-01-24T10:15:52.190226Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:52.190228Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "callerAccountBalance"::Merge::0
-2023-01-24T10:15:52.190230Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callerAccountBalance.json"
-2023-01-24T10:15:52.190233Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:52.190234Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:52.190321Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:13.901488Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:13.901490Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "callerAccountBalance"::Merge::0
+2023-02-06T01:27:13.901491Z  INFO evm_eth_compliance::statetest::executor: Path : "callerAccountBalance.json"
+2023-02-06T01:27:13.901493Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:13.901584Z  INFO evm_eth_compliance::statetest::executor: UC : "callerAccountBalance"
+2023-02-06T01:27:13.901589Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -3450,150 +5465,26 @@ clear && \
     gas_used: 1580630,
     events_root: None,
 }
-2023-01-24T10:15:52.190991Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callerAccountBalance.json"
-2023-01-24T10:15:52.191018Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistrator.json"
-2023-01-24T10:15:52.215571Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:52.215687Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:52.215690Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:52.215758Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:52.215853Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:52.215861Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistrator"::Istanbul::0
-2023-01-24T10:15:52.215863Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistrator.json"
-2023-01-24T10:15:52.215866Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:52.215868Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [210, 87, 22, 7, 226, 65, 236, 245, 144, 237, 148, 177, 45, 135, 201, 75, 171, 227, 109, 182, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([215, 166, 242, 208, 200, 186, 79, 10, 126, 8, 221, 102, 9, 12, 200, 158, 203, 19, 78, 227]) }
-2023-01-24T10:15:52.861267Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:13.902246Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/callerAccountBalance.json"
+2023-02-06T01:27:13.902272Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistrator.json"
+2023-02-06T01:27:13.926565Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:13.926662Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:13.926665Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:13.926717Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:13.926786Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:13.926789Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistrator"::Istanbul::0
+2023-02-06T01:27:13.926791Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistrator.json"
+2023-02-06T01:27:13.926793Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:14.269612Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistrator"
+2023-02-06T01:27:14.269635Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 14635493,
-    events_root: None,
-}
-2023-01-24T10:15:52.861298Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:52.861305Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistrator"::Berlin::0
-2023-01-24T10:15:52.861308Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistrator.json"
-2023-01-24T10:15:52.861311Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:52.861313Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [184, 141, 232, 139, 53, 236, 191, 60, 20, 30, 60, 170, 226, 186, 243, 88, 52, 209, 143, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([67, 35, 255, 1, 46, 226, 200, 90, 20, 150, 237, 153, 222, 171, 201, 9, 99, 31, 101, 211]) }
-2023-01-24T10:15:52.861949Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 13552078,
-    events_root: None,
-}
-2023-01-24T10:15:52.861973Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:52.861977Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistrator"::London::0
-2023-01-24T10:15:52.861979Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistrator.json"
-2023-01-24T10:15:52.861982Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:52.861984Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [93, 53, 72, 12, 110, 127, 137, 82, 54, 63, 162, 128, 160, 169, 105, 6, 218, 152, 31, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([28, 35, 125, 168, 212, 11, 234, 180, 81, 129, 48, 219, 76, 10, 52, 89, 217, 159, 194, 2]) }
-2023-01-24T10:15:52.862565Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 14470477,
-    events_root: None,
-}
-2023-01-24T10:15:52.862585Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:52.862588Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistrator"::Merge::0
-2023-01-24T10:15:52.862591Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistrator.json"
-2023-01-24T10:15:52.862594Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:52.862595Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [91, 91, 211, 67, 161, 47, 180, 44, 98, 57, 10, 255, 99, 64, 181, 153, 71, 182, 2, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([132, 105, 76, 107, 184, 77, 78, 105, 101, 219, 134, 121, 221, 254, 217, 203, 72, 121, 220, 83]) }
-2023-01-24T10:15:52.863185Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 14988249,
-    events_root: None,
-}
-2023-01-24T10:15:52.864082Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistrator.json"
-2023-01-24T10:15:52.864108Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOOG_MemExpansionOOV.json"
-2023-01-24T10:15:52.888993Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:52.889104Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:52.889108Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:52.889166Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:52.889241Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:52.889246Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOOG_MemExpansionOOV"::Istanbul::0
-2023-01-24T10:15:52.889250Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOOG_MemExpansionOOV.json"
-2023-01-24T10:15:52.889253Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:52.889255Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:53.237137Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1565742,
-    events_root: None,
-}
-2023-01-24T10:15:53.237161Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:53.237169Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOOG_MemExpansionOOV"::Berlin::0
-2023-01-24T10:15:53.237173Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOOG_MemExpansionOOV.json"
-2023-01-24T10:15:53.237176Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:53.237177Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:53.237311Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1565742,
-    events_root: None,
-}
-2023-01-24T10:15:53.237320Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:53.237324Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOOG_MemExpansionOOV"::London::0
-2023-01-24T10:15:53.237327Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOOG_MemExpansionOOV.json"
-2023-01-24T10:15:53.237332Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:53.237334Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:53.237447Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1565742,
-    events_root: None,
-}
-2023-01-24T10:15:53.237455Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:53.237458Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOOG_MemExpansionOOV"::Merge::0
-2023-01-24T10:15:53.237460Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOOG_MemExpansionOOV.json"
-2023-01-24T10:15:53.237464Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:53.237466Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:53.237571Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
-    exit_code: ExitCode {
-        value: 0,
-    },
-    return_data: RawBytes { 40 },
-    gas_used: 1565742,
-    events_root: None,
-}
-2023-01-24T10:15:53.238413Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOOG_MemExpansionOOV.json"
-2023-01-24T10:15:53.238439Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0.json"
-2023-01-24T10:15:53.262427Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:53.262530Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:53.262534Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:53.262588Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:53.262659Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:53.262664Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOutOfMemoryBonds0"::Istanbul::0
-2023-01-24T10:15:53.262667Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0.json"
-2023-01-24T10:15:53.262670Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:53.262672Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:53.627040Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
-    exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1576598,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:53.627061Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:14.269640Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -3601,29 +5492,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=44): offset must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:53.627076Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:53.627083Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOutOfMemoryBonds0"::Berlin::0
-2023-01-24T10:15:53.627085Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0.json"
-2023-01-24T10:15:53.627088Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:53.627089Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:53.627204Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:14.269652Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:14.269656Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistrator"::Berlin::0
+2023-02-06T01:27:14.269658Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistrator.json"
+2023-02-06T01:27:14.269660Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:14.269684Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistrator"
+2023-02-06T01:27:14.269687Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1576598,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:53.627208Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:14.269690Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -3631,29 +5522,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=44): offset must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:53.627217Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:53.627220Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOutOfMemoryBonds0"::London::0
-2023-01-24T10:15:53.627223Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0.json"
-2023-01-24T10:15:53.627225Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:53.627227Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:53.627319Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:14.269696Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:14.269698Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistrator"::London::0
+2023-02-06T01:27:14.269700Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistrator.json"
+2023-02-06T01:27:14.269701Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:14.269708Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistrator"
+2023-02-06T01:27:14.269710Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1576598,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:53.627323Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:14.269713Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -3661,29 +5552,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=44): offset must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:53.627332Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:53.627334Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOutOfMemoryBonds0"::Merge::0
-2023-01-24T10:15:53.627336Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0.json"
-2023-01-24T10:15:53.627339Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:53.627341Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:53.627460Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:14.269718Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:14.269720Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistrator"::Merge::0
+2023-02-06T01:27:14.269722Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistrator.json"
+2023-02-06T01:27:14.269723Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:14.269728Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistrator"
+2023-02-06T01:27:14.269731Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1576598,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:53.627466Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:14.269733Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -3691,35 +5582,35 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=44): offset must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:53.628161Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0.json"
-2023-01-24T10:15:53.628187Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1.json"
-2023-01-24T10:15:53.652870Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:53.652979Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:53.652983Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:53.653039Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:53.653112Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:53.653119Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOutOfMemoryBonds1"::Istanbul::0
-2023-01-24T10:15:53.653122Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1.json"
-2023-01-24T10:15:53.653126Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:53.653127Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:54.000799Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:14.270454Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistrator.json"
+2023-02-06T01:27:14.270481Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOOG_MemExpansionOOV.json"
+2023-02-06T01:27:14.295365Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:14.295472Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:14.295476Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:14.295532Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:14.295604Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:14.295607Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOOG_MemExpansionOOV"::Istanbul::0
+2023-02-06T01:27:14.295610Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOOG_MemExpansionOOV.json"
+2023-02-06T01:27:14.295612Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:14.644083Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOOG_MemExpansionOOV"
+2023-02-06T01:27:14.644104Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1576354,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:54.000818Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:14.644109Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -3727,29 +5618,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=44): size must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:54.000833Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:54.000840Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOutOfMemoryBonds1"::Berlin::0
-2023-01-24T10:15:54.000842Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1.json"
-2023-01-24T10:15:54.000846Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:54.000847Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:54.000958Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:14.644120Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:14.644124Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOOG_MemExpansionOOV"::Berlin::0
+2023-02-06T01:27:14.644126Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOOG_MemExpansionOOV.json"
+2023-02-06T01:27:14.644128Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:14.644151Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOOG_MemExpansionOOV"
+2023-02-06T01:27:14.644154Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1576354,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:54.000963Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:14.644157Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -3757,29 +5648,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=44): size must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:54.000973Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:54.000975Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOutOfMemoryBonds1"::London::0
-2023-01-24T10:15:54.000977Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1.json"
-2023-01-24T10:15:54.000980Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:54.000982Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:54.001076Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:14.644164Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:14.644165Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOOG_MemExpansionOOV"::London::0
+2023-02-06T01:27:14.644167Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOOG_MemExpansionOOV.json"
+2023-02-06T01:27:14.644169Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:14.644175Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOOG_MemExpansionOOV"
+2023-02-06T01:27:14.644178Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1576354,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:54.001081Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:14.644180Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -3787,29 +5678,29 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=44): size must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:54.001090Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:54.001092Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorOutOfMemoryBonds1"::Merge::0
-2023-01-24T10:15:54.001094Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1.json"
-2023-01-24T10:15:54.001097Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:54.001099Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:54.001190Z  WARN evm_eth_compliance::statetest::runner: Execution Failed => Receipt {
+2023-02-06T01:27:14.644186Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:14.644187Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOOG_MemExpansionOOV"::Merge::0
+2023-02-06T01:27:14.644189Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOOG_MemExpansionOOV.json"
+2023-02-06T01:27:14.644191Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:14.644196Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOOG_MemExpansionOOV"
+2023-02-06T01:27:14.644199Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 38,
+        value: 7,
     },
     return_data: RawBytes {  },
-    gas_used: 1576354,
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:54.001195Z  WARN evm_eth_compliance::statetest::runner: failure_info => Some(
+2023-02-06T01:27:14.644201Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
     MessageBacktrace(
         Backtrace {
             frames: [
@@ -3817,349 +5708,909 @@ clear && \
                     source: 400,
                     method: 3844450837,
                     code: ExitCode {
-                        value: 38,
+                        value: 7,
                     },
-                    message: "ABORT(pc=44): size must be less than max u32",
+                    message: "out of gas",
                 },
             ],
             cause: None,
         },
     ),
 )
-2023-01-24T10:15:54.001864Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1.json"
-2023-01-24T10:15:54.001893Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorValueTooHigh.json"
-2023-01-24T10:15:54.025510Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:54.025612Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:54.025615Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:54.025671Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:54.025744Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:54.025749Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorValueTooHigh"::Istanbul::0
-2023-01-24T10:15:54.025754Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorValueTooHigh.json"
-2023-01-24T10:15:54.025757Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:54.025759Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:54.368769Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:14.644836Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOOG_MemExpansionOOV.json"
+2023-02-06T01:27:14.644858Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0.json"
+2023-02-06T01:27:14.669251Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:14.669360Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:14.669364Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:14.669418Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:14.669492Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:14.669495Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOutOfMemoryBonds0"::Istanbul::0
+2023-02-06T01:27:14.669498Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOutOfMemoryBonds0.json"
+2023-02-06T01:27:14.669500Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.043025Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOutOfMemoryBonds0"
+2023-02-06T01:27:15.043045Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1563369,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:54.368793Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:54.368801Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorValueTooHigh"::Berlin::0
-2023-01-24T10:15:54.368805Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorValueTooHigh.json"
-2023-01-24T10:15:54.368809Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:54.368811Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:54.368943Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.043050Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.043062Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:15.043065Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOutOfMemoryBonds0"::Berlin::0
+2023-02-06T01:27:15.043067Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOutOfMemoryBonds0.json"
+2023-02-06T01:27:15.043069Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.043092Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOutOfMemoryBonds0"
+2023-02-06T01:27:15.043097Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1563369,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:54.368952Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:54.368955Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorValueTooHigh"::London::0
-2023-01-24T10:15:54.368958Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorValueTooHigh.json"
-2023-01-24T10:15:54.368962Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:54.368964Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:54.369059Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.043100Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.043106Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:15.043108Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOutOfMemoryBonds0"::London::0
+2023-02-06T01:27:15.043110Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOutOfMemoryBonds0.json"
+2023-02-06T01:27:15.043112Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.043117Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOutOfMemoryBonds0"
+2023-02-06T01:27:15.043120Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1563369,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:54.369067Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:54.369070Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorValueTooHigh"::Merge::0
-2023-01-24T10:15:54.369073Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorValueTooHigh.json"
-2023-01-24T10:15:54.369077Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:54.369079Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:54.369172Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.043122Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.043128Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:15.043130Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOutOfMemoryBonds0"::Merge::0
+2023-02-06T01:27:15.043132Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOutOfMemoryBonds0.json"
+2023-02-06T01:27:15.043133Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.043138Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOutOfMemoryBonds0"
+2023-02-06T01:27:15.043141Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1563369,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:54.369840Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorValueTooHigh.json"
-2023-01-24T10:15:54.369871Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem.json"
-2023-01-24T10:15:54.393965Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:54.394075Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:54.394080Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:54.394139Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:54.394214Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:54.394220Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMem"::Istanbul::0
-2023-01-24T10:15:54.394223Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem.json"
-2023-01-24T10:15:54.394228Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:54.394230Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [210, 87, 22, 7, 226, 65, 236, 245, 144, 237, 148, 177, 45, 135, 201, 75, 171, 227, 109, 182, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([215, 166, 242, 208, 200, 186, 79, 10, 126, 8, 221, 102, 9, 12, 200, 158, 203, 19, 78, 227]) }
-2023-01-24T10:15:55.011109Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.043143Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.043750Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds0.json"
+2023-02-06T01:27:15.043779Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1.json"
+2023-02-06T01:27:15.068461Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:15.068561Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:15.068565Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:15.068627Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:15.068699Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:15.068702Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOutOfMemoryBonds1"::Istanbul::0
+2023-02-06T01:27:15.068705Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOutOfMemoryBonds1.json"
+2023-02-06T01:27:15.068707Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.399446Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOutOfMemoryBonds1"
+2023-02-06T01:27:15.399467Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14574187,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:55.011144Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:55.011152Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMem"::Berlin::0
-2023-01-24T10:15:55.011155Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem.json"
-2023-01-24T10:15:55.011159Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:55.011161Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [184, 141, 232, 139, 53, 236, 191, 60, 20, 30, 60, 170, 226, 186, 243, 88, 52, 209, 143, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([67, 35, 255, 1, 46, 226, 200, 90, 20, 150, 237, 153, 222, 171, 201, 9, 99, 31, 101, 211]) }
-2023-01-24T10:15:55.011870Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.399473Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.399483Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:15.399487Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOutOfMemoryBonds1"::Berlin::0
+2023-02-06T01:27:15.399489Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOutOfMemoryBonds1.json"
+2023-02-06T01:27:15.399491Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.399514Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOutOfMemoryBonds1"
+2023-02-06T01:27:15.399517Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 13489689,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:55.011891Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:55.011894Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMem"::London::0
-2023-01-24T10:15:55.011896Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem.json"
-2023-01-24T10:15:55.011899Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:55.011900Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [93, 53, 72, 12, 110, 127, 137, 82, 54, 63, 162, 128, 160, 169, 105, 6, 218, 152, 31, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([28, 35, 125, 168, 212, 11, 234, 180, 81, 129, 48, 219, 76, 10, 52, 89, 217, 159, 194, 2]) }
-2023-01-24T10:15:55.012462Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.399520Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.399526Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:15.399527Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOutOfMemoryBonds1"::London::0
+2023-02-06T01:27:15.399529Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOutOfMemoryBonds1.json"
+2023-02-06T01:27:15.399531Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.399537Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOutOfMemoryBonds1"
+2023-02-06T01:27:15.399539Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14408087,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:55.012481Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:55.012485Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMem"::Merge::0
-2023-01-24T10:15:55.012487Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem.json"
-2023-01-24T10:15:55.012491Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:55.012493Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [91, 91, 211, 67, 161, 47, 180, 44, 98, 57, 10, 255, 99, 64, 181, 153, 71, 182, 2, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([132, 105, 76, 107, 184, 77, 78, 105, 101, 219, 134, 121, 221, 254, 217, 203, 72, 121, 220, 83]) }
-2023-01-24T10:15:55.013084Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.399542Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.399547Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:15.399549Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorOutOfMemoryBonds1"::Merge::0
+2023-02-06T01:27:15.399551Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorOutOfMemoryBonds1.json"
+2023-02-06T01:27:15.399552Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.399558Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorOutOfMemoryBonds1"
+2023-02-06T01:27:15.399560Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14925859,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:55.014082Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem.json"
-2023-01-24T10:15:55.014108Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem2.json"
-2023-01-24T10:15:55.038922Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:55.039026Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:55.039030Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:55.039086Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:55.039159Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:55.039165Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMem2"::Istanbul::0
-2023-01-24T10:15:55.039168Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem2.json"
-2023-01-24T10:15:55.039171Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:55.039173Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [210, 87, 22, 7, 226, 65, 236, 245, 144, 237, 148, 177, 45, 135, 201, 75, 171, 227, 109, 182, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([215, 166, 242, 208, 200, 186, 79, 10, 126, 8, 221, 102, 9, 12, 200, 158, 203, 19, 78, 227]) }
-2023-01-24T10:15:55.703397Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.399564Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.400199Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorOutOfMemoryBonds1.json"
+2023-02-06T01:27:15.400230Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorValueTooHigh.json"
+2023-02-06T01:27:15.425474Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:15.425581Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:15.425585Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:15.425637Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:15.425709Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:15.425713Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorValueTooHigh"::Istanbul::0
+2023-02-06T01:27:15.425716Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorValueTooHigh.json"
+2023-02-06T01:27:15.425718Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.768290Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorValueTooHigh"
+2023-02-06T01:27:15.768310Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14575662,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:55.703432Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:55.703440Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMem2"::Berlin::0
-2023-01-24T10:15:55.703443Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem2.json"
-2023-01-24T10:15:55.703446Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:55.703447Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [184, 141, 232, 139, 53, 236, 191, 60, 20, 30, 60, 170, 226, 186, 243, 88, 52, 209, 143, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([67, 35, 255, 1, 46, 226, 200, 90, 20, 150, 237, 153, 222, 171, 201, 9, 99, 31, 101, 211]) }
-2023-01-24T10:15:55.704225Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.768317Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.768329Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:15.768334Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorValueTooHigh"::Berlin::0
+2023-02-06T01:27:15.768336Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorValueTooHigh.json"
+2023-02-06T01:27:15.768339Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.768376Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorValueTooHigh"
+2023-02-06T01:27:15.768380Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 13491163,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:55.704248Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:55.704252Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMem2"::London::0
-2023-01-24T10:15:55.704255Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem2.json"
-2023-01-24T10:15:55.704258Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:55.704260Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [93, 53, 72, 12, 110, 127, 137, 82, 54, 63, 162, 128, 160, 169, 105, 6, 218, 152, 31, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([28, 35, 125, 168, 212, 11, 234, 180, 81, 129, 48, 219, 76, 10, 52, 89, 217, 159, 194, 2]) }
-2023-01-24T10:15:55.704981Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.768384Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.768393Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:15.768396Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorValueTooHigh"::London::0
+2023-02-06T01:27:15.768399Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorValueTooHigh.json"
+2023-02-06T01:27:15.768402Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.768412Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorValueTooHigh"
+2023-02-06T01:27:15.768415Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14409562,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:55.705008Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:55.705013Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMem2"::Merge::0
-2023-01-24T10:15:55.705016Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem2.json"
-2023-01-24T10:15:55.705019Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:55.705021Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [91, 91, 211, 67, 161, 47, 180, 44, 98, 57, 10, 255, 99, 64, 181, 153, 71, 182, 2, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([132, 105, 76, 107, 184, 77, 78, 105, 101, 219, 134, 121, 221, 254, 217, 203, 72, 121, 220, 83]) }
-2023-01-24T10:15:55.705807Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.768419Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.768427Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:15.768430Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorValueTooHigh"::Merge::0
+2023-02-06T01:27:15.768432Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorValueTooHigh.json"
+2023-02-06T01:27:15.768435Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:15.768444Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorValueTooHigh"
+2023-02-06T01:27:15.768447Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14927334,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:55.707008Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem2.json"
-2023-01-24T10:15:55.707035Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMemExpansion.json"
-2023-01-24T10:15:55.732009Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:55.732120Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:55.732124Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:55.732181Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:55.732254Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:55.732259Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMemExpansion"::Istanbul::0
-2023-01-24T10:15:55.732262Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMemExpansion.json"
-2023-01-24T10:15:55.732267Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:55.732269Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [210, 87, 22, 7, 226, 65, 236, 245, 144, 237, 148, 177, 45, 135, 201, 75, 171, 227, 109, 182, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([215, 166, 242, 208, 200, 186, 79, 10, 126, 8, 221, 102, 9, 12, 200, 158, 203, 19, 78, 227]) }
-2023-01-24T10:15:56.377566Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:15.768450Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:15.769131Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorValueTooHigh.json"
+2023-02-06T01:27:15.769157Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem.json"
+2023-02-06T01:27:15.793760Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:15.793878Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:15.793883Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:15.793940Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:15.794019Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:15.794023Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMem"::Istanbul::0
+2023-02-06T01:27:15.794027Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMem.json"
+2023-02-06T01:27:15.794032Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.131065Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMem"
+2023-02-06T01:27:16.131088Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14574187,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:56.377601Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:56.377607Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMemExpansion"::Berlin::0
-2023-01-24T10:15:56.377611Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMemExpansion.json"
-2023-01-24T10:15:56.377614Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:56.377615Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [184, 141, 232, 139, 53, 236, 191, 60, 20, 30, 60, 170, 226, 186, 243, 88, 52, 209, 143, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([67, 35, 255, 1, 46, 226, 200, 90, 20, 150, 237, 153, 222, 171, 201, 9, 99, 31, 101, 211]) }
-2023-01-24T10:15:56.378262Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:16.131094Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.131108Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:16.131112Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMem"::Berlin::0
+2023-02-06T01:27:16.131115Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMem.json"
+2023-02-06T01:27:16.131117Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.131146Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMem"
+2023-02-06T01:27:16.131151Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 13489689,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:56.378282Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:56.378285Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMemExpansion"::London::0
-2023-01-24T10:15:56.378287Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMemExpansion.json"
-2023-01-24T10:15:56.378290Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:56.378292Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [93, 53, 72, 12, 110, 127, 137, 82, 54, 63, 162, 128, 160, 169, 105, 6, 218, 152, 31, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([28, 35, 125, 168, 212, 11, 234, 180, 81, 129, 48, 219, 76, 10, 52, 89, 217, 159, 194, 2]) }
-2023-01-24T10:15:56.378928Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:16.131154Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.131164Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:16.131166Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMem"::London::0
+2023-02-06T01:27:16.131169Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMem.json"
+2023-02-06T01:27:16.131171Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.131181Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMem"
+2023-02-06T01:27:16.131185Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14408087,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:56.378952Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:56.378955Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createNameRegistratorZeroMemExpansion"::Merge::0
-2023-01-24T10:15:56.378957Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMemExpansion.json"
-2023-01-24T10:15:56.378960Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:56.378962Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [91, 91, 211, 67, 161, 47, 180, 44, 98, 57, 10, 255, 99, 64, 181, 153, 71, 182, 2, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([132, 105, 76, 107, 184, 77, 78, 105, 101, 219, 134, 121, 221, 254, 217, 203, 72, 121, 220, 83]) }
-2023-01-24T10:15:56.379547Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:16.131188Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.131196Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:16.131199Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMem"::Merge::0
+2023-02-06T01:27:16.131201Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMem.json"
+2023-02-06T01:27:16.131204Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.131214Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMem"
+2023-02-06T01:27:16.131218Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 14925859,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:56.380745Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMemExpansion.json"
-2023-01-24T10:15:56.380773Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createWithInvalidOpcode.json"
-2023-01-24T10:15:56.404868Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:56.404977Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:56.404980Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:56.405035Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:56.405107Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:56.405111Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createWithInvalidOpcode"::Istanbul::0
-2023-01-24T10:15:56.405114Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createWithInvalidOpcode.json"
-2023-01-24T10:15:56.405117Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:56.405119Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [210, 87, 22, 7, 226, 65, 236, 245, 144, 237, 148, 177, 45, 135, 201, 75, 171, 227, 109, 182, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([215, 166, 242, 208, 200, 186, 79, 10, 126, 8, 221, 102, 9, 12, 200, 158, 203, 19, 78, 227]) }
-2023-01-24T10:15:57.039265Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:16.131222Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.131951Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem.json"
+2023-02-06T01:27:16.131977Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem2.json"
+2023-02-06T01:27:16.156837Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:16.156942Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:16.156945Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:16.156999Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:16.157072Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:16.157075Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMem2"::Istanbul::0
+2023-02-06T01:27:16.157078Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMem2.json"
+2023-02-06T01:27:16.157079Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.496275Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMem2"
+2023-02-06T01:27:16.496299Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 13659830,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:57.039301Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:57.039310Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createWithInvalidOpcode"::Berlin::0
-2023-01-24T10:15:57.039313Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createWithInvalidOpcode.json"
-2023-01-24T10:15:57.039317Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.039319Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [184, 141, 232, 139, 53, 236, 191, 60, 20, 30, 60, 170, 226, 186, 243, 88, 52, 209, 143, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([67, 35, 255, 1, 46, 226, 200, 90, 20, 150, 237, 153, 222, 171, 201, 9, 99, 31, 101, 211]) }
-2023-01-24T10:15:57.039961Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:16.496304Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.496317Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:16.496321Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMem2"::Berlin::0
+2023-02-06T01:27:16.496323Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMem2.json"
+2023-02-06T01:27:16.496325Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.496351Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMem2"
+2023-02-06T01:27:16.496354Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 12559237,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:57.039975Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:57.039978Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createWithInvalidOpcode"::London::0
-2023-01-24T10:15:57.039980Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createWithInvalidOpcode.json"
-2023-01-24T10:15:57.039983Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.039985Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [93, 53, 72, 12, 110, 127, 137, 82, 54, 63, 162, 128, 160, 169, 105, 6, 218, 152, 31, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([28, 35, 125, 168, 212, 11, 234, 180, 81, 129, 48, 219, 76, 10, 52, 89, 217, 159, 194, 2]) }
-2023-01-24T10:15:57.040597Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:16.496357Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.496363Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:16.496364Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMem2"::London::0
+2023-02-06T01:27:16.496366Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMem2.json"
+2023-02-06T01:27:16.496368Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.496374Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMem2"
+2023-02-06T01:27:16.496377Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 13477452,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:57.040617Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:57.040620Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "createWithInvalidOpcode"::Merge::0
-2023-01-24T10:15:57.040623Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createWithInvalidOpcode.json"
-2023-01-24T10:15:57.040626Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.040627Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [91, 91, 211, 67, 161, 47, 180, 44, 98, 57, 10, 255, 99, 64, 181, 153, 71, 182, 2, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([132, 105, 76, 107, 184, 77, 78, 105, 101, 219, 134, 121, 221, 254, 217, 203, 72, 121, 220, 83]) }
-2023-01-24T10:15:57.041213Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:16.496380Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.496387Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:16.496389Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMem2"::Merge::0
+2023-02-06T01:27:16.496392Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMem2.json"
+2023-02-06T01:27:16.496394Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.496402Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMem2"
+2023-02-06T01:27:16.496405Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 13995224,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:15:57.042207Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createWithInvalidOpcode.json"
-2023-01-24T10:15:57.042238Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/currentAccountBalance.json"
-2023-01-24T10:15:57.067185Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:57.067301Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:57.067305Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:57.067365Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:57.067440Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:57.067448Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "currentAccountBalance"::Istanbul::0
-2023-01-24T10:15:57.067451Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/currentAccountBalance.json"
-2023-01-24T10:15:57.067456Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.067458Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:57.438477Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:16.496409Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.497213Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMem2.json"
+2023-02-06T01:27:16.497239Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMemExpansion.json"
+2023-02-06T01:27:16.521720Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:16.521822Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:16.521826Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:16.521879Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:16.521950Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:16.521953Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMemExpansion"::Istanbul::0
+2023-02-06T01:27:16.521956Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMemExpansion.json"
+2023-02-06T01:27:16.521958Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.869004Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMemExpansion"
+2023-02-06T01:27:16.869026Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:16.869031Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.869043Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:16.869047Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMemExpansion"::Berlin::0
+2023-02-06T01:27:16.869049Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMemExpansion.json"
+2023-02-06T01:27:16.869052Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.869075Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMemExpansion"
+2023-02-06T01:27:16.869078Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:16.869082Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.869088Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:16.869090Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMemExpansion"::London::0
+2023-02-06T01:27:16.869091Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMemExpansion.json"
+2023-02-06T01:27:16.869093Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.869100Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMemExpansion"
+2023-02-06T01:27:16.869103Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:16.869105Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.869111Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:16.869113Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createNameRegistratorZeroMemExpansion"::Merge::0
+2023-02-06T01:27:16.869114Z  INFO evm_eth_compliance::statetest::executor: Path : "createNameRegistratorZeroMemExpansion.json"
+2023-02-06T01:27:16.869116Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:16.869121Z  INFO evm_eth_compliance::statetest::executor: UC : "createNameRegistratorZeroMemExpansion"
+2023-02-06T01:27:16.869124Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:16.869126Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:16.869825Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createNameRegistratorZeroMemExpansion.json"
+2023-02-06T01:27:16.869848Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createWithInvalidOpcode.json"
+2023-02-06T01:27:16.903864Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:16.903963Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:16.903968Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:16.904022Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:16.904093Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:16.904096Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createWithInvalidOpcode"::Istanbul::0
+2023-02-06T01:27:16.904099Z  INFO evm_eth_compliance::statetest::executor: Path : "createWithInvalidOpcode.json"
+2023-02-06T01:27:16.904101Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.238037Z  INFO evm_eth_compliance::statetest::executor: UC : "createWithInvalidOpcode"
+2023-02-06T01:27:17.238058Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:17.238063Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:17.238075Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:17.238079Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createWithInvalidOpcode"::Berlin::0
+2023-02-06T01:27:17.238081Z  INFO evm_eth_compliance::statetest::executor: Path : "createWithInvalidOpcode.json"
+2023-02-06T01:27:17.238082Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.238106Z  INFO evm_eth_compliance::statetest::executor: UC : "createWithInvalidOpcode"
+2023-02-06T01:27:17.238109Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:17.238112Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:17.238118Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:17.238119Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createWithInvalidOpcode"::London::0
+2023-02-06T01:27:17.238121Z  INFO evm_eth_compliance::statetest::executor: Path : "createWithInvalidOpcode.json"
+2023-02-06T01:27:17.238123Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.238129Z  INFO evm_eth_compliance::statetest::executor: UC : "createWithInvalidOpcode"
+2023-02-06T01:27:17.238132Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:17.238134Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:17.238140Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:17.238141Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "createWithInvalidOpcode"::Merge::0
+2023-02-06T01:27:17.238143Z  INFO evm_eth_compliance::statetest::executor: Path : "createWithInvalidOpcode.json"
+2023-02-06T01:27:17.238145Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.238150Z  INFO evm_eth_compliance::statetest::executor: UC : "createWithInvalidOpcode"
+2023-02-06T01:27:17.238153Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
+    exit_code: ExitCode {
+        value: 7,
+    },
+    return_data: RawBytes {  },
+    gas_used: 300000,
+    events_root: None,
+}
+2023-02-06T01:27:17.238155Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:17.238791Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/createWithInvalidOpcode.json"
+2023-02-06T01:27:17.238811Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/currentAccountBalance.json"
+2023-02-06T01:27:17.263066Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:17.263164Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:17.263167Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:17.263220Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:17.263290Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:17.263293Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "currentAccountBalance"::Istanbul::0
+2023-02-06T01:27:17.263296Z  INFO evm_eth_compliance::statetest::executor: Path : "currentAccountBalance.json"
+2023-02-06T01:27:17.263298Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.596616Z  INFO evm_eth_compliance::statetest::executor: UC : "currentAccountBalance"
+2023-02-06T01:27:17.596635Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4167,12 +6618,12 @@ clear && \
     gas_used: 2509963,
     events_root: None,
 }
-2023-01-24T10:15:57.438505Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:57.438515Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "currentAccountBalance"::Berlin::0
-2023-01-24T10:15:57.438518Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/currentAccountBalance.json"
-2023-01-24T10:15:57.438522Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.438524Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:57.438684Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:17.596645Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:17.596649Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "currentAccountBalance"::Berlin::0
+2023-02-06T01:27:17.596650Z  INFO evm_eth_compliance::statetest::executor: Path : "currentAccountBalance.json"
+2023-02-06T01:27:17.596652Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.596768Z  INFO evm_eth_compliance::statetest::executor: UC : "currentAccountBalance"
+2023-02-06T01:27:17.596774Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4180,12 +6631,12 @@ clear && \
     gas_used: 1603601,
     events_root: None,
 }
-2023-01-24T10:15:57.438693Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:57.438696Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "currentAccountBalance"::London::0
-2023-01-24T10:15:57.438698Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/currentAccountBalance.json"
-2023-01-24T10:15:57.438701Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.438702Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:57.438827Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:17.596779Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:17.596781Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "currentAccountBalance"::London::0
+2023-02-06T01:27:17.596783Z  INFO evm_eth_compliance::statetest::executor: Path : "currentAccountBalance.json"
+2023-02-06T01:27:17.596785Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.596878Z  INFO evm_eth_compliance::statetest::executor: UC : "currentAccountBalance"
+2023-02-06T01:27:17.596884Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4193,12 +6644,12 @@ clear && \
     gas_used: 1603601,
     events_root: None,
 }
-2023-01-24T10:15:57.438836Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:57.438839Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "currentAccountBalance"::Merge::0
-2023-01-24T10:15:57.438840Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/currentAccountBalance.json"
-2023-01-24T10:15:57.438844Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.438845Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:57.438947Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:17.596889Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:17.596891Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "currentAccountBalance"::Merge::0
+2023-02-06T01:27:17.596893Z  INFO evm_eth_compliance::statetest::executor: Path : "currentAccountBalance.json"
+2023-02-06T01:27:17.596895Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.596987Z  INFO evm_eth_compliance::statetest::executor: UC : "currentAccountBalance"
+2023-02-06T01:27:17.596992Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4206,18 +6657,18 @@ clear && \
     gas_used: 1603601,
     events_root: None,
 }
-2023-01-24T10:15:57.439751Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/currentAccountBalance.json"
-2023-01-24T10:15:57.439778Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest.json"
-2023-01-24T10:15:57.464127Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:57.464230Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:57.464234Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:57.464287Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:57.464359Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:57.464365Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTest"::Istanbul::0
-2023-01-24T10:15:57.464367Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest.json"
-2023-01-24T10:15:57.464371Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.464372Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:57.810087Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:17.597616Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/currentAccountBalance.json"
+2023-02-06T01:27:17.597644Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest.json"
+2023-02-06T01:27:17.622329Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:17.622432Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:17.622436Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:17.622489Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:17.622562Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:17.622565Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTest"::Istanbul::0
+2023-02-06T01:27:17.622568Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTest.json"
+2023-02-06T01:27:17.622570Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.962035Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTest"
+2023-02-06T01:27:17.962054Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4225,12 +6676,12 @@ clear && \
     gas_used: 8688838,
     events_root: None,
 }
-2023-01-24T10:15:57.810114Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:57.810120Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTest"::Berlin::0
-2023-01-24T10:15:57.810123Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest.json"
-2023-01-24T10:15:57.810126Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.810127Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:57.810208Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:17.962066Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:17.962069Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTest"::Berlin::0
+2023-02-06T01:27:17.962071Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTest.json"
+2023-02-06T01:27:17.962073Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.962155Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTest"
+2023-02-06T01:27:17.962161Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4238,12 +6689,12 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:57.810213Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:57.810216Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTest"::London::0
-2023-01-24T10:15:57.810218Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest.json"
-2023-01-24T10:15:57.810220Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.810222Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:57.810288Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:17.962165Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:17.962167Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTest"::London::0
+2023-02-06T01:27:17.962169Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTest.json"
+2023-02-06T01:27:17.962171Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.962241Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTest"
+2023-02-06T01:27:17.962247Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4251,12 +6702,12 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:57.810294Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:57.810296Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTest"::Merge::0
-2023-01-24T10:15:57.810298Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest.json"
-2023-01-24T10:15:57.810300Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.810302Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:57.810365Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:17.962252Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:17.962254Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTest"::Merge::0
+2023-02-06T01:27:17.962256Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTest.json"
+2023-02-06T01:27:17.962259Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:17.962343Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTest"
+2023-02-06T01:27:17.962349Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4264,18 +6715,18 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:57.811064Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest.json"
-2023-01-24T10:15:57.811095Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest2.json"
-2023-01-24T10:15:57.835543Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:57.835647Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:57.835651Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:57.835726Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:57.835802Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:57.835808Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTest2"::Istanbul::0
-2023-01-24T10:15:57.835811Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest2.json"
-2023-01-24T10:15:57.835814Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:57.835816Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.173818Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:17.963026Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest.json"
+2023-02-06T01:27:17.963050Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest2.json"
+2023-02-06T01:27:17.988366Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:17.988470Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:17.988474Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:17.988526Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:17.988598Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:17.988603Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTest2"::Istanbul::0
+2023-02-06T01:27:17.988605Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTest2.json"
+2023-02-06T01:27:17.988607Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.337480Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTest2"
+2023-02-06T01:27:18.337501Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4283,12 +6734,12 @@ clear && \
     gas_used: 7674311,
     events_root: None,
 }
-2023-01-24T10:15:58.173843Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:58.173849Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTest2"::Berlin::0
-2023-01-24T10:15:58.173853Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest2.json"
-2023-01-24T10:15:58.173856Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.173857Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.173941Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.337514Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:18.337517Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTest2"::Berlin::0
+2023-02-06T01:27:18.337519Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTest2.json"
+2023-02-06T01:27:18.337521Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.337600Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTest2"
+2023-02-06T01:27:18.337606Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4296,12 +6747,12 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:58.173947Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:58.173950Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTest2"::London::0
-2023-01-24T10:15:58.173952Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest2.json"
-2023-01-24T10:15:58.173955Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.173956Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.174024Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.337610Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:18.337612Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTest2"::London::0
+2023-02-06T01:27:18.337614Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTest2.json"
+2023-02-06T01:27:18.337616Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.337679Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTest2"
+2023-02-06T01:27:18.337684Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4309,12 +6760,12 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:58.174031Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:58.174034Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTest2"::Merge::0
-2023-01-24T10:15:58.174036Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest2.json"
-2023-01-24T10:15:58.174038Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.174040Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.174105Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.337688Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:18.337689Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTest2"::Merge::0
+2023-02-06T01:27:18.337691Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTest2.json"
+2023-02-06T01:27:18.337693Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.337755Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTest2"
+2023-02-06T01:27:18.337760Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4322,24 +6773,24 @@ clear && \
     gas_used: 1034122,
     events_root: None,
 }
-2023-01-24T10:15:58.174722Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest2.json"
-2023-01-24T10:15:58.174753Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
-2023-01-24T10:15:58.199935Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:58.200042Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.200045Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:58.200106Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.200111Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:58.200174Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.200176Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 3
-2023-01-24T10:15:58.200230Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.200233Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 4
-2023-01-24T10:15:58.200286Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.200357Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:58.200363Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTouch"::London::0
-2023-01-24T10:15:58.200366Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
-2023-01-24T10:15:58.200369Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.200370Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.561297Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.338375Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTest2.json"
+2023-02-06T01:27:18.338403Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
+2023-02-06T01:27:18.362607Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:18.362704Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:18.362707Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:18.362750Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:18.362752Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:18.362808Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:18.362810Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 3
+2023-02-06T01:27:18.362878Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:18.362881Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 4
+2023-02-06T01:27:18.362951Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:18.363058Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:18.363062Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTouch"::London::0
+2023-02-06T01:27:18.363066Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTouch.json"
+2023-02-06T01:27:18.363069Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.711335Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTouch"
+2023-02-06T01:27:18.711356Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4347,12 +6798,12 @@ clear && \
     gas_used: 2031679,
     events_root: None,
 }
-2023-01-24T10:15:58.561320Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:58.561326Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTouch"::London::0
-2023-01-24T10:15:58.561329Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
-2023-01-24T10:15:58.561332Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.561334Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.561475Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.711366Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:18.711369Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTouch"::London::0
+2023-02-06T01:27:18.711371Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTouch.json"
+2023-02-06T01:27:18.711373Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.711513Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTouch"
+2023-02-06T01:27:18.711520Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4360,12 +6811,12 @@ clear && \
     gas_used: 2031679,
     events_root: None,
 }
-2023-01-24T10:15:58.561483Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:58.561485Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTouch"::London::0
-2023-01-24T10:15:58.561487Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
-2023-01-24T10:15:58.561490Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.561491Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.561620Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.711525Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:18.711528Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTouch"::London::0
+2023-02-06T01:27:18.711530Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTouch.json"
+2023-02-06T01:27:18.711532Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.711682Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTouch"
+2023-02-06T01:27:18.711688Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4373,12 +6824,12 @@ clear && \
     gas_used: 2031679,
     events_root: None,
 }
-2023-01-24T10:15:58.561628Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:58.561630Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTouch"::Merge::0
-2023-01-24T10:15:58.561632Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
-2023-01-24T10:15:58.561635Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.561637Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.561764Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.711694Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:18.711696Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTouch"::Merge::0
+2023-02-06T01:27:18.711698Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTouch.json"
+2023-02-06T01:27:18.711700Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.711838Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTouch"
+2023-02-06T01:27:18.711844Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4386,12 +6837,12 @@ clear && \
     gas_used: 2031679,
     events_root: None,
 }
-2023-01-24T10:15:58.561772Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:58.561774Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTouch"::Merge::0
-2023-01-24T10:15:58.561776Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
-2023-01-24T10:15:58.561779Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.561780Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.561904Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.711850Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:18.711852Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTouch"::Merge::0
+2023-02-06T01:27:18.711855Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTouch.json"
+2023-02-06T01:27:18.711857Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.711984Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTouch"
+2023-02-06T01:27:18.711990Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4399,12 +6850,12 @@ clear && \
     gas_used: 2031679,
     events_root: None,
 }
-2023-01-24T10:15:58.561912Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:58.561915Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "doubleSelfdestructTouch"::Merge::0
-2023-01-24T10:15:58.561917Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
-2023-01-24T10:15:58.561919Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.561921Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.562045Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.711995Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:18.711997Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "doubleSelfdestructTouch"::Merge::0
+2023-02-06T01:27:18.712000Z  INFO evm_eth_compliance::statetest::executor: Path : "doubleSelfdestructTouch.json"
+2023-02-06T01:27:18.712002Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:18.712125Z  INFO evm_eth_compliance::statetest::executor: UC : "doubleSelfdestructTouch"
+2023-02-06T01:27:18.712131Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4412,20 +6863,20 @@ clear && \
     gas_used: 2031679,
     events_root: None,
 }
-2023-01-24T10:15:58.562866Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
-2023-01-24T10:15:58.562904Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/extcodecopy.json"
-2023-01-24T10:15:58.590775Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:58.590877Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.590881Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:58.590936Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.590938Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 2
-2023-01-24T10:15:58.590996Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.591072Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:58.591077Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "extcodecopy"::Istanbul::0
-2023-01-24T10:15:58.591080Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/extcodecopy.json"
-2023-01-24T10:15:58.591083Z  INFO evm_eth_compliance::statetest::runner: TX len : 143
-2023-01-24T10:15:58.591085Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.951596Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:18.713055Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/doubleSelfdestructTouch.json"
+2023-02-06T01:27:18.713088Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/extcodecopy.json"
+2023-02-06T01:27:18.737812Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:18.737911Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:18.737915Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:18.737968Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:18.737970Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 2
+2023-02-06T01:27:18.738026Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:18.738096Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:18.738099Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "extcodecopy"::Istanbul::0
+2023-02-06T01:27:18.738103Z  INFO evm_eth_compliance::statetest::executor: Path : "extcodecopy.json"
+2023-02-06T01:27:18.738105Z  INFO evm_eth_compliance::statetest::executor: TX len : 143
+2023-02-06T01:27:19.098664Z  INFO evm_eth_compliance::statetest::executor: UC : "extcodecopy"
+2023-02-06T01:27:19.098683Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4433,12 +6884,12 @@ clear && \
     gas_used: 3615148,
     events_root: None,
 }
-2023-01-24T10:15:58.951619Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:58.951625Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "extcodecopy"::Berlin::0
-2023-01-24T10:15:58.951627Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/extcodecopy.json"
-2023-01-24T10:15:58.951630Z  INFO evm_eth_compliance::statetest::runner: TX len : 143
-2023-01-24T10:15:58.951632Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.951730Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.098693Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:19.098696Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "extcodecopy"::Berlin::0
+2023-02-06T01:27:19.098698Z  INFO evm_eth_compliance::statetest::executor: Path : "extcodecopy.json"
+2023-02-06T01:27:19.098700Z  INFO evm_eth_compliance::statetest::executor: TX len : 143
+2023-02-06T01:27:19.098788Z  INFO evm_eth_compliance::statetest::executor: UC : "extcodecopy"
+2023-02-06T01:27:19.098794Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4446,12 +6897,12 @@ clear && \
     gas_used: 1035599,
     events_root: None,
 }
-2023-01-24T10:15:58.951737Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:58.951740Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "extcodecopy"::London::0
-2023-01-24T10:15:58.951742Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/extcodecopy.json"
-2023-01-24T10:15:58.951745Z  INFO evm_eth_compliance::statetest::runner: TX len : 143
-2023-01-24T10:15:58.951746Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.951817Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.098799Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:19.098802Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "extcodecopy"::London::0
+2023-02-06T01:27:19.098804Z  INFO evm_eth_compliance::statetest::executor: Path : "extcodecopy.json"
+2023-02-06T01:27:19.098806Z  INFO evm_eth_compliance::statetest::executor: TX len : 143
+2023-02-06T01:27:19.098882Z  INFO evm_eth_compliance::statetest::executor: UC : "extcodecopy"
+2023-02-06T01:27:19.098888Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4459,12 +6910,12 @@ clear && \
     gas_used: 1035599,
     events_root: None,
 }
-2023-01-24T10:15:58.951822Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:58.951825Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "extcodecopy"::Merge::0
-2023-01-24T10:15:58.951829Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/extcodecopy.json"
-2023-01-24T10:15:58.951831Z  INFO evm_eth_compliance::statetest::runner: TX len : 143
-2023-01-24T10:15:58.951833Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:58.951906Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.098894Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:19.098896Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "extcodecopy"::Merge::0
+2023-02-06T01:27:19.098899Z  INFO evm_eth_compliance::statetest::executor: Path : "extcodecopy.json"
+2023-02-06T01:27:19.098901Z  INFO evm_eth_compliance::statetest::executor: TX len : 143
+2023-02-06T01:27:19.098972Z  INFO evm_eth_compliance::statetest::executor: UC : "extcodecopy"
+2023-02-06T01:27:19.098977Z  INFO evm_eth_compliance::statetest::executor: Execution Success => Receipt {
     exit_code: ExitCode {
         value: 0,
     },
@@ -4472,718 +6923,1982 @@ clear && \
     gas_used: 1035599,
     events_root: None,
 }
-2023-01-24T10:15:58.952546Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/extcodecopy.json"
-2023-01-24T10:15:58.952572Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return0.json"
-2023-01-24T10:15:58.976981Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:58.977081Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.977084Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:58.977138Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:58.977209Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:58.977213Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return0"::Istanbul::0
-2023-01-24T10:15:58.977216Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return0.json"
-2023-01-24T10:15:58.977219Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:58.977220Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:59.318090Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.099657Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/extcodecopy.json"
+2023-02-06T01:27:19.099678Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return0.json"
+2023-02-06T01:27:19.123506Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:19.123602Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:19.123605Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:19.123656Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:19.123726Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:19.123729Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return0"::Istanbul::0
+2023-02-06T01:27:19.123731Z  INFO evm_eth_compliance::statetest::executor: Path : "return0.json"
+2023-02-06T01:27:19.123733Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:19.463173Z  INFO evm_eth_compliance::statetest::executor: UC : "return0"
+2023-02-06T01:27:19.463195Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 4137 },
-    gas_used: 1536332,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:59.318111Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:59.318119Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return0"::Berlin::0
-2023-01-24T10:15:59.318122Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return0.json"
-2023-01-24T10:15:59.318126Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:59.318127Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:59.318235Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.463200Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:19.463214Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:19.463219Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return0"::Berlin::0
+2023-02-06T01:27:19.463221Z  INFO evm_eth_compliance::statetest::executor: Path : "return0.json"
+2023-02-06T01:27:19.463224Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:19.463309Z  INFO evm_eth_compliance::statetest::executor: UC : "return0"
+2023-02-06T01:27:19.463315Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 4137 },
-    gas_used: 1536332,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:59.318243Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:59.318246Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return0"::London::0
-2023-01-24T10:15:59.318249Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return0.json"
-2023-01-24T10:15:59.318252Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:59.318254Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:59.318344Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.463319Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:19.463329Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:19.463332Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return0"::London::0
+2023-02-06T01:27:19.463334Z  INFO evm_eth_compliance::statetest::executor: Path : "return0.json"
+2023-02-06T01:27:19.463336Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:19.463407Z  INFO evm_eth_compliance::statetest::executor: UC : "return0"
+2023-02-06T01:27:19.463412Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 4137 },
-    gas_used: 1536332,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:59.318352Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:59.318355Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return0"::Merge::0
-2023-01-24T10:15:59.318357Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return0.json"
-2023-01-24T10:15:59.318360Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:59.318362Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:59.318452Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.463415Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:19.463425Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:19.463428Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return0"::Merge::0
+2023-02-06T01:27:19.463430Z  INFO evm_eth_compliance::statetest::executor: Path : "return0.json"
+2023-02-06T01:27:19.463432Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:19.463502Z  INFO evm_eth_compliance::statetest::executor: UC : "return0"
+2023-02-06T01:27:19.463508Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 4137 },
-    gas_used: 1536332,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:59.319194Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return0.json"
-2023-01-24T10:15:59.319222Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return1.json"
-2023-01-24T10:15:59.342959Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:59.343088Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:59.343093Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:59.343164Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:59.343260Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:59.343267Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return1"::Istanbul::0
-2023-01-24T10:15:59.343271Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return1.json"
-2023-01-24T10:15:59.343278Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:59.343280Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:59.684785Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.463511Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:19.464196Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return0.json"
+2023-02-06T01:27:19.464218Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return1.json"
+2023-02-06T01:27:19.488611Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:19.488717Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:19.488721Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:19.488778Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:19.488852Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:19.488856Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return1"::Istanbul::0
+2023-02-06T01:27:19.488859Z  INFO evm_eth_compliance::statetest::executor: Path : "return1.json"
+2023-02-06T01:27:19.488862Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:19.839210Z  INFO evm_eth_compliance::statetest::executor: UC : "return1"
+2023-02-06T01:27:19.839228Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 423700 },
-    gas_used: 1537643,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:59.684808Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:15:59.684815Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return1"::Berlin::0
-2023-01-24T10:15:59.684818Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return1.json"
-2023-01-24T10:15:59.684821Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:59.684822Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:59.684947Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.839235Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:19.839247Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:19.839251Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return1"::Berlin::0
+2023-02-06T01:27:19.839252Z  INFO evm_eth_compliance::statetest::executor: Path : "return1.json"
+2023-02-06T01:27:19.839254Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:19.839334Z  INFO evm_eth_compliance::statetest::executor: UC : "return1"
+2023-02-06T01:27:19.839339Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 423700 },
-    gas_used: 1537643,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:59.684954Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:15:59.684957Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return1"::London::0
-2023-01-24T10:15:59.684959Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return1.json"
-2023-01-24T10:15:59.684961Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:59.684962Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:59.685047Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.839342Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:19.839350Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:19.839352Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return1"::London::0
+2023-02-06T01:27:19.839353Z  INFO evm_eth_compliance::statetest::executor: Path : "return1.json"
+2023-02-06T01:27:19.839357Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:19.839427Z  INFO evm_eth_compliance::statetest::executor: UC : "return1"
+2023-02-06T01:27:19.839432Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 423700 },
-    gas_used: 1537643,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:59.685054Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:15:59.685057Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return1"::Merge::0
-2023-01-24T10:15:59.685058Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return1.json"
-2023-01-24T10:15:59.685061Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:59.685062Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:15:59.685146Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.839435Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:19.839442Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:19.839445Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return1"::Merge::0
+2023-02-06T01:27:19.839447Z  INFO evm_eth_compliance::statetest::executor: Path : "return1.json"
+2023-02-06T01:27:19.839448Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:19.839514Z  INFO evm_eth_compliance::statetest::executor: UC : "return1"
+2023-02-06T01:27:19.839518Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 423700 },
-    gas_used: 1537643,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:15:59.685795Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return1.json"
-2023-01-24T10:15:59.685821Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return2.json"
-2023-01-24T10:15:59.710101Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:15:59.710208Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:59.710211Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:15:59.710268Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:15:59.710340Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:15:59.710345Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return2"::Istanbul::0
-2023-01-24T10:15:59.710348Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return2.json"
-2023-01-24T10:15:59.710351Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:15:59.710352Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.068464Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:19.839521Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:19.840295Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return1.json"
+2023-02-06T01:27:19.840318Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return2.json"
+2023-02-06T01:27:19.904567Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:19.904672Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:19.904676Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:19.904730Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:19.904803Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:19.904806Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return2"::Istanbul::0
+2023-02-06T01:27:19.904809Z  INFO evm_eth_compliance::statetest::executor: Path : "return2.json"
+2023-02-06T01:27:19.904810Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.262746Z  INFO evm_eth_compliance::statetest::executor: UC : "return2"
+2023-02-06T01:27:20.262765Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 5821370000000000000000000000000000000000000000000000000000000000000000 },
-    gas_used: 1584985,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.068492Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:00.068498Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return2"::Berlin::0
-2023-01-24T10:16:00.068502Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return2.json"
-2023-01-24T10:16:00.068505Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.068506Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.068680Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.262770Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.262782Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:20.262785Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return2"::Berlin::0
+2023-02-06T01:27:20.262787Z  INFO evm_eth_compliance::statetest::executor: Path : "return2.json"
+2023-02-06T01:27:20.262788Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.262871Z  INFO evm_eth_compliance::statetest::executor: UC : "return2"
+2023-02-06T01:27:20.262877Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 5821370000000000000000000000000000000000000000000000000000000000000000 },
-    gas_used: 1584985,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.068692Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:00.068698Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return2"::London::0
-2023-01-24T10:16:00.068700Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return2.json"
-2023-01-24T10:16:00.068704Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.068706Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.068817Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.262880Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.262887Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:20.262889Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return2"::London::0
+2023-02-06T01:27:20.262890Z  INFO evm_eth_compliance::statetest::executor: Path : "return2.json"
+2023-02-06T01:27:20.262892Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.262953Z  INFO evm_eth_compliance::statetest::executor: UC : "return2"
+2023-02-06T01:27:20.262957Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 5821370000000000000000000000000000000000000000000000000000000000000000 },
-    gas_used: 1584985,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.068826Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:00.068829Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "return2"::Merge::0
-2023-01-24T10:16:00.068831Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return2.json"
-2023-01-24T10:16:00.068833Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.068835Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.068923Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.262960Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.262967Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:20.262969Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "return2"::Merge::0
+2023-02-06T01:27:20.262971Z  INFO evm_eth_compliance::statetest::executor: Path : "return2.json"
+2023-02-06T01:27:20.262972Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.263030Z  INFO evm_eth_compliance::statetest::executor: UC : "return2"
+2023-02-06T01:27:20.263035Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 5821370000000000000000000000000000000000000000000000000000000000000000 },
-    gas_used: 1584985,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.069769Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return2.json"
-2023-01-24T10:16:00.069804Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideAddress.json"
-2023-01-24T10:16:00.094325Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:00.094428Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:00.094432Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:00.094487Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:00.094559Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:00.094564Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideAddress"::Istanbul::0
-2023-01-24T10:16:00.094567Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideAddress.json"
-2023-01-24T10:16:00.094570Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.094571Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.466467Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.263037Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.263673Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/return2.json"
+2023-02-06T01:27:20.263700Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideAddress.json"
+2023-02-06T01:27:20.293180Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:20.293289Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:20.293293Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:20.293347Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:20.293416Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:20.293419Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideAddress"::Istanbul::0
+2023-02-06T01:27:20.293422Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideAddress.json"
+2023-02-06T01:27:20.293424Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.635227Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideAddress"
+2023-02-06T01:27:20.635249Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 2746611,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.466492Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:00.466498Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideAddress"::Berlin::0
-2023-01-24T10:16:00.466501Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideAddress.json"
-2023-01-24T10:16:00.466504Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.466506Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.466606Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.635255Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.635270Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:20.635273Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideAddress"::Berlin::0
+2023-02-06T01:27:20.635276Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideAddress.json"
+2023-02-06T01:27:20.635278Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.635367Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideAddress"
+2023-02-06T01:27:20.635373Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.466613Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:00.466615Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideAddress"::London::0
-2023-01-24T10:16:00.466617Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideAddress.json"
-2023-01-24T10:16:00.466619Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.466621Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.466691Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.635377Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.635387Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:20.635389Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideAddress"::London::0
+2023-02-06T01:27:20.635392Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideAddress.json"
+2023-02-06T01:27:20.635394Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.635465Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideAddress"
+2023-02-06T01:27:20.635470Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.466697Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:00.466699Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideAddress"::Merge::0
-2023-01-24T10:16:00.466701Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideAddress.json"
-2023-01-24T10:16:00.466704Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.466705Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.466771Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.635474Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.635483Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:20.635486Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideAddress"::Merge::0
+2023-02-06T01:27:20.635488Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideAddress.json"
+2023-02-06T01:27:20.635491Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.635558Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideAddress"
+2023-02-06T01:27:20.635564Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.467516Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideAddress.json"
-2023-01-24T10:16:00.467541Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCaller.json"
-2023-01-24T10:16:00.491342Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:00.491448Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:00.491451Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:00.491508Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:00.491579Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:00.491583Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCaller"::Istanbul::0
-2023-01-24T10:16:00.491586Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCaller.json"
-2023-01-24T10:16:00.491589Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.491592Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.861727Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.635567Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.636151Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideAddress.json"
+2023-02-06T01:27:20.636178Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCaller.json"
+2023-02-06T01:27:20.660718Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:20.660828Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:20.660832Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:20.660888Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:20.660968Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:20.660971Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCaller"::Istanbul::0
+2023-02-06T01:27:20.660974Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCaller.json"
+2023-02-06T01:27:20.660976Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.997107Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCaller"
+2023-02-06T01:27:20.997127Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 2743390,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.861749Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:00.861756Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCaller"::Berlin::0
-2023-01-24T10:16:00.861759Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCaller.json"
-2023-01-24T10:16:00.861762Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.861763Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.861872Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.997133Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.997145Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:20.997148Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCaller"::Berlin::0
+2023-02-06T01:27:20.997149Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCaller.json"
+2023-02-06T01:27:20.997151Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.997234Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCaller"
+2023-02-06T01:27:20.997239Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.861879Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:00.861882Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCaller"::London::0
-2023-01-24T10:16:00.861884Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCaller.json"
-2023-01-24T10:16:00.861887Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.861889Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.861959Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.997243Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.997250Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:20.997253Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCaller"::London::0
+2023-02-06T01:27:20.997255Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCaller.json"
+2023-02-06T01:27:20.997257Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.997334Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCaller"
+2023-02-06T01:27:20.997340Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.861965Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:00.861968Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCaller"::Merge::0
-2023-01-24T10:16:00.861969Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCaller.json"
-2023-01-24T10:16:00.861972Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.861973Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:00.862042Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.997342Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.997350Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:20.997352Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCaller"::Merge::0
+2023-02-06T01:27:20.997354Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCaller.json"
+2023-02-06T01:27:20.997355Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:20.997421Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCaller"
+2023-02-06T01:27:20.997426Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:00.862661Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCaller.json"
-2023-01-24T10:16:00.862687Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigLeft.json"
-2023-01-24T10:16:00.887456Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:00.887559Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:00.887562Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:00.887617Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:00.887700Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:00.887705Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCallerAddresTooBigLeft"::Istanbul::0
-2023-01-24T10:16:00.887708Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigLeft.json"
-2023-01-24T10:16:00.887711Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:00.887713Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:01.250992Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:20.997428Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:20.998034Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCaller.json"
+2023-02-06T01:27:20.998053Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigLeft.json"
+2023-02-06T01:27:21.022347Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:21.022451Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:21.022454Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:21.022511Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:21.022584Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:21.022586Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCallerAddresTooBigLeft"::Istanbul::0
+2023-02-06T01:27:21.022589Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCallerAddresTooBigLeft.json"
+2023-02-06T01:27:21.022591Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:21.358975Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCallerAddresTooBigLeft"
+2023-02-06T01:27:21.359000Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 2753817,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:01.251016Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:01.251024Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCallerAddresTooBigLeft"::Berlin::0
-2023-01-24T10:16:01.251027Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigLeft.json"
-2023-01-24T10:16:01.251030Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:01.251031Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:01.251118Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:21.359006Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:21.359019Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:21.359023Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCallerAddresTooBigLeft"::Berlin::0
+2023-02-06T01:27:21.359025Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCallerAddresTooBigLeft.json"
+2023-02-06T01:27:21.359027Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:21.359132Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCallerAddresTooBigLeft"
+2023-02-06T01:27:21.359138Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:01.251124Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:01.251126Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCallerAddresTooBigLeft"::London::0
-2023-01-24T10:16:01.251128Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigLeft.json"
-2023-01-24T10:16:01.251131Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:01.251132Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:01.251199Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:21.359141Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:21.359149Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:21.359151Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCallerAddresTooBigLeft"::London::0
+2023-02-06T01:27:21.359152Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCallerAddresTooBigLeft.json"
+2023-02-06T01:27:21.359154Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:21.359227Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCallerAddresTooBigLeft"
+2023-02-06T01:27:21.359233Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:01.251206Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:01.251209Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCallerAddresTooBigLeft"::Merge::0
-2023-01-24T10:16:01.251211Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigLeft.json"
-2023-01-24T10:16:01.251214Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:01.251215Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:01.251280Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:21.359237Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:21.359274Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:21.359283Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCallerAddresTooBigLeft"::Merge::0
+2023-02-06T01:27:21.359286Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCallerAddresTooBigLeft.json"
+2023-02-06T01:27:21.359289Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:21.359376Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCallerAddresTooBigLeft"
+2023-02-06T01:27:21.359382Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:01.251997Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigLeft.json"
-2023-01-24T10:16:01.252027Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigRight.json"
-2023-01-24T10:16:01.275953Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:01.276061Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:01.276064Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:01.276119Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:01.276191Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:01.276195Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCallerAddresTooBigRight"::Istanbul::0
-2023-01-24T10:16:01.276198Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigRight.json"
-2023-01-24T10:16:01.276202Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:01.276203Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:01.627839Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:21.359386Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:21.360319Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigLeft.json"
+2023-02-06T01:27:21.360349Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigRight.json"
+2023-02-06T01:27:21.385351Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:21.385454Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:21.385457Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:21.385511Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:21.385582Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:21.385585Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCallerAddresTooBigRight"::Istanbul::0
+2023-02-06T01:27:21.385588Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCallerAddresTooBigRight.json"
+2023-02-06T01:27:21.385591Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:21.762492Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCallerAddresTooBigRight"
+2023-02-06T01:27:21.762513Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3961071,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:01.627861Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:01.627869Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCallerAddresTooBigRight"::Berlin::0
-2023-01-24T10:16:01.627872Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigRight.json"
-2023-01-24T10:16:01.627876Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:01.627878Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:01.627968Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:21.762519Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:21.762531Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:21.762535Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCallerAddresTooBigRight"::Berlin::0
+2023-02-06T01:27:21.762536Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCallerAddresTooBigRight.json"
+2023-02-06T01:27:21.762539Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:21.762623Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCallerAddresTooBigRight"
+2023-02-06T01:27:21.762629Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:01.627975Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:01.627978Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCallerAddresTooBigRight"::London::0
-2023-01-24T10:16:01.627981Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigRight.json"
-2023-01-24T10:16:01.627985Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:01.627987Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:01.628058Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:21.762632Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:21.762640Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:21.762642Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCallerAddresTooBigRight"::London::0
+2023-02-06T01:27:21.762644Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCallerAddresTooBigRight.json"
+2023-02-06T01:27:21.762646Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:21.762714Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCallerAddresTooBigRight"
+2023-02-06T01:27:21.762719Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:01.628067Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:01.628070Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideCallerAddresTooBigRight"::Merge::0
-2023-01-24T10:16:01.628073Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigRight.json"
-2023-01-24T10:16:01.628077Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:01.628079Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:01.628148Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:21.762722Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:21.762729Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:21.762731Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideCallerAddresTooBigRight"::Merge::0
+2023-02-06T01:27:21.762733Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideCallerAddresTooBigRight.json"
+2023-02-06T01:27:21.762734Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:21.762799Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideCallerAddresTooBigRight"
+2023-02-06T01:27:21.762805Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:01.628782Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigRight.json"
-2023-01-24T10:16:01.628811Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideNotExistingAccount.json"
-2023-01-24T10:16:01.652574Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:01.652681Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:01.652686Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:01.652743Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:01.652816Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:01.652821Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideNotExistingAccount"::Istanbul::0
-2023-01-24T10:16:01.652825Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideNotExistingAccount.json"
-2023-01-24T10:16:01.652829Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:01.652831Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.021074Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:21.762807Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:21.763536Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideCallerAddresTooBigRight.json"
+2023-02-06T01:27:21.763558Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideNotExistingAccount.json"
+2023-02-06T01:27:21.789526Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:21.789627Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:21.789631Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:21.789685Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:21.789757Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:21.789760Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideNotExistingAccount"::Istanbul::0
+2023-02-06T01:27:21.789763Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideNotExistingAccount.json"
+2023-02-06T01:27:21.789764Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:22.168476Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideNotExistingAccount"
+2023-02-06T01:27:22.168500Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 3551438,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:02.021096Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:02.021103Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideNotExistingAccount"::Berlin::0
-2023-01-24T10:16:02.021106Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideNotExistingAccount.json"
-2023-01-24T10:16:02.021109Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:02.021111Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.021228Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.168506Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.168519Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:22.168524Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideNotExistingAccount"::Berlin::0
+2023-02-06T01:27:22.168526Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideNotExistingAccount.json"
+2023-02-06T01:27:22.168528Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:22.168636Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideNotExistingAccount"
+2023-02-06T01:27:22.168643Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:02.021238Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:02.021241Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideNotExistingAccount"::London::0
-2023-01-24T10:16:02.021244Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideNotExistingAccount.json"
-2023-01-24T10:16:02.021248Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:02.021250Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.021339Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.168646Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.168654Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:22.168656Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideNotExistingAccount"::London::0
+2023-02-06T01:27:22.168657Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideNotExistingAccount.json"
+2023-02-06T01:27:22.168659Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:22.168725Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideNotExistingAccount"
+2023-02-06T01:27:22.168729Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:02.021346Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:02.021350Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideNotExistingAccount"::Merge::0
-2023-01-24T10:16:02.021353Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideNotExistingAccount.json"
-2023-01-24T10:16:02.021357Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:02.021359Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.021430Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.168732Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.168739Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:22.168741Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideNotExistingAccount"::Merge::0
+2023-02-06T01:27:22.168743Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideNotExistingAccount.json"
+2023-02-06T01:27:22.168745Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:22.168808Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideNotExistingAccount"
+2023-02-06T01:27:22.168813Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:02.022117Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideNotExistingAccount.json"
-2023-01-24T10:16:02.022146Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideOrigin.json"
-2023-01-24T10:16:02.047807Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:02.047937Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:02.047941Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:02.048011Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:02.048108Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:02.048116Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideOrigin"::Istanbul::0
-2023-01-24T10:16:02.048120Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideOrigin.json"
-2023-01-24T10:16:02.048124Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:02.048126Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.426387Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.168815Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.169552Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideNotExistingAccount.json"
+2023-02-06T01:27:22.169574Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideOrigin.json"
+2023-02-06T01:27:22.193911Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:22.194018Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:22.194022Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:22.194076Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:22.194149Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:22.194152Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideOrigin"::Istanbul::0
+2023-02-06T01:27:22.194155Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideOrigin.json"
+2023-02-06T01:27:22.194157Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:22.527233Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideOrigin"
+2023-02-06T01:27:22.527254Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 2773962,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:02.426409Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:02.426417Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideOrigin"::Berlin::0
-2023-01-24T10:16:02.426420Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideOrigin.json"
-2023-01-24T10:16:02.426423Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:02.426425Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.426531Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.527259Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.527271Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:22.527275Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideOrigin"::Berlin::0
+2023-02-06T01:27:22.527277Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideOrigin.json"
+2023-02-06T01:27:22.527279Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:22.527369Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideOrigin"
+2023-02-06T01:27:22.527375Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:02.426537Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:02.426540Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideOrigin"::London::0
-2023-01-24T10:16:02.426542Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideOrigin.json"
-2023-01-24T10:16:02.426544Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:02.426546Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.426611Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.527379Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.527388Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:22.527390Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideOrigin"::London::0
+2023-02-06T01:27:22.527393Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideOrigin.json"
+2023-02-06T01:27:22.527394Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:22.527462Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideOrigin"
+2023-02-06T01:27:22.527468Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:02.426617Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:02.426619Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideOrigin"::Merge::0
-2023-01-24T10:16:02.426621Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideOrigin.json"
-2023-01-24T10:16:02.426624Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:02.426625Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.426688Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.527471Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.527478Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:22.527480Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideOrigin"::Merge::0
+2023-02-06T01:27:22.527481Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideOrigin.json"
+2023-02-06T01:27:22.527483Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:22.527546Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideOrigin"
+2023-02-06T01:27:22.527550Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:02.427568Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideOrigin.json"
-2023-01-24T10:16:02.427596Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherPostDeath.json"
-2023-01-24T10:16:02.452292Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:02.452398Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:02.452401Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:02.452455Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:02.452528Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:02.452533Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideSendEtherPostDeath"::Istanbul::0
-2023-01-24T10:16:02.452536Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherPostDeath.json"
-2023-01-24T10:16:02.452540Z  INFO evm_eth_compliance::statetest::runner: TX len : 4
-2023-01-24T10:16:02.452541Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.823091Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.527553Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.528178Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideOrigin.json"
+2023-02-06T01:27:22.528208Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherPostDeath.json"
+2023-02-06T01:27:22.580961Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:22.581069Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:22.581072Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:22.581128Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:22.581200Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:22.581203Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideSendEtherPostDeath"::Istanbul::0
+2023-02-06T01:27:22.581206Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideSendEtherPostDeath.json"
+2023-02-06T01:27:22.581208Z  INFO evm_eth_compliance::statetest::executor: TX len : 4
+2023-02-06T01:27:22.935578Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideSendEtherPostDeath"
+2023-02-06T01:27:22.935598Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 58200000000000000000000000000000000000000000000000000de0b6b3a7640000 },
-    gas_used: 4955857,
+    return_data: RawBytes {  },
+    gas_used: 3000000,
     events_root: None,
 }
-2023-01-24T10:16:02.823122Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:02.823129Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideSendEtherPostDeath"::Berlin::0
-2023-01-24T10:16:02.823132Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherPostDeath.json"
-2023-01-24T10:16:02.823136Z  INFO evm_eth_compliance::statetest::runner: TX len : 4
-2023-01-24T10:16:02.823138Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.823226Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.935603Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.935620Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:22.935623Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideSendEtherPostDeath"::Berlin::0
+2023-02-06T01:27:22.935625Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideSendEtherPostDeath.json"
+2023-02-06T01:27:22.935628Z  INFO evm_eth_compliance::statetest::executor: TX len : 4
+2023-02-06T01:27:22.935809Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideSendEtherPostDeath"
+2023-02-06T01:27:22.935816Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1035837,
+    return_data: RawBytes {  },
+    gas_used: 3000000,
     events_root: None,
 }
-2023-01-24T10:16:02.823232Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:02.823235Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideSendEtherPostDeath"::London::0
-2023-01-24T10:16:02.823237Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherPostDeath.json"
-2023-01-24T10:16:02.823239Z  INFO evm_eth_compliance::statetest::runner: TX len : 4
-2023-01-24T10:16:02.823241Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.823309Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.935819Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.935833Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:22.935835Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideSendEtherPostDeath"::London::0
+2023-02-06T01:27:22.935837Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideSendEtherPostDeath.json"
+2023-02-06T01:27:22.935838Z  INFO evm_eth_compliance::statetest::executor: TX len : 4
+2023-02-06T01:27:22.936008Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideSendEtherPostDeath"
+2023-02-06T01:27:22.936014Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1035837,
+    return_data: RawBytes {  },
+    gas_used: 3000000,
     events_root: None,
 }
-2023-01-24T10:16:02.823315Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:02.823318Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideSendEtherPostDeath"::Merge::0
-2023-01-24T10:16:02.823320Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherPostDeath.json"
-2023-01-24T10:16:02.823323Z  INFO evm_eth_compliance::statetest::runner: TX len : 4
-2023-01-24T10:16:02.823324Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:02.823390Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.936017Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.936030Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:22.936032Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideSendEtherPostDeath"::Merge::0
+2023-02-06T01:27:22.936033Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideSendEtherPostDeath.json"
+2023-02-06T01:27:22.936035Z  INFO evm_eth_compliance::statetest::executor: TX len : 4
+2023-02-06T01:27:22.936207Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideSendEtherPostDeath"
+2023-02-06T01:27:22.936213Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1035837,
+    return_data: RawBytes {  },
+    gas_used: 3000000,
     events_root: None,
 }
-2023-01-24T10:16:02.824093Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherPostDeath.json"
-2023-01-24T10:16:02.824121Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherToMe.json"
-2023-01-24T10:16:02.848013Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:02.848115Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:02.848119Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:02.848172Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:02.848245Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:02.848250Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideSendEtherToMe"::Istanbul::0
-2023-01-24T10:16:02.848253Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherToMe.json"
-2023-01-24T10:16:02.848256Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:02.848257Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:03.210965Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:22.936216Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:22.936853Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherPostDeath.json"
+2023-02-06T01:27:22.936883Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherToMe.json"
+2023-02-06T01:27:23.000470Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:23.000574Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:23.000577Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:23.000630Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:23.000701Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:23.000705Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideSendEtherToMe"::Istanbul::0
+2023-02-06T01:27:23.000708Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideSendEtherToMe.json"
+2023-02-06T01:27:23.000709Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:23.332857Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideSendEtherToMe"
+2023-02-06T01:27:23.332879Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 2339024,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:03.210990Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:03.210997Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideSendEtherToMe"::Berlin::0
-2023-01-24T10:16:03.211000Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherToMe.json"
-2023-01-24T10:16:03.211003Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:03.211005Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:03.211093Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:23.332884Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:23.332897Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:23.332901Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideSendEtherToMe"::Berlin::0
+2023-02-06T01:27:23.332904Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideSendEtherToMe.json"
+2023-02-06T01:27:23.332906Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:23.333011Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideSendEtherToMe"
+2023-02-06T01:27:23.333020Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:03.211100Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:03.211103Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideSendEtherToMe"::London::0
-2023-01-24T10:16:03.211105Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherToMe.json"
-2023-01-24T10:16:03.211107Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:03.211108Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:03.211194Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:23.333023Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:23.333034Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:23.333037Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideSendEtherToMe"::London::0
+2023-02-06T01:27:23.333039Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideSendEtherToMe.json"
+2023-02-06T01:27:23.333042Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:23.333125Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideSendEtherToMe"
+2023-02-06T01:27:23.333130Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:03.211202Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:03.211205Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "suicideSendEtherToMe"::Merge::0
-2023-01-24T10:16:03.211208Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherToMe.json"
-2023-01-24T10:16:03.211212Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:03.211214Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-2023-01-24T10:16:03.211302Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:23.333132Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:23.333140Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:23.333142Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "suicideSendEtherToMe"::Merge::0
+2023-02-06T01:27:23.333143Z  INFO evm_eth_compliance::statetest::executor: Path : "suicideSendEtherToMe.json"
+2023-02-06T01:27:23.333145Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:23.333210Z  INFO evm_eth_compliance::statetest::executor: UC : "suicideSendEtherToMe"
+2023-02-06T01:27:23.333215Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 1034122,
+    return_data: RawBytes {  },
+    gas_used: 1000000,
     events_root: None,
 }
-2023-01-24T10:16:03.212007Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherToMe.json"
-2023-01-24T10:16:03.212037Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/testRandomTest.json"
-2023-01-24T10:16:03.236801Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 0
-2023-01-24T10:16:03.236907Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:03.236910Z  INFO evm_eth_compliance::statetest::runner: Pre-Block Iteration :: 1
-2023-01-24T10:16:03.236966Z  INFO evm_eth_compliance::statetest::runner: New State ID Updated
-2023-01-24T10:16:03.237039Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Istanbul 0
-2023-01-24T10:16:03.237043Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "testRandomTest"::Istanbul::0
-2023-01-24T10:16:03.237046Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/testRandomTest.json"
-2023-01-24T10:16:03.237049Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:03.237051Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [148, 83, 4, 235, 150, 6, 91, 42, 152, 181, 122, 72, 160, 106, 226, 141, 40, 90, 113, 181, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([215, 166, 242, 208, 200, 186, 79, 10, 126, 8, 221, 102, 9, 12, 200, 158, 203, 19, 78, 227]) }
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [235, 204, 229, 246, 5, 48, 39, 94, 233, 49, 140, 225, 239, 249, 228, 191, 238, 129, 1, 114, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([178, 136, 95, 13, 181, 217, 120, 204, 197, 243, 155, 145, 50, 151, 43, 92, 167, 175, 132, 25]) }
-2023-01-24T10:16:03.904321Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:23.333218Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:23.333836Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/suicideSendEtherToMe.json"
+2023-02-06T01:27:23.333862Z TRACE evm_eth_compliance::statetest::runner: Calling testfile => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/testRandomTest.json"
+2023-02-06T01:27:23.357896Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 0
+2023-02-06T01:27:23.357995Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:23.357998Z  INFO evm_eth_compliance::statetest::executor: Pre-Block Iteration :: 1
+2023-02-06T01:27:23.358049Z  INFO evm_eth_compliance::statetest::executor: New State ID Updated
+2023-02-06T01:27:23.358119Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Istanbul 0
+2023-02-06T01:27:23.358122Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "testRandomTest"::Istanbul::0
+2023-02-06T01:27:23.358125Z  INFO evm_eth_compliance::statetest::executor: Path : "testRandomTest.json"
+2023-02-06T01:27:23.358127Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:23.689490Z  INFO evm_eth_compliance::statetest::executor: UC : "testRandomTest"
+2023-02-06T01:27:23.689511Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 25501864,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:16:03.904358Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Berlin 0
-2023-01-24T10:16:03.904364Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "testRandomTest"::Berlin::0
-2023-01-24T10:16:03.904367Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/testRandomTest.json"
-2023-01-24T10:16:03.904370Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:03.904371Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [52, 206, 105, 18, 180, 86, 169, 134, 66, 145, 242, 213, 71, 127, 184, 201, 186, 98, 26, 247, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([67, 35, 255, 1, 46, 226, 200, 90, 20, 150, 237, 153, 222, 171, 201, 9, 99, 31, 101, 211]) }
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [99, 146, 186, 46, 153, 226, 84, 67, 25, 239, 102, 183, 123, 143, 110, 42, 204, 247, 6, 193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([239, 242, 33, 137, 111, 16, 15, 190, 235, 110, 77, 4, 63, 5, 41, 98, 192, 28, 206, 35]) }
-2023-01-24T10:16:03.905347Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:23.689516Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:23.689527Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Berlin 0
+2023-02-06T01:27:23.689531Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "testRandomTest"::Berlin::0
+2023-02-06T01:27:23.689532Z  INFO evm_eth_compliance::statetest::executor: Path : "testRandomTest.json"
+2023-02-06T01:27:23.689534Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:23.689560Z  INFO evm_eth_compliance::statetest::executor: UC : "testRandomTest"
+2023-02-06T01:27:23.689564Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 25494214,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:16:03.905373Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => London 0
-2023-01-24T10:16:03.905376Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "testRandomTest"::London::0
-2023-01-24T10:16:03.905378Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/testRandomTest.json"
-2023-01-24T10:16:03.905380Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:03.905383Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [150, 151, 1, 50, 14, 235, 234, 97, 11, 211, 47, 136, 169, 204, 9, 15, 76, 88, 177, 216, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([28, 35, 125, 168, 212, 11, 234, 180, 81, 129, 48, 219, 76, 10, 52, 89, 217, 159, 194, 2]) }
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [175, 233, 83, 17, 74, 10, 5, 74, 134, 230, 192, 174, 6, 155, 136, 139, 118, 51, 127, 235, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([234, 24, 246, 14, 245, 153, 41, 227, 62, 255, 40, 203, 90, 71, 156, 92, 203, 241, 198, 169]) }
-2023-01-24T10:16:03.906329Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:23.689567Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:23.689576Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => London 0
+2023-02-06T01:27:23.689579Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "testRandomTest"::London::0
+2023-02-06T01:27:23.689582Z  INFO evm_eth_compliance::statetest::executor: Path : "testRandomTest.json"
+2023-02-06T01:27:23.689585Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:23.689594Z  INFO evm_eth_compliance::statetest::executor: UC : "testRandomTest"
+2023-02-06T01:27:23.689599Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 25635545,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:16:03.906355Z  INFO evm_eth_compliance::statetest::runner: Entering Post Block => Merge 0
-2023-01-24T10:16:03.906358Z  INFO evm_eth_compliance::statetest::runner: Executing TestCase "testRandomTest"::Merge::0
-2023-01-24T10:16:03.906360Z  INFO evm_eth_compliance::statetest::runner: Path : "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/testRandomTest.json"
-2023-01-24T10:16:03.906363Z  INFO evm_eth_compliance::statetest::runner: TX len : 0
-2023-01-24T10:16:03.906365Z  INFO evm_eth_compliance::statetest::runner: Tracing Status : true
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [164, 159, 137, 55, 107, 23, 23, 172, 189, 110, 149, 242, 218, 194, 80, 151, 112, 7, 220, 136, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([132, 105, 76, 107, 184, 77, 78, 105, 101, 219, 134, 121, 221, 254, 217, 203, 72, 121, 220, 83]) }
-[TRACE] delegated address: Address { payload: Delegated(DelegatedAddress { namespace: 10, length: 20, buffer: [80, 136, 160, 236, 60, 241, 52, 128, 198, 110, 1, 228, 88, 211, 42, 243, 36, 124, 156, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }) }
-[TRACE] robust address: Address { payload: Actor([217, 138, 9, 115, 71, 212, 34, 51, 81, 252, 105, 199, 181, 39, 187, 149, 48, 141, 211, 216]) }
-2023-01-24T10:16:03.907310Z  INFO evm_eth_compliance::statetest::runner: Execution Success => Receipt {
+2023-02-06T01:27:23.689602Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:23.689611Z  INFO evm_eth_compliance::statetest::executor: Entering Post Block => Merge 0
+2023-02-06T01:27:23.689614Z  INFO evm_eth_compliance::statetest::executor: Executing TestCase "testRandomTest"::Merge::0
+2023-02-06T01:27:23.689617Z  INFO evm_eth_compliance::statetest::executor: Path : "testRandomTest.json"
+2023-02-06T01:27:23.689620Z  INFO evm_eth_compliance::statetest::executor: TX len : 0
+2023-02-06T01:27:23.689628Z  INFO evm_eth_compliance::statetest::executor: UC : "testRandomTest"
+2023-02-06T01:27:23.689632Z  WARN evm_eth_compliance::statetest::executor: Execution Failed => Receipt {
     exit_code: ExitCode {
-        value: 0,
+        value: 7,
     },
-    return_data: RawBytes { 40 },
-    gas_used: 25899689,
+    return_data: RawBytes {  },
+    gas_used: 300000,
     events_root: None,
 }
-2023-01-24T10:16:03.908319Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/testRandomTest.json"
-2023-01-24T10:16:03.908899Z  INFO evm_eth_compliance::statetest::runner: Finished Processing of 67 Files in Time:30.046921429s
+2023-02-06T01:27:23.689635Z  WARN evm_eth_compliance::statetest::executor: failure_info => Some(
+    MessageBacktrace(
+        Backtrace {
+            frames: [
+                Frame {
+                    source: 400,
+                    method: 3844450837,
+                    code: ExitCode {
+                        value: 7,
+                    },
+                    message: "out of gas",
+                },
+            ],
+            cause: None,
+        },
+    ),
+)
+2023-02-06T01:27:23.690239Z TRACE evm_eth_compliance::statetest::runner: TestDone => "test-vectors/tests/GeneralStateTests/stSystemOperationsTest/testRandomTest.json"
+2023-02-06T01:27:23.690584Z  INFO evm_eth_compliance::statetest::runner: Finished Processing of 67 Files in Time:23.929969087s
+=== Start ===
+=== OK Status ===
+Count :: 17
+{
+    "ABAcalls1.json::ABAcalls1": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "ABAcallsSuicide1.json::ABAcallsSuicide1": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Istanbul | 1 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "Berlin | 1 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "London | 1 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+        "Merge | 1 | ExitCode { value: 0 }",
+    ],
+    "CallRecursiveBombLog2.json::CallRecursiveBombLog2": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "currentAccountBalance.json::currentAccountBalance": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "CallRecursiveBombLog.json::CallRecursiveBombLog": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "Call10.json::Call10": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "doubleSelfdestructTouch.json::doubleSelfdestructTouch": [
+        "London | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "extcodecopy.json::extcodecopy": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "doubleSelfdestructTest2.json::doubleSelfdestructTest2": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "CreateHashCollision.json::CreateHashCollision": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+    ],
+    "CallRecursiveBomb0_OOG_atMaxCallDepth.json::CallRecursiveBomb0_OOG_atMaxCallDepth": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+    ],
+    "callerAccountBalance.json::callerAccountBalance": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "callValue.json::callValue": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "doubleSelfdestructTest.json::doubleSelfdestructTest": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "CallRecursiveBomb0.json::CallRecursiveBomb0": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "ABAcalls2.json::ABAcalls2": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+    "ABAcallsSuicide0.json::ABAcallsSuicide0": [
+        "Istanbul | 0 | ExitCode { value: 0 }",
+        "Berlin | 0 | ExitCode { value: 0 }",
+        "London | 0 | ExitCode { value: 0 }",
+        "Merge | 0 | ExitCode { value: 0 }",
+    ],
+}
+=== KO Status ===
+Count :: 52
+{
+    "CallToReturn1ForDynamicJump0.json::CallToReturn1ForDynamicJump0": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "createNameRegistratorOutOfMemoryBonds0.json::createNameRegistratorOutOfMemoryBonds0": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "suicideCaller.json::suicideCaller": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToReturn1ForDynamicJump1.json::CallToReturn1ForDynamicJump1": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "suicideSendEtherToMe.json::suicideSendEtherToMe": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CreateHashCollision.json::CreateHashCollision": [
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorTooMuchMemory1.json::CallToNameRegistratorTooMuchMemory1": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorAddressTooBigRight.json::CallToNameRegistratorAddressTooBigRight": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorZeorSizeMemExpansion.json::CallToNameRegistratorZeorSizeMemExpansion": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorTooMuchMemory0.json::CallToNameRegistratorTooMuchMemory0": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorTooMuchMemory2.json::CallToNameRegistratorTooMuchMemory2": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToReturn1.json::CallToReturn1": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "PostToReturn1.json::PostToReturn1": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "callcodeTo0.json::callcodeTo0": [
+        "Istanbul | 0 | ExitCode { value: 35 }",
+        "Berlin | 0 | ExitCode { value: 35 }",
+        "London | 0 | ExitCode { value: 35 }",
+        "Merge | 0 | ExitCode { value: 35 }",
+    ],
+    "createWithInvalidOpcode.json::createWithInvalidOpcode": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "return2.json::return2": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "createNameRegistratorZeroMem2.json::createNameRegistratorZeroMem2": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CalltoReturn2.json::CalltoReturn2": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "ABAcalls0.json::ABAcalls0": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorMemOOGAndInsufficientBalance.json::CallToNameRegistratorMemOOGAndInsufficientBalance": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "ABAcalls3.json::ABAcalls3": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "callcodeToNameRegistratorZeroMemExpanion.json::callcodeToNameRegistratorZeroMemExpanion": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "createNameRegistratorZeroMem.json::createNameRegistratorZeroMem": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "suicideAddress.json::suicideAddress": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "suicideCallerAddresTooBigLeft.json::suicideCallerAddresTooBigLeft": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "suicideCallerAddresTooBigRight.json::suicideCallerAddresTooBigRight": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "suicideOrigin.json::suicideOrigin": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "suicideNotExistingAccount.json::suicideNotExistingAccount": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "createNameRegistratorValueTooHigh.json::createNameRegistratorValueTooHigh": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallRecursiveBomb1.json::CallRecursiveBomb1": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorNotMuchMemory0.json::CallToNameRegistratorNotMuchMemory0": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "createNameRegistrator.json::createNameRegistrator": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistrator0.json::CallToNameRegistrator0": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "createNameRegistratorOutOfMemoryBonds1.json::createNameRegistratorOutOfMemoryBonds1": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "callcodeToReturn1.json::callcodeToReturn1": [
+        "Istanbul | 0 | ExitCode { value: 35 }",
+        "Berlin | 0 | ExitCode { value: 35 }",
+        "London | 0 | ExitCode { value: 35 }",
+        "Merge | 0 | ExitCode { value: 35 }",
+    ],
+    "createNameRegistratorZeroMemExpansion.json::createNameRegistratorZeroMemExpansion": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "suicideSendEtherPostDeath.json::suicideSendEtherPostDeath": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "balanceInputAddressTooBig.json::balanceInputAddressTooBig": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "testRandomTest.json::testRandomTest": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorAddressTooBigLeft.json::CallToNameRegistratorAddressTooBigLeft": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorOutOfGas.json::CallToNameRegistratorOutOfGas": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "return0.json::return0": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "createNameRegistratorOOG_MemExpansionOOV.json::createNameRegistratorOOG_MemExpansionOOV": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallToNameRegistratorNotMuchMemory1.json::CallToNameRegistratorNotMuchMemory1": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "callcodeToNameRegistrator0.json::callcodeToNameRegistrator0": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallRecursiveBomb0_OOG_atMaxCallDepth.json::CallRecursiveBomb0_OOG_atMaxCallDepth": [
+        "Merge | 0 | ExitCode { value: 38 }",
+    ],
+    "return1.json::return1": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallRecursiveBomb3.json::CallRecursiveBomb3": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "TestNameRegistrator.json::TestNameRegistrator": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "callcodeToNameRegistratorAddresTooBigLeft.json::callcodeToNameRegistratorAddresTooBigLeft": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "CallRecursiveBomb2.json::CallRecursiveBomb2": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+    "callcodeToNameRegistratorAddresTooBigRight.json::callcodeToNameRegistratorAddresTooBigRight": [
+        "Istanbul | 0 | ExitCode { value: 7 }",
+        "Berlin | 0 | ExitCode { value: 7 }",
+        "London | 0 | ExitCode { value: 7 }",
+        "Merge | 0 | ExitCode { value: 7 }",
+    ],
+}
+=== SKIP Status ===
+None
+=== End ===
 ```
