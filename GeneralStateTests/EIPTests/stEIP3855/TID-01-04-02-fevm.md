@@ -2,7 +2,12 @@
 > Command Executed
 
 ```
-
+clear && \
+	RUST_LOG=revme=trace \
+	cargo run --release -p revme \
+	-- \
+	statetest \
+	-s ./bins/revme/tests/GeneralStateTests/EIPTests/stEIP3855/mod-push0.json
 ```
 
 > Execution Trace
