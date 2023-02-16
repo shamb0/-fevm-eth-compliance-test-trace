@@ -23,19 +23,19 @@ clear && \
 
 * Following use-cases are failed, when executed with test vector `transaction.gasLimit`.
 
-> Hit with `EVM_CONTRACT_UNDEFINED_INSTRUCTION`, ExitCode::35
+- Hit with `EVM_CONTRACT_UNDEFINED_INSTRUCTION`, ExitCode::35
 
 | Test ID | Use-Case |
 | --- | --- |
 | TID-49-14 | callcodeToReturn1 |
 
-> Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
+- Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
 
 | Test ID | Use-Case |
 | --- | --- |
 | TID-49-17 | CallRecursiveBomb0_OOG_atMaxCallDepth |
 
-* Hit with error `SYS_OUT_OF_GAS`(ExitCode::7)
+- Hit with error `SYS_OUT_OF_GAS`(ExitCode::7)
 
 | Test ID | Use-Case |
 | --- | --- |

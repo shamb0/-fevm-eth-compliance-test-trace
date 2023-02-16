@@ -21,7 +21,7 @@ clear && \
 
 > For Review
 
-* Following use-cases are failed, when executed with `const ENOUGH_GAS: Gas = Gas::new(99_900_000_000_000);`
+* Following use-cases are failed, when executed with `const ENOUGH_GAS: Gas = Gas::new(99_900_000_000);`
 
 > Hit with `EVM_CONTRACT_ILLEGAL_MEMORY_ACCESS`, ExitCode::38
 
